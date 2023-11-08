@@ -6,7 +6,7 @@ package dominio;
 
 /**
  *
- * @author Gonza
+ * @author lucas
  */
 public class Atributo {
     
