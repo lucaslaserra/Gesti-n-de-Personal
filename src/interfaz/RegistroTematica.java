@@ -57,7 +57,7 @@ public class RegistroTematica extends javax.swing.JFrame {
 
         jButton1.setText("Cancelar");
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Registrar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
