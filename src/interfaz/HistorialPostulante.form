@@ -24,58 +24,60 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="jScrollPane3" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="278" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="LabelNombre" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LabelCedula" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LabelDireccion" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LabelTelefono" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LabelMail" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LabelLinkedin" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LabelExperiencia" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane2" min="-2" pref="212" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="label2" min="-2" max="-2" attributes="0"/>
-                                              <Component id="label3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="label4" min="-2" max="-2" attributes="0"/>
-                                              <Component id="label5" min="-2" max="-2" attributes="0"/>
-                                              <Component id="label6" min="-2" max="-2" attributes="0"/>
-                                              <Component id="label7" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="278" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="LabelNombre" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LabelCedula" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LabelDireccion" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LabelTelefono" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LabelMail" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LabelLinkedin" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LabelExperiencia" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane2" min="-2" pref="212" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="label2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="label3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="label4" min="-2" max="-2" attributes="0"/>
+                                          <Component id="label5" min="-2" max="-2" attributes="0"/>
+                                          <Component id="label6" min="-2" max="-2" attributes="0"/>
+                                          <Component id="label7" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <Component id="label1" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="label1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jSeparator1" min="-2" pref="641" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="LabelBuscar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="112" pref="112" max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" min="-2" pref="248" max="-2" attributes="0"/>
-                          <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                          <Component id="BotonBorrar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Component id="BotonResetar" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  </Group>
+                  <Component id="jSeparator1" min="-2" pref="641" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="LabelBuscar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="TextBuscador" min="-2" pref="307" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="BotonBorrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                      <Component id="BotonResetar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
           <Component id="BotonSalir" alignment="0" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane3" min="-2" pref="704" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -128,17 +130,17 @@
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="BotonBorrar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="BotonBorrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextBuscador" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="BotonResetar" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="LabelBuscar" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" min="-2" pref="19" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="LabelBuscar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="259" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="BotonSalir" min="-2" max="-2" attributes="0"/>
@@ -284,29 +286,6 @@
         <Property name="text" type="java.lang.String" value="Buscar: "/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane4">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea2">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JButton" name="BotonBorrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Borrar"/>
@@ -335,9 +314,19 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
                 <Column editable="true" title="Nro" type="java.lang.Integer"/>
-                <Column editable="true" title="Evaluador" type="java.lang.Object"/>
-                <Column editable="true" title="Comentarios" type="java.lang.String"/>
+                <Column editable="true" title="Evaluador" type="java.lang.Object">
+                  <Data value=""/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
                 <Column editable="true" title="Puntaje" type="java.lang.Integer"/>
+                <Column editable="true" title="Comentarios" type="java.lang.String">
+                  <Data value=""/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -378,6 +367,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TextBuscador">
     </Component>
   </SubComponents>
 </Form>
