@@ -1,13 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package dominio;
 
-/**
- *
- * @author Gonza
- */
+import java.util.HashMap;
+
 public class Puesto {
+    private String titulo;
+    private String descripcion;
+    private HashMap<Conocimiento, Integer> conocimientosRequeridos;
+
+    public Puesto(String titulo, String descripcion, HashMap<Conocimiento, Integer> conocimientosRequeridos) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.conocimientosRequeridos = conocimientosRequeridos;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setConocimientosRequeridos(HashMap<Conocimiento, Integer> conocimientosRequeridos) {
+        this.conocimientosRequeridos = conocimientosRequeridos;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public HashMap<Conocimiento, Integer> getConocimientosRequeridos() {
+        return conocimientosRequeridos;
+    }
+    
     
 }

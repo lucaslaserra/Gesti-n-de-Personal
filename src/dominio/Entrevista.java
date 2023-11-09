@@ -4,10 +4,14 @@
  */
 package dominio;
 
-/**
- *
- * @author Gonza
- */
+import java.time.LocalDate;
+
+
 public class Entrevista {
-    
+    private Postulante postulante;
+    private Evaluador evaluador;
+    private Puesto puesto;
+    private LocalDate fecha;
+    private String comentarios;
+    private int puntuacion; // Suponiendo una puntuación numérica
 }
