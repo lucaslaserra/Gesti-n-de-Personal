@@ -10,7 +10,7 @@ package interfaz;
  */
 public class Prueba {
     public static void main(String[]args) {
-        AltaPostulante panel = new AltaPostulante();
+        VentanaPrincipal panel = new VentanaPrincipal();
         panel.setVisible(true);
 
 //        HistorialPostulante panel = new HistorialPostulante();

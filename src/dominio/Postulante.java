@@ -21,7 +21,7 @@ public class Postulante extends Persona {
     
     // Constructor, getters y setters
     public Postulante(String nombre, String cedula, String direccion, String telefono, String email, String linkedin) {
-        super(nombre, cedula, cedula);
+        super(nombre, cedula, direccion);
         this.telefono = telefono;
         this.email = email;
         this.linkedin = linkedin;

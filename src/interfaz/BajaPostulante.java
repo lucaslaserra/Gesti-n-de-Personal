@@ -33,7 +33,7 @@ public class BajaPostulante extends javax.swing.JFrame {
         BotonDardeBaja = new javax.swing.JButton();
         BotonCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         LabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -87,7 +87,7 @@ public class BajaPostulante extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonDardeBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();

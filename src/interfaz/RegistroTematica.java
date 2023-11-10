@@ -35,7 +35,7 @@ public class RegistroTematica extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         LabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

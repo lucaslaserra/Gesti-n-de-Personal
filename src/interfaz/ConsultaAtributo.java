@@ -38,7 +38,7 @@ public class ConsultaAtributo extends javax.swing.JFrame {
         PanelPuestos = new javax.swing.JTextPane();
         BotonSalir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         LabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
