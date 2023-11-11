@@ -4,13 +4,15 @@
  */
 package interfaz;
 
-/**
- *
- * @author Gonza
- */
+import dominio.SistemaTemporal;
+
+
 public class Prueba {
+    
+    
     public static void main(String[]args) {
-        VentanaPrincipal panel = new VentanaPrincipal();
+        SistemaTemporal sistema = new SistemaTemporal();
+        VentanaPrincipal panel = new VentanaPrincipal(sistema);
         panel.setVisible(true);
 
 //        HistorialPostulante panel = new HistorialPostulante();
