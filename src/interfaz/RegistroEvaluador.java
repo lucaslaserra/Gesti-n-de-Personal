@@ -143,9 +143,16 @@ public class RegistroEvaluador extends javax.swing.JFrame {
         String cedula = TextoCedula.getText();
         String fechadeIngreso = TextoFechadeIngreso.getText();
         String direccion = TextoDireccion.getText();
+           if (nombre.isEmpty() || cedula.isEmpty() || fechadeIngreso.isEmpty() || direccion.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Los campos no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }else{
         Evaluador evaluador = new Evaluador (nombre,cedula,fechadeIngreso,direccion);
         miSistema.setEvaluador(evaluador);
+        evaluador.guardar();
+        limpiarFormulario();
         JOptionPane.showMessageDialog(null, "Se ha registrado el evaluador con exito!");
+    }
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
@@ -171,4 +178,18 @@ public class RegistroEvaluador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
+
+
+  private void limpiarFormulario() {
+        // Limpia todos los campos de texto
+        TextoNombre.setText("");
+        TextoDireccion.setText("");
+        TextoFechadeIngreso.setText("");
+        TextoCedula.setText("");
+       
+        // ... otros campos
+
+        // Desmarca cualquier botón de radio seleccionado
+       
+    }
 }

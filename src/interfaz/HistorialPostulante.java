@@ -61,11 +61,6 @@ public class HistorialPostulante extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label1.setText("Historial postulante");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel1.setText("Postulantes:");
@@ -84,11 +79,6 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
         LabelExperiencia.setText("Experiencia:");
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jList2);
 
         label2.setText("label2");

@@ -4,6 +4,10 @@
  */
 package interfaz;
 
+import dominio.Habilidad;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lucas
@@ -15,6 +19,7 @@ public class RegistroPuesto extends javax.swing.JFrame {
      */
     public RegistroPuesto() {
         initComponents();
+        agregarHabilidadesCombo();
     }
 
     /**
@@ -27,23 +32,20 @@ public class RegistroPuesto extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
         LabelTitulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        JRemoto = new javax.swing.JRadioButton();
+        JPresencial = new javax.swing.JRadioButton();
+        JMixto = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         CombodeTemas = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaTemasSeleccionados = new javax.swing.JList<>();
         BotonCancelar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonRegistrar = new javax.swing.JButton();
+        JbotonAgregarTema = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -55,26 +57,45 @@ public class RegistroPuesto extends javax.swing.JFrame {
 
         jLabel2.setText("Tipo:");
 
-        jRadioButton1.setText("Remoto");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(JRemoto);
+        JRemoto.setText("Remoto");
+        JRemoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                JRemotoActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Presencial");
+        buttonGroup1.add(JPresencial);
+        JPresencial.setText("Presencial");
 
-        jRadioButton3.setText("Mixto");
+        buttonGroup1.add(JMixto);
+        JMixto.setText("Mixto");
 
         jLabel3.setText("Temas requeridos:");
 
-        CombodeTemas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CombodeTemas.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                CombodeTemasComponentAdded(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(ListaTemasSeleccionados);
 
         BotonCancelar.setText("Cancelar");
 
-        jButton2.setText("Registrar");
+        jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarActionPerformed(evt);
+            }
+        });
+
+        JbotonAgregarTema.setText("Agregar");
+        JbotonAgregarTema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbotonAgregarTemaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,25 +111,29 @@ public class RegistroPuesto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton1)
+                        .addComponent(JRemoto)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
+                        .addComponent(JPresencial)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton3))
+                        .addComponent(JMixto))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BotonCancelar)
                         .addGap(220, 220, 220)
-                        .addComponent(jButton2))
+                        .addComponent(jButtonRegistrar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CombodeTemas, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(CombodeTemas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(JbotonAgregarTema)
+                                .addGap(7, 7, 7)))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,86 +144,87 @@ public class RegistroPuesto extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(JRemoto)
+                    .addComponent(JPresencial)
+                    .addComponent(JMixto))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(CombodeTemas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CombodeTemas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbotonAgregarTema))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BotonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                    .addComponent(jButtonRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void JRemotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRemotoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_JRemotoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
+        String nombrePuesto = jTextFieldNombre.getText();
+        String tipoTrabajo = "";
+        if (JRemoto.isSelected()) {
+            tipoTrabajo = "Remoto";
+        } else if (JPresencial.isSelected()) {
+            tipoTrabajo = "Presencial";
+        } else if (JMixto.isSelected()) {
+            tipoTrabajo = "Mixto";
+        } else {
+             JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de trabajo!");  
         }
-        //</editor-fold>
+        if(ListaTemasSeleccionados.getSize().equals( 0)){
+             JOptionPane.showMessageDialog(this, "No agrego una habilidad requerida");
+        }
+       
+    }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistroPuesto().setVisible(true);
-            }
-        });
+    private void CombodeTemasComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_CombodeTemasComponentAdded
+     
+    }//GEN-LAST:event_CombodeTemasComponentAdded
+
+    private void JbotonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbotonAgregarTemaActionPerformed
+        
+    }//GEN-LAST:event_JbotonAgregarTemaActionPerformed
+
+    public void agregarHabilidadesCombo(){
+    ArrayList<Habilidad> habilidades = Habilidad.obtenerListaHabilidades();
+    for(Habilidad j: habilidades){
+        CombodeTemas.addItem(j.getTema());
     }
+    
+
+ }
+     
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;
     private javax.swing.JComboBox<String> CombodeTemas;
+    private javax.swing.JRadioButton JMixto;
+    private javax.swing.JRadioButton JPresencial;
+    private javax.swing.JRadioButton JRemoto;
+    private javax.swing.JButton JbotonAgregarTema;
     private javax.swing.JLabel LabelTitulo;
     private javax.swing.JList<String> ListaTemasSeleccionados;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }
+
