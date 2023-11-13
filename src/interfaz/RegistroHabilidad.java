@@ -1,21 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfaz;
 
 import dominio.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Gonza
- */
-public class RegistroTematica extends javax.swing.JFrame {
-
+public class RegistroHabilidad extends javax.swing.JFrame {
     private SistemaTemporal miSistema;
     
-    public RegistroTematica(SistemaTemporal sistema) {
+    public RegistroHabilidad(SistemaTemporal sistema) {
         miSistema = sistema;
         initComponents();
     }
@@ -119,25 +114,30 @@ public class RegistroTematica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-       String nombre = TextFieldNombre.getText();
-       String descripcion= TextDescripción.getText();
-       TextFieldNombre.setText("");
-       TextDescripción.setText("");
-       Conocimiento tema = new Conocimiento(nombre,0,descripcion);
-       miSistema.setTemas(tema);
-       JOptionPane.showMessageDialog(null, "Ha sido registrado el tema con exito!");
-       
+    String nombre = TextFieldNombre.getText().trim();
+    String descripcion = TextDescripción.getText().trim();
+    
+    // Verificar que los campos no estén vacíos
+    if (nombre.isEmpty() || descripcion.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "El nombre y la descripción no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    TextFieldNombre.setText("");
+    TextDescripción.setText("");
+    
+    Habilidad habilidad  = new Habilidad(nombre,descripcion);
+     
+    miSistema.setHabilidad(habilidad);
+
+        
+    habilidad.guardar();
+    JOptionPane.showMessageDialog(this, "Ha sido registrado el tema con éxito!");
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
  
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelDescripción;
     private javax.swing.JLabel LabelNombre;

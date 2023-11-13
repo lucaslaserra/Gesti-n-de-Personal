@@ -170,12 +170,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuRegistroTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRegistroTematicaActionPerformed
-        RegistroTematica paneltematica = new RegistroTematica(miSistema);
+        RegistroHabilidad paneltematica = new RegistroHabilidad(miSistema);
         paneltematica.setVisible(true);
     }//GEN-LAST:event_MenuRegistroTematicaActionPerformed
 
     private void MenuAltaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAltaPostulanteActionPerformed
-       AltaPostulante panelAlta = new AltaPostulante();
+       AltaPostulante panelAlta = new AltaPostulante(miSistema);
        panelAlta.setVisible(true);
     }//GEN-LAST:event_MenuAltaPostulanteActionPerformed
 

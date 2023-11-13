@@ -1,36 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package dominio;
 
 import java.util.ArrayList;
-
-/**
- *
- * @author lucas
- */
+ 
 public class SistemaTemporal {
-    private ArrayList <Conocimiento> temas;
+    private ArrayList <Habilidad> habilidades;
     private ArrayList <Entrevista> entrevista;
     private ArrayList <Evaluador> evaluador;
     private ArrayList <Postulante> postulante;
     private ArrayList <Puesto> puesto;
 
     public SistemaTemporal() {
-        this.temas = new ArrayList<>();
+        this.habilidades = new ArrayList<>();
         this.entrevista = new ArrayList<>();
         this.evaluador = new ArrayList<>();
         this.postulante = new ArrayList<>();
         this.puesto = new ArrayList<>();
     }
 
-    public ArrayList<Conocimiento> getTemas() {
-        return temas;
+    public ArrayList<Habilidad> getHabilidades() {
+        return habilidades;
     }
 
-    public void setTemas(Conocimiento tema) {
-        this.temas.add(tema);
+    public void setHabilidad(Habilidad habilidad) {
+        this.habilidades.add(habilidad);
     }
 
     public ArrayList<Entrevista> getEntrevista() {

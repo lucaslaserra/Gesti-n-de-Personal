@@ -6,9 +6,9 @@ import java.util.HashMap;
 public class Puesto {
     private String titulo;
     private String descripcion;
-    private HashMap<Conocimiento, Integer> conocimientosRequeridos;
+    private HashMap<Habilidad, Integer> conocimientosRequeridos;
 
-    public Puesto(String titulo, String descripcion, HashMap<Conocimiento, Integer> conocimientosRequeridos) {
+    public Puesto(String titulo, String descripcion, HashMap<Habilidad, Integer> conocimientosRequeridos) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.conocimientosRequeridos = conocimientosRequeridos;
@@ -22,7 +22,7 @@ public class Puesto {
         this.descripcion = descripcion;
     }
 
-    public void setConocimientosRequeridos(HashMap<Conocimiento, Integer> conocimientosRequeridos) {
+    public void setConocimientosRequeridos(HashMap<Habilidad, Integer> conocimientosRequeridos) {
         this.conocimientosRequeridos = conocimientosRequeridos;
     }
 
@@ -34,7 +34,7 @@ public class Puesto {
         return descripcion;
     }
 
-    public HashMap<Conocimiento, Integer> getConocimientosRequeridos() {
+    public HashMap<Habilidad, Integer> getConocimientosRequeridos() {
         return conocimientosRequeridos;
     }
     

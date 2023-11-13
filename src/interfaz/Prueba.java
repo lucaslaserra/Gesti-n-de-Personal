@@ -13,9 +13,7 @@ public class Prueba {
     public static void main(String[]args) {
         SistemaTemporal sistema = new SistemaTemporal();
         VentanaPrincipal panel = new VentanaPrincipal(sistema);
+//      RegistroHabilidad panel = new RegistroHabilidad(sistema);
         panel.setVisible(true);
-
-//        HistorialPostulante panel = new HistorialPostulante();
-//        panel.setVisible(true);
     } 
 }
