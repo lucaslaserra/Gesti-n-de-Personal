@@ -78,6 +78,11 @@ public class RegistroPuesto extends javax.swing.JFrame {
                 CombodeTemasComponentAdded(evt);
             }
         });
+        CombodeTemas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombodeTemasActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(ListaTemasSeleccionados);
 
@@ -197,6 +202,10 @@ public class RegistroPuesto extends javax.swing.JFrame {
     private void JbotonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbotonAgregarTemaActionPerformed
         
     }//GEN-LAST:event_JbotonAgregarTemaActionPerformed
+
+    private void CombodeTemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombodeTemasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CombodeTemasActionPerformed
 
     public void agregarHabilidadesCombo(){
     ArrayList<Habilidad> habilidades = Habilidad.obtenerListaHabilidades();
