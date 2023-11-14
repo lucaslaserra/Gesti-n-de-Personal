@@ -126,12 +126,17 @@ public class RegistroHabilidad extends javax.swing.JFrame {
     TextDescripción.setText("");
     
     Habilidad habilidad  = new Habilidad(nombre,descripcion);
-     
+   
     miSistema.setHabilidad(habilidad);
 
-        
-    habilidad.guardar();
-    JOptionPane.showMessageDialog(this, "Ha sido registrado el tema con éxito!");
+        if(habilidad.existeHabilidad(habilidad)){
+        JOptionPane.showMessageDialog(this, "Ya se ha registrado esta habilidad");
+       }else{
+        habilidad.guardar();
+        JOptionPane.showMessageDialog(this, "Ha sido registrado la habilidad con éxito!");
+        }
+   
+    
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
@@ -148,4 +153,6 @@ public class RegistroHabilidad extends javax.swing.JFrame {
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+   
 }

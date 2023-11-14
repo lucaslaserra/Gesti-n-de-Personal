@@ -8,6 +8,7 @@ import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
 
 public class Habilidad implements Serializable {
+
     private String tema;
     private static final long serialVersionUID = 1L;
     private String descripcion;
@@ -21,11 +22,11 @@ public class Habilidad implements Serializable {
     public String getTema() {
         return tema;
     }
-    
+
     public void setTema(String tema) {
         this.tema = tema;
     }
-     
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -38,7 +39,7 @@ public class Habilidad implements Serializable {
     public String toFileString() {
         return tema + ";" + descripcion;
     }
-    
+
     public static Habilidad fromFileString(String fileString) {
         String[] parts = fileString.split(";");
         return new Habilidad(parts[0], parts[1]);
@@ -48,7 +49,7 @@ public class Habilidad implements Serializable {
     public String toString() {
         return tema;
     }
-    
+
     // Método para guardar el conocimiento actual en un archivo
     public void guardar() {
         ArchivoGrabacion archivo = new ArchivoGrabacion("habilidades.txt", true); // true para extender
@@ -67,4 +68,19 @@ public class Habilidad implements Serializable {
         archivo.cerrar();
         return conocimientos;
     }
+
+    public boolean existeHabilidad(Habilidad habilidad) {
+        ArrayList<Habilidad> aux = obtenerListaHabilidades();
+        boolean existe = false;
+       if(!aux.isEmpty()) {  
+        for (Habilidad j : aux) {
+            if ((j.getTema().toLowerCase()).equals(habilidad.getTema().toLowerCase())) {
+                existe = true;
+            }
+        }
+       }
+        return existe;
+    }
+
 }
+
