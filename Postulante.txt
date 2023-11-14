@@ -7,3 +7,5 @@ d;d;d;d;d;;Mixto;Java:5
 Gonza;51201178;fdsafsa;f;fdwf;f;Mixto
 l;w;w;w;w;s;Remoto;jAVA:6
 dD;D;D;D;D;D;Presencial;Java:3
+Martin;4969544;Albo 2741;2365498;asdfasdf@gmail.com;asdfsadfsdaf;Mixto;Java:6;HTML:8
+Agustin;1111111;holahola;123412;aksjdfas@gmail.co;lasdfkjs;Mixto;HTML:10;Java:8

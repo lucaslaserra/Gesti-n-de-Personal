@@ -2,17 +2,19 @@ package lectura;
 
 import java.io.*;
 import java.nio.file.Paths;
+
 import java.util.Scanner;
 
 public class ArchivoLectura {
     private Scanner in;
     private String linea;
+    
 
     public ArchivoLectura(String unNombre) {
         try {
             in = new Scanner(Paths.get(unNombre));
         } catch (IOException e) {
-            System.err.println("Error ");
+            System.err.println("No puede leer " + unNombre);
             System.exit(1);
         }
     }

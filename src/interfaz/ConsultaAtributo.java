@@ -4,17 +4,24 @@
  */
 package interfaz;
 
-/**
- *
- * @author Gonza
- */
-public class ConsultaAtributo extends javax.swing.JFrame {
+import dominio.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import javax.swing.DefaultListModel;
 
-    /**
-     * Creates new form MantenimientoAtributo
-     */
+
+public class ConsultaAtributo extends javax.swing.JFrame {
+     private Habilidad habilidad;
+     private Puesto puesto;
+     private Postulante postulante;
+     DefaultListModel<Habilidad> modelo;
     public ConsultaAtributo() {
         initComponents();
+        modelo = new DefaultListModel<>();
+        ListaTemas.setModel(modelo);
+        actualizarLista();
     }
 
     /**
@@ -44,10 +51,10 @@ public class ConsultaAtributo extends javax.swing.JFrame {
         LabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelTitulo.setText("Consulta por temática");
 
-        ListaTemas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        ListaTemas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListaTemasValueChanged(evt);
+            }
         });
         jScrollPane1.setViewportView(ListaTemas);
 
@@ -58,13 +65,16 @@ public class ConsultaAtributo extends javax.swing.JFrame {
 
         jLabel3.setText("Puestos con este requisito:");
 
-        PanelPostulantes.setText("postulante a");
         jScrollPane2.setViewportView(PanelPostulantes);
 
-        PanelPuestos.setText("Puesto a");
         jScrollPane3.setViewportView(PanelPuestos);
 
         BotonSalir.setText("Salir");
+        BotonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,7 +123,7 @@ public class ConsultaAtributo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -121,46 +131,63 @@ public class ConsultaAtributo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_BotonSalirActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConsultaAtributo().setVisible(true);
-            }
-        });
+    private void ListaTemasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaTemasValueChanged
+        Habilidad habilidadSelect = ListaTemas.getSelectedValue();
+        limpiarPanel();
+        ArrayList<Postulante> postulantes = postulante.getPostulantesArchivo();
+        ArrayList<Puesto> puestos = puesto.obtenerListaPuestos();
+        
+       StringBuilder postulantesText = new StringBuilder();
+       StringBuilder puestosTexto = new StringBuilder();
+       
+
+        for(Postulante p: postulantes){ 
+            Set<Habilidad> conjuntoDeHabilidad = p.getHabilidades().keySet();
+            for (Habilidad Ph: conjuntoDeHabilidad){
+                System.out.println(Ph.toString().equals(habilidadSelect.toString()));
+               if (Ph.toString().equals(habilidadSelect.toString())){
+                  if(p.getNivelHabilidad(Ph)>5) {
+                    postulantesText.append(p.toString()).append("\n");
+                }
+               }
+        }
+        PanelPostulantes.setText(postulantesText.toString());
+        }
+        for(Puesto Pu: puestos){
+          ArrayList <String> habilidades = Pu.getHabilidadesRequeridas();
+          for(String h: habilidades){
+             if(h.equals(habilidadSelect.toString())){
+                puestosTexto.append(Pu.toString()).append("\n");
+             }
+          }
+          
+        }
+        PanelPuestos.setText(puestosTexto.toString());
+        
+
+    }//GEN-LAST:event_ListaTemasValueChanged
+    public void actualizarLista(){
+     DefaultListModel<Habilidad> modelo = new DefaultListModel<>();
+     ArrayList<Habilidad> habilidades = habilidad.obtenerListaHabilidades();
+     for (Habilidad j: habilidades) {
+       
+        modelo.addElement(j);
+    }
+    ListaTemas.setModel(modelo);
+    }
+    public void limpiarPanel(){
+    PanelPostulantes.setText("");
+    PanelPuestos.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonSalir;
     private javax.swing.JLabel LabelTitulo;
-    private javax.swing.JList<String> ListaTemas;
+    private javax.swing.JList<Habilidad> ListaTemas;
     private javax.swing.JTextPane PanelPostulantes;
     private javax.swing.JTextPane PanelPuestos;
     private javax.swing.JLabel jLabel1;

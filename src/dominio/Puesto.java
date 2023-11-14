@@ -1,6 +1,7 @@
 package dominio;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
@@ -40,7 +41,9 @@ public class Puesto {
     public ArrayList<String> getHabilidadesRequeridas() {
         return habilidades;
     }
-
+    public String toString(){
+       return getTitulo();
+     }
     // Este método convierte el objeto Puesto en una cadena para guardar en un archivo
     public String toFileString() {
 
@@ -56,11 +59,13 @@ public class Puesto {
     public static Puesto fromFileString(String fileString) {
         String[] parts = fileString.split(";");
         String [] habilidades = parts[2].split("-");
-        Puesto puesto = new Puesto(parts[0], parts[1]);
-        for (int i =0;i < habilidades.length;i++){
-         puesto.setHabilidadesRequeridas(habilidades[i]);
+        Puesto puesto = new Puesto(parts[0], parts[1]);    
+        for (int i =0; i < habilidades.length;i++){        
+            puesto.setHabilidadesRequeridas(habilidades[i]);
+        
         
         }
+       
         return puesto;
     }
 
