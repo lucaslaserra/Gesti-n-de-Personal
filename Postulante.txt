@@ -5,3 +5,5 @@ d;d;d;d;d;;Mixto;Java:0
 s;s;s;s;s;;Mixto;Java:5
 d;d;d;d;d;;Mixto;Java:5
 Gonza;51201178;fdsafsa;f;fdwf;f;Mixto
+l;w;w;w;w;s;Remoto;jAVA:6
+dD;D;D;D;D;D;Presencial;Java:3

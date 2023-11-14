@@ -17,6 +17,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal(SistemaTemporal sistema) {
         miSistema = sistema;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -180,7 +181,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuAltaPostulanteActionPerformed
 
     private void MenuBajaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBajaPostulanteActionPerformed
-        BajaPostulante panelbaja = new BajaPostulante();
+        BajaPostulante panelbaja = new BajaPostulante(miSistema);
         panelbaja.setVisible(true);
     }//GEN-LAST:event_MenuBajaPostulanteActionPerformed
 

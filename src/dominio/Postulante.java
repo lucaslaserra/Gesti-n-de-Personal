@@ -4,6 +4,7 @@ package dominio;
 
 import java.util.*;
 import lectura.ArchivoGrabacion;
+import lectura.ArchivoLectura;
 
 
 
@@ -146,7 +147,7 @@ public class Postulante extends Persona {
             String[] habilidadParts = parts[i].split(":");
             String tema = habilidadParts[0];
             Integer nivel = Integer.parseInt(habilidadParts[1]);
-            Habilidad habilidad = new Habilidad(tema, ""); // La descripción se omite aquí, ajustar según sea necesario
+            Habilidad habilidad = new Habilidad(tema, "");
             postulante.addHabilidad(habilidad, nivel);
         }
 
@@ -154,12 +155,25 @@ public class Postulante extends Persona {
     }
 
     
+    
     public void guardar() {
         ArchivoGrabacion archivo = new ArchivoGrabacion("Postulante.txt", true); // true para extender
         archivo.grabarLinea(this.toFileString());
         archivo.cerrar();
     }
     
-    
+    public static ArrayList<Postulante> getPostulantesArchivo(){
+        ArrayList<Postulante> postulantes = new ArrayList<>();
+        ArchivoLectura archivo = new ArchivoLectura("Postulante.txt");
+
+        while (archivo.hayMasLineas()) {
+            String linea = archivo.linea();
+            Postulante postulante = Postulante.fromFileString(linea);
+            postulantes.add(postulante);
+        }
+ 
+        archivo.cerrar();
+        return postulantes;
+    }
     
 }

@@ -17,6 +17,14 @@ public class SistemaTemporal {
         this.postulante = new ArrayList<>();
         this.puesto = new ArrayList<>();
     }
+    
+    public SistemaTemporal(ArrayList <Habilidad> habilidades, ArrayList <Entrevista> entrevista, ArrayList <Evaluador> evaluador, ArrayList <Postulante> postulante, ArrayList <Puesto> puesto) {
+        this.habilidades = habilidades;
+        this.entrevista = entrevista;
+        this.evaluador = evaluador;
+        this.postulante = postulante;
+        this.puesto = puesto;
+    }
 
     public ArrayList<Habilidad> getHabilidades() {
         return habilidades;

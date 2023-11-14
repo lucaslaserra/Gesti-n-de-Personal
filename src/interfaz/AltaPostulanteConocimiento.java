@@ -14,6 +14,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
         this.postulante = postulante;
         miSistema = sistema;
         initComponents();
+        setLocationRelativeTo(null);
         jLabel4.setText(postulante.getNombre());
         ArrayList<Habilidad> habilidades = Habilidad.obtenerListaHabilidades();
 
@@ -175,7 +176,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String habilidadString = (String) jComboBoxHablidades.getSelectedItem();
+    String habilidadString = (String) jComboBoxHablidades.getSelectedItem();
     Habilidad habilidadSeleccionada = habilidadesMap.get(habilidadString);
     int nivel = (Integer) jSpinnerNivel.getValue();
     if (habilidadSeleccionada != null) {
