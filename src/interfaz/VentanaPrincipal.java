@@ -12,10 +12,10 @@ import dominio.Sistema;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    
     private Sistema miSistema;
+    
     public VentanaPrincipal(Sistema sistema) {
-        Sistema miSistema = sistema;
+        miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
     }

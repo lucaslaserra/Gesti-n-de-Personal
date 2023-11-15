@@ -5,13 +5,16 @@
 package interfaz;
 
 import dominio.Sistema;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class Prueba {
     
     
-    public static void main(String[]args) {
-        Sistema miSistema = new Sistema ();
+     
+    public static void main(String[]args) throws FileNotFoundException, IOException, ClassNotFoundException {
+       Sistema miSistema = new Sistema ();
         VentanaPrincipal panel = new VentanaPrincipal(miSistema);
 //      RegistroHabilidad panel = new RegistroHabilidad(sistema);
         panel.setVisible(true);

@@ -38,10 +38,7 @@ public class Sistema implements Serializable {
     }
 
     // Métodos para evaluadores
-    public  void guardarListaEvaluadores(ArrayList <Evaluador> lista) {       
-        evaluadores = lista;
-        guardarSistema();
-    }
+   
 
     public  ArrayList<Evaluador> obtenerListaEvaluadores() {
         cargarSistema();
@@ -94,7 +91,7 @@ public class Sistema implements Serializable {
             postulantes = (ArrayList<Postulante>) in.readObject();
             entrevistas = (ArrayList<Entrevista>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            // Manejar la excepción (puede ser normal si es la primera vez que se ejecuta)
+            
             e.printStackTrace();
         }
     }

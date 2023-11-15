@@ -1,15 +1,16 @@
 
 package dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
 
 
 
-public class Evaluador extends Persona{
+public class Evaluador extends Persona implements Serializable{
     private String añoIngreso;
-
+      private static final long serialVersionUID = 1L;
     public Evaluador(String añoIngreso, String nombre, String cedula, String direccion) {
         super(nombre, cedula, direccion);
         this.añoIngreso = añoIngreso;

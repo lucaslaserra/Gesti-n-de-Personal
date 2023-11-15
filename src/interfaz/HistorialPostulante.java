@@ -4,7 +4,12 @@
  */
 package interfaz;
 
+
+import dominio.*;
 import dominio.Sistema;
+import java.util.ArrayList;
+import java.util.Map;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -13,9 +18,15 @@ import dominio.Sistema;
 public class HistorialPostulante extends javax.swing.JFrame {
 
     private Sistema miSistema;
+    
+    DefaultListModel<Postulante> modelo;
+    
     public HistorialPostulante(Sistema sistema) {
        miSistema = sistema;
-        initComponents();
+       initComponents();
+       modelo = new DefaultListModel<>();
+       ListaPostulantes.setModel(modelo);
+       actualizarLista();
     }
     
     
@@ -30,7 +41,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
         label1 = new java.awt.Label();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        ListaPostulantes = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         LabelNombre = new javax.swing.JLabel();
         LabelCedula = new javax.swing.JLabel();
@@ -40,7 +51,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
         LabelLinkedin = new javax.swing.JLabel();
         LabelExperiencia = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        ListaExperiencias = new javax.swing.JList<>();
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
         label4 = new java.awt.Label();
@@ -62,7 +73,12 @@ public class HistorialPostulante extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label1.setText("Historial postulante");
 
-        jScrollPane1.setViewportView(jList1);
+        ListaPostulantes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListaPostulantesValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(ListaPostulantes);
 
         jLabel1.setText("Postulantes:");
 
@@ -80,7 +96,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
         LabelExperiencia.setText("Experiencia:");
 
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(ListaExperiencias);
 
         label2.setText("label2");
 
@@ -249,6 +265,50 @@ public class HistorialPostulante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ListaPostulantesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaPostulantesValueChanged
+        Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
+        limpiarLabels();
+        actualizarListaExperiencias(postulanteSelected);
+        String nombre=postulanteSelected.getNombre();
+        String cedula=postulanteSelected.getCedula();
+        String direccion=postulanteSelected.getDireccion();
+        String telefono=postulanteSelected.getTelefono();
+        String mail=postulanteSelected.getEmail();
+        String linkedin=   postulanteSelected.getLinkedin();
+        LabelNombre.setText(nombre);
+        LabelCedula.setText(cedula);
+        LabelDireccion.setText(direccion);
+        LabelTelefono.setText(telefono);
+        LabelMail.setText(mail);
+        LabelLinkedin.setText(linkedin);
+        
+    }//GEN-LAST:event_ListaPostulantesValueChanged
+     public void actualizarLista(){
+     DefaultListModel<Postulante> modeloL = new DefaultListModel<>();
+     ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+     for (Postulante j: postulantes) {
+        modeloL.addElement(j);
+    }
+    ListaPostulantes.setModel(modeloL);
+    }
+    public void actualizarListaExperiencias(Postulante postulante){
+     DefaultListModel<String> modeloLE = new DefaultListModel<>();
+     Map<Habilidad, Integer> habilidades = postulante.getHabilidades();
+       for (Map.Entry<Habilidad, Integer> entry : habilidades.entrySet()) {
+            modeloLE.addElement(entry.getKey() + " (" + entry.getValue()+")");
+        }
+    ListaExperiencias.setModel(modeloLE);   
+    
+    }
+    public void limpiarLabels(){
+    LabelCedula.setText("");
+    LabelDireccion.setText("");
+    LabelExperiencia.setText("");
+    LabelLinkedin.setText("");
+    LabelMail.setText("");
+    LabelNombre.setText("");
+    LabelTelefono.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBorrar;
@@ -262,11 +322,12 @@ public class HistorialPostulante extends javax.swing.JFrame {
     private javax.swing.JLabel LabelMail;
     private javax.swing.JLabel LabelNombre;
     private javax.swing.JLabel LabelTelefono;
+    private javax.swing.JList<String> ListaExperiencias;
+    private javax.swing.JList<Postulante
+    > ListaPostulantes;
     private javax.swing.JTable TablaValores;
     private javax.swing.JTextField TextBuscador;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

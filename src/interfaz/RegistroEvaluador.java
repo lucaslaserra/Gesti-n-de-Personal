@@ -5,6 +5,7 @@
 package interfaz;
 
 import dominio.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -145,12 +146,12 @@ public class RegistroEvaluador extends javax.swing.JFrame {
         String direccion = TextoDireccion.getText();
            if (nombre.isEmpty() || cedula.isEmpty() || fechadeIngreso.isEmpty() || direccion.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Los campos no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
+        
     }else{
-        Evaluador evaluador = new Evaluador (nombre,cedula,fechadeIngreso,direccion);
+        Evaluador evaluador = new Evaluador (fechadeIngreso,nombre,cedula,direccion);
         miSistema.setEvaluador(evaluador);
         
-       
+      
         limpiarFormulario();
         JOptionPane.showMessageDialog(null, "Se ha registrado el evaluador con exito!");
     }
