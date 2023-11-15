@@ -53,7 +53,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="BotonDardeBaja" min="-2" max="-2" attributes="0"/>
+                  <Component id="JBottomDarDeBaja" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -61,7 +61,7 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="BotonCancelar" min="-2" pref="92" max="-2" attributes="0"/>
+                              <Component id="jButtomCancelar" min="-2" pref="92" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -82,7 +82,7 @@
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="LabelTitulo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="367" max="32767" attributes="0"/>
-                  <Component id="BotonDardeBaja" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="JBottomDarDeBaja" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -92,7 +92,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="203" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                      <Component id="BotonCancelar" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jButtomCancelar" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -136,21 +136,27 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="BotonDardeBaja">
+        <Component class="javax.swing.JButton" name="JBottomDarDeBaja">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Dar de Baja"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBottomDarDeBajaActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="BotonCancelar">
+        <Component class="javax.swing.JButton" name="jButtomCancelar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="text" type="java.lang.String" value="Cerrar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtomCancelarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

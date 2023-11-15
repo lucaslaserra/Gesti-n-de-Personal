@@ -4,19 +4,20 @@
  */
 package dominio;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
 
 
-public class Entrevista {
+public class Entrevista implements Serializable{
     private Postulante postulante;
     private Evaluador evaluador;
     private Puesto puesto;
     private LocalDate fecha;
     private String comentarios;
-    private int puntuacion; // Suponiendo una puntuación numérica
+    private int puntuacion; 
 
     public Entrevista(Postulante postulante, Evaluador evaluador, Puesto puesto, LocalDate fecha, String comentarios, int puntuacion) {
         this.postulante = postulante;
@@ -87,11 +88,12 @@ public class Entrevista {
     }
     
    // public static Entrevista fromFileString(String fileString) {
-     //   String[] parts = fileString.split(";");
+     //   String[] parts = fileString.split(";");   
        // return new Entrevista(parts[0], parts[1],parts[2],parts[3],parts[4],parts[5]);
     //}
      // Método para guardar el evaluador actual en un archivo
-    public void guardar() {
+    
+   public void guardar() {
         ArchivoGrabacion archivo = new ArchivoGrabacion("entrevistas.txt", true); // true para extender
         archivo.grabarLinea(this.toFileString());
         archivo.cerrar();

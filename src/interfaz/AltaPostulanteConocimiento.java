@@ -6,13 +6,13 @@ import javax.swing.*;
 
 public class AltaPostulanteConocimiento extends javax.swing.JFrame {
 
-    
+    private Sistema miSistema;
     private Postulante postulante;
     private Map<String, Habilidad> habilidadesMap = new HashMap<>();
 
     public AltaPostulanteConocimiento( Postulante postulante, Sistema sistema) {
         this.postulante = postulante;
-        Sistema miSistema = sistema;
+        miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
         jLabel4.setText(postulante.getNombre());
@@ -225,7 +225,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        postulante.guardar();
+        miSistema.agregarPostulante(postulante);
         dispose();
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 

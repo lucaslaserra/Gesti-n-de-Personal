@@ -23,12 +23,12 @@
             <Property name="text" type="java.lang.String" value="Opciones"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuRegistroTematica">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuRegistroHabilidad">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registro de Tematica"/>
+                <Property name="text" type="java.lang.String" value="Registro de Habilidad"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuRegistroTematicaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuRegistroHabilidadActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuAltaPostulante">

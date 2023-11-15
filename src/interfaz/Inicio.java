@@ -28,7 +28,6 @@ public class Inicio extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
         label2 = new java.awt.Label();
@@ -50,6 +49,11 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jButtonNuevoSistema.setText("Presionar para utilizar nuevo sistema");
+        jButtonNuevoSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoSistemaActionPerformed(evt);
+            }
+        });
 
         label1.setText("Seleccione una opción para entrar al sistema.");
 
@@ -108,10 +112,17 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarSistemaActionPerformed
-        ArrayList<Postulante> postulantes = Postulante.getPostulantesArchivo();
-        
-//        SistemaTemporal sistema = new SistemaTemporal()
+        // Cargo sistema anterior.
+        Sistema miSistema = new Sistema (false);
+        VentanaPrincipal panel = new VentanaPrincipal(miSistema);
+        panel.setVisible(true);
     }//GEN-LAST:event_jButtonCargarSistemaActionPerformed
+
+    private void jButtonNuevoSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoSistemaActionPerformed
+        Sistema miSistema = new Sistema (true);
+        VentanaPrincipal panel = new VentanaPrincipal(miSistema);
+        panel.setVisible(true);
+    }//GEN-LAST:event_jButtonNuevoSistemaActionPerformed
 
     /**
      * @param args the command line arguments

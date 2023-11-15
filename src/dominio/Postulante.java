@@ -1,7 +1,7 @@
 
 package dominio;
 
-
+import java.io.Serializable;
 import java.util.*;
 import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
@@ -11,7 +11,8 @@ import lectura.ArchivoLectura;
 enum TipoTrabajo {
     REMOTO, PRESENCIAL, MIXTO
 }
-public class Postulante extends Persona {
+public class Postulante extends Persona implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String telefono;
     private String email;
     private String linkedin;
@@ -157,21 +158,22 @@ public class Postulante extends Persona {
     
     
     public void guardar() {
-        ArchivoGrabacion archivo = new ArchivoGrabacion("Postulante.txt", true); // true para extender
-        archivo.grabarLinea(this.toFileString());
+        ArchivoGrabacion archivo = new ArchivoGrabacion("Sistema.txt", true); // true para extender
+        archivo.grabarLinea("POSTULANTE;" + this.toFileString());
         archivo.cerrar();
     }
     
     public static ArrayList<Postulante> getPostulantesArchivo(){
         ArrayList<Postulante> postulantes = new ArrayList<>();
-        ArchivoLectura archivo = new ArchivoLectura("Postulante.txt");
+        ArchivoLectura archivo = new ArchivoLectura("Sistema.txt");
 
         while (archivo.hayMasLineas()) {
             String linea = archivo.linea();
-            Postulante postulante = Postulante.fromFileString(linea);
-            postulantes.add(postulante);
+            if (linea.startsWith("POSTULANTE;")) {
+                Postulante postulante = Postulante.fromFileString(linea.substring(11)); // Elimina el prefijo
+                postulantes.add(postulante);
+            }
         }
- 
         archivo.cerrar();
         return postulantes;
     }

@@ -92,7 +92,7 @@
           <Font name="Segoe UI" size="12" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Registro de tem&#xe1;tica"/>
+        <Property name="text" type="java.lang.String" value="Alta de Habilidad"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LabelNombre">
