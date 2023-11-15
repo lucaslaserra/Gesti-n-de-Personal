@@ -9,3 +9,5 @@ l;w;w;w;w;s;Remoto;jAVA:6
 dD;D;D;D;D;D;Presencial;Java:3
 Martin;4969544;Albo 2741;2365498;asdfasdf@gmail.com;asdfsadfsdaf;Mixto;Java:6;HTML:8
 Agustin;1111111;holahola;123412;aksjdfas@gmail.co;lasdfkjs;Mixto;HTML:10;Java:8
+sfdadf;sadfsadf;asdfsdaf;sadfasdf;asdf;sadfa;Presencial;Java:3
+asdfdasf;asdfsdaf;asdfs;asdfa;sdfasdf;asdf;Presencial;PowerShell:2

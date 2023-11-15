@@ -4,16 +4,17 @@
  */
 package interfaz;
 
+import dominio.Sistema;
+
 /**
  *
  * @author Gonza
  */
 public class HistorialPostulante extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HistorialPostulante
-     */
-    public HistorialPostulante() {
+    private Sistema miSistema;
+    public HistorialPostulante(Sistema sistema) {
+       miSistema = sistema;
         initComponents();
     }
     

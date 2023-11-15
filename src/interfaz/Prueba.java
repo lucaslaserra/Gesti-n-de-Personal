@@ -4,15 +4,15 @@
  */
 package interfaz;
 
-import dominio.SistemaTemporal;
+import dominio.Sistema;
 
 
 public class Prueba {
     
     
     public static void main(String[]args) {
-        SistemaTemporal sistema = new SistemaTemporal();
-        VentanaPrincipal panel = new VentanaPrincipal(sistema);
+        Sistema miSistema = new Sistema ();
+        VentanaPrincipal panel = new VentanaPrincipal(miSistema);
 //      RegistroHabilidad panel = new RegistroHabilidad(sistema);
         panel.setVisible(true);
     } 

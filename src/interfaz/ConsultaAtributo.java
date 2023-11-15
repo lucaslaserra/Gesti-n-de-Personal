@@ -17,7 +17,9 @@ public class ConsultaAtributo extends javax.swing.JFrame {
      private Puesto puesto;
      private Postulante postulante;
      DefaultListModel<Habilidad> modelo;
-    public ConsultaAtributo() {
+     private Sistema miSistema;
+    public ConsultaAtributo(Sistema sistema) {
+        miSistema = sistema;
         initComponents();
         modelo = new DefaultListModel<>();
         ListaTemas.setModel(modelo);

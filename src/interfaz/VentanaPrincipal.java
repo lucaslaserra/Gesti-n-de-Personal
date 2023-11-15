@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import dominio.SistemaTemporal;
+import dominio.Sistema;
 
 /**
  *
@@ -12,10 +12,10 @@ import dominio.SistemaTemporal;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private SistemaTemporal miSistema;
     
-    public VentanaPrincipal(SistemaTemporal sistema) {
-        miSistema = sistema;
+    private Sistema miSistema;
+    public VentanaPrincipal(Sistema sistema) {
+        Sistema miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -191,27 +191,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuRegistroEvaluadorActionPerformed
 
     private void MenuIngresoEntrevistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIngresoEntrevistaActionPerformed
-        IngresoEntrevista panelIngreso = new IngresoEntrevista();
+        IngresoEntrevista panelIngreso = new IngresoEntrevista(miSistema);
         panelIngreso.setVisible(true);
     }//GEN-LAST:event_MenuIngresoEntrevistaActionPerformed
 
     private void MenuRegistroPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRegistroPuestoActionPerformed
-        RegistroPuesto RegPuesto = new RegistroPuesto();
+        RegistroPuesto RegPuesto = new RegistroPuesto(miSistema);
         RegPuesto.setVisible(true);
     }//GEN-LAST:event_MenuRegistroPuestoActionPerformed
 
     private void MenuConsultaPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultaPuestoActionPerformed
-        ConsultaPuesto VconsultaPuesto = new ConsultaPuesto();
+        ConsultaPuesto VconsultaPuesto = new ConsultaPuesto(miSistema);
         VconsultaPuesto.setVisible(true);
     }//GEN-LAST:event_MenuConsultaPuestoActionPerformed
 
     private void MenuHistoriaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoriaPostulanteActionPerformed
-        HistorialPostulante panelHistorial = new HistorialPostulante();
+        HistorialPostulante panelHistorial = new HistorialPostulante(miSistema);
         panelHistorial.setVisible(true);
     }//GEN-LAST:event_MenuHistoriaPostulanteActionPerformed
 
     private void MenuConsultaTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultaTematicaActionPerformed
-        ConsultaAtributo VconsultaAtributo = new ConsultaAtributo();
+        ConsultaAtributo VconsultaAtributo = new ConsultaAtributo(miSistema);
         VconsultaAtributo.setVisible(true);
     }//GEN-LAST:event_MenuConsultaTematicaActionPerformed
 

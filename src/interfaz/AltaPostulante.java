@@ -17,12 +17,10 @@ import javax.swing.JOptionPane;
 
 
 public class AltaPostulante extends javax.swing.JFrame {
-    private SistemaTemporal miSistema;
-    /**
-     * Creates new form AltaPostulante
-     */ 
-    public AltaPostulante(SistemaTemporal sistema) {
-        miSistema = sistema;
+    private Sistema miSistema;
+    
+    public AltaPostulante(Sistema sistema) {
+       miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -329,7 +327,7 @@ public class AltaPostulante extends javax.swing.JFrame {
             return;
         }
         Postulante postulante = new Postulante(nombre, cedula, direccion, telefono, email, linkedin, tipoTrabajo);
-        AltaPostulanteConocimiento altaPostulanteConocimiento = new AltaPostulanteConocimiento(miSistema, postulante);
+        AltaPostulanteConocimiento altaPostulanteConocimiento = new AltaPostulanteConocimiento( postulante,miSistema);
        altaPostulanteConocimiento.setVisible(true);
        limpiarFormulario();
     }//GEN-LAST:event_jButtonSiguienteActionPerformed

@@ -14,9 +14,9 @@ import javax.swing.JOptionPane;
  */
 public class RegistroEvaluador extends javax.swing.JFrame {
 
-    private SistemaTemporal miSistema;
-    public RegistroEvaluador(SistemaTemporal sistema) {
-        miSistema=sistema;
+    private Sistema miSistema;
+    public RegistroEvaluador( Sistema sistema) {
+       miSistema = sistema;
         initComponents();
     }
 
@@ -149,7 +149,8 @@ public class RegistroEvaluador extends javax.swing.JFrame {
     }else{
         Evaluador evaluador = new Evaluador (nombre,cedula,fechadeIngreso,direccion);
         miSistema.setEvaluador(evaluador);
-        evaluador.guardar();
+        
+       
         limpiarFormulario();
         JOptionPane.showMessageDialog(null, "Se ha registrado el evaluador con exito!");
     }

@@ -6,6 +6,7 @@ package interfaz;
 
 import dominio.Habilidad;
 import dominio.Puesto;
+import dominio.Sistema;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -17,8 +18,9 @@ import javax.swing.JOptionPane;
 public class RegistroPuesto extends javax.swing.JFrame {
 
     DefaultListModel<String> modelo;
-    
-    public RegistroPuesto() {
+    private Sistema miSistema;
+    public RegistroPuesto(Sistema sistema) {
+        miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
         ListaTemasSeleccionados.setFixedCellHeight(15);
