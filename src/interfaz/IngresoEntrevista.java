@@ -59,12 +59,22 @@ public class IngresoEntrevista extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        ListaEvaluadores.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListaEvaluadoresValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(ListaEvaluadores);
 
         ListaPostulantes.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        ListaPostulantes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListaPostulantesValueChanged(evt);
+            }
         });
         jScrollPane2.setViewportView(ListaPostulantes);
 
@@ -152,6 +162,14 @@ public class IngresoEntrevista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ListaEvaluadoresValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaEvaluadoresValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListaEvaluadoresValueChanged
+
+    private void ListaPostulantesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaPostulantesValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListaPostulantesValueChanged
 
     /**
      * @param args the command line arguments

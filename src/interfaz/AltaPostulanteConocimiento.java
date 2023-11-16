@@ -16,8 +16,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jLabel4.setText(postulante.getNombre());
-        
-        ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades(); // Cambiado para obtener habilidades del sistema
+        ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
 
         for (Habilidad habilidad : habilidades) {
             String habilidadString = habilidad.toString(); 
@@ -82,6 +81,11 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
         });
 
         jButton3.setText("Cancelar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButtonRegistrar.setText("Registrar");
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -226,10 +230,14 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        miSistema.agregarPostulante(postulante); // Esto ya está correcto
-        JOptionPane.showMessageDialog(this, "Postulante registrado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        miSistema.agregarPostulante(postulante);
+        JOptionPane.showMessageDialog(this, "Se ha registrado el postulante con exito!");
         dispose();
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
  
   

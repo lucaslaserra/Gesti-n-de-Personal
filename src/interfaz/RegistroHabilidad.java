@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class RegistroHabilidad extends javax.swing.JFrame {
+   
     private Sistema miSistema;
     
     public RegistroHabilidad(Sistema sistema) {
@@ -116,11 +117,6 @@ public class RegistroHabilidad extends javax.swing.JFrame {
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         String nombre = TextFieldNombre.getText().trim();
         String descripcion = TextDescripción.getText().trim();
-
-        if (nombre.isEmpty() || descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El nombre y la descripción no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
 
         Habilidad habilidad = new Habilidad(nombre, descripcion);
 

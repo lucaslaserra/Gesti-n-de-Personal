@@ -340,9 +340,14 @@ public class AltaPostulante extends javax.swing.JFrame {
             return;
         }
         Postulante postulante = new Postulante(nombre, cedula, direccion, telefono, email, linkedin, tipoTrabajo);
+        
+     if(!miSistema.obtenerListaHabilidades().isEmpty()){   
         AltaPostulanteConocimiento altaPostulanteConocimiento = new AltaPostulanteConocimiento( postulante,miSistema);
        altaPostulanteConocimiento.setVisible(true);
        limpiarFormulario();
+     }else{
+        JOptionPane.showMessageDialog(this, "No hay ninguna habilidad agregada, debe ir a Registro Habilidad e ingresar almenos una habilidad", "Error", JOptionPane.ERROR_MESSAGE);
+     }
     }//GEN-LAST:event_jButtonSiguienteActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed

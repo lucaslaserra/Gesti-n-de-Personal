@@ -36,60 +36,33 @@ public class Sistema implements Serializable {
     }
 
     
-    
-    // Métodos para habilidades
-    public  void guardarListaHabilidades(ArrayList<Habilidad> lista) {
-        habilidades = lista;
-        guardarSistema();
-    }
+   
 
     public  ArrayList<Habilidad> obtenerListaHabilidades() {
         cargarSistema();
         return habilidades;
     }
 
-    // Métodos para puestos
-    public  void guardarListaPuestos(ArrayList<Puesto> lista) {
-        puestos = lista;
-        guardarSistema();
-    }
-
+ 
     public  ArrayList<Puesto> obtenerListaPuestos() {
         cargarSistema();
         return puestos;
     }
 
-    // Métodos para evaluadores
-    public  void guardarListaEvaluadores(ArrayList <Evaluador> lista) {       
-        evaluadores = lista;
-        guardarSistema();
-    }
-
+    
     public  ArrayList<Evaluador> obtenerListaEvaluadores() {
         cargarSistema();
         return evaluadores;
     }
- public void setEvaluador(Evaluador evaluador){
-     evaluadores =obtenerListaEvaluadores();
-     evaluadores.add(evaluador);
-     guardarSistema();
- }
-    // Métodos para postulantes
-    public  void guardarListaPostulantes(ArrayList<Postulante> lista) {
-        postulantes = lista;
-        guardarSistema();
-    }
+
+  
 
     public  ArrayList<Postulante> obtenerListaPostulantes() {
         cargarSistema();
         return postulantes;
     }
 
-    // Métodos para entrevistas
-    public  void guardarListaEntrevistas(ArrayList<Entrevista> lista) {
-        entrevistas = lista;
-        guardarSistema();
-    }
+    
 
     public  ArrayList<Entrevista> obtenerListaEntrevistas() {
         cargarSistema();
