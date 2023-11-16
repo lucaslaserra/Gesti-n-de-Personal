@@ -15,7 +15,6 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
         miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
-        jLabel4.setText(postulante.getNombre());
         ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
 
         for (Habilidad habilidad : habilidades) {
@@ -43,7 +42,6 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
         jButtonEliminar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButtonRegistrar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,8 +92,6 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("jLabel4");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,8 +102,6 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(71, 71, 71)
                         .addComponent(jButtonRegistrar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,8 +149,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jButtonRegistrar)
-                    .addComponent(jLabel4))
+                    .addComponent(jButtonRegistrar))
                 .addContainerGap())
         );
 
@@ -251,7 +244,6 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jListHabilidades;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

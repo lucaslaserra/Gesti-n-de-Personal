@@ -81,7 +81,7 @@ public class RegistroPuesto extends javax.swing.JFrame {
         buttonGroup1.add(JMixto);
         JMixto.setText("Mixto");
 
-        jLabel3.setText("Temas requeridos:");
+        jLabel3.setText("Habilidades requeridas:");
 
         CombodeTemas.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -98,6 +98,11 @@ public class RegistroPuesto extends javax.swing.JFrame {
         PanelLista.setViewportView(ListaTemasSeleccionados);
 
         BotonCancelar.setText("Cancelar");
+        BotonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCancelarActionPerformed(evt);
+            }
+        });
 
         jButtonRegistrar.setText("Registrar");
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +155,7 @@ public class RegistroPuesto extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(JbotonAgregarTema)
                                 .addGap(7, 7, 7)))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,9 +196,20 @@ public class RegistroPuesto extends javax.swing.JFrame {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         String nombrePuesto = jTextFieldNombre.getText();
         String tipoTrabajo = "";
-      if(nombrePuesto.isEmpty()){
-       JOptionPane.showMessageDialog(this, "Debe ingresar un nombre!","Error",JOptionPane.ERROR_MESSAGE);
-      }else{  
+
+        if (nombrePuesto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un nombre!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ArrayList<Puesto> puestos = miSistema.obtenerListaPuestos();
+        boolean existe = puestos.stream().anyMatch(puesto -> puesto.getNombre().equals(nombrePuesto));
+
+        if (existe) {
+            JOptionPane.showMessageDialog(this, "Ya se ha ingresado ese puesto, verifica el nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (JRemoto.isSelected()) {
             tipoTrabajo = "Remoto";
         } else if (JPresencial.isSelected()) {
@@ -201,20 +217,24 @@ public class RegistroPuesto extends javax.swing.JFrame {
         } else if (JMixto.isSelected()) {
             tipoTrabajo = "Mixto";
         } else {
-             JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de trabajo!","Error",JOptionPane.ERROR_MESSAGE);  
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de trabajo!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        if(modelo.isEmpty()){
-             JOptionPane.showMessageDialog(this, "No agrego una habilidad requerida","Error",JOptionPane.ERROR_MESSAGE);
-        }else if(!tipoTrabajo.isEmpty()){
-           Puesto puesto = new Puesto(nombrePuesto,tipoTrabajo);
-           for(int i = 0; i < modelo.getSize();i++){
-               puesto.setHabilidadesRequeridas(modelo.elementAt(i));
-           }
-           miSistema.agregarPuesto(puesto);
-           JOptionPane.showMessageDialog(this, "Se ha agregado el puesto con exito!","Exito",JOptionPane.INFORMATION_MESSAGE);
-           limpiarFormulario();
+
+        if (modelo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No agregó una habilidad requerida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-      }
+
+        Puesto puesto = new Puesto(nombrePuesto, tipoTrabajo);
+        for (int i = 0; i < modelo.getSize(); i++) {
+            puesto.setHabilidadesRequeridas(modelo.elementAt(i));
+        }
+
+        miSistema.agregarPuesto(puesto);
+        JOptionPane.showMessageDialog(this, "Se ha agregado el puesto con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        limpiarFormulario();
+
         
        
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
@@ -239,6 +259,10 @@ public class RegistroPuesto extends javax.swing.JFrame {
     private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
+
+    private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_BotonCancelarActionPerformed
 
     public void agregarHabilidadesCombo(){
     ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
