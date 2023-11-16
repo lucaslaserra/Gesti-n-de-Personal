@@ -241,7 +241,7 @@ public class RegistroPuesto extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     public void agregarHabilidadesCombo(){
-    ArrayList<Habilidad> habilidades = Habilidad.obtenerListaHabilidades();
+    ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
     for(Habilidad j: habilidades){
         CombodeTemas.addItem(j.getTema());
     }

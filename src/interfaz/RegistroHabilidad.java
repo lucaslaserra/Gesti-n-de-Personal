@@ -114,29 +114,27 @@ public class RegistroHabilidad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-    String nombre = TextFieldNombre.getText().trim();
-    String descripcion = TextDescripción.getText().trim();
-    
-    // Verificar que los campos no estén vacíos
-    if (nombre.isEmpty() || descripcion.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "El nombre y la descripción no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    TextFieldNombre.setText("");
-    TextDescripción.setText("");
-    
-    Habilidad habilidad  = new Habilidad(nombre,descripcion);
-   
-   
+        String nombre = TextFieldNombre.getText().trim();
+        String descripcion = TextDescripción.getText().trim();
 
-        if(habilidad.existeHabilidad(habilidad)){
-        JOptionPane.showMessageDialog(this, "Ya se ha registrado esta habilidad");
-       }else{
-        habilidad.guardar();
-        JOptionPane.showMessageDialog(this, "Ha sido registrado la habilidad con éxito!");
+        if (nombre.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El nombre y la descripción no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-   
-    
+
+        Habilidad habilidad = new Habilidad(nombre, descripcion);
+
+        ArrayList<Habilidad> habilidadesExistentes = miSistema.obtenerListaHabilidades();
+        if (habilidadesExistentes.contains(habilidad)) {
+            JOptionPane.showMessageDialog(this, "Esta habilidad ya ha sido registrada en el sistema.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        miSistema.agregarHabilidad(habilidad);
+        JOptionPane.showMessageDialog(this, "Ha sido registrado la habilidad con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        TextFieldNombre.setText("");
+        TextDescripción.setText("");
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed

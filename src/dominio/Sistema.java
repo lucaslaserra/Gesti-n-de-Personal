@@ -14,8 +14,10 @@ public class Sistema implements Serializable {
     private  ArrayList<Evaluador> evaluadores = new ArrayList<>();
     private  ArrayList<Postulante> postulantes = new ArrayList<>();
     private  ArrayList<Entrevista> entrevistas = new ArrayList<>();
-
-    public Sistema(boolean nuevoSistema) {
+//    private transient ArrayList<SistemaObserver> observers;
+    
+    public Sistema(boolean nuevoSistema) {  
+//        this.observers = new ArrayList<>();
         if (nuevoSistema) {
             limpiarSistema();
         } else {
@@ -101,13 +103,19 @@ public class Sistema implements Serializable {
             out.writeObject(evaluadores);
             out.writeObject(postulantes);
             out.writeObject(entrevistas);
+//            notificarObservers();
         } catch (IOException e) {
-            
             e.printStackTrace();
         }
     }
     
-    private void cargarSistema() {
+//    private void notificarObservers() { 
+//        for (SistemaObserver observer : observers) {
+//            observer.actualizar();
+//        }
+//    }
+    
+    public void cargarSistema() {
     File archivo = new File(ARCHIVO_SISTEMA);
     if (archivo.exists()) {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
@@ -121,14 +129,20 @@ public class Sistema implements Serializable {
             // Aquí podrías querer manejar el error inicializando listas vacías o notificando al usuario.
         }
     } else {
-        // Inicializar listas vacías si el archivo no existe
+        inicializarListas();
+    }
+//    if (this.observers == null) {
+//        this.observers = new ArrayList<>();
+//    }
+}
+    
+    private void inicializarListas() {
         habilidades = new ArrayList<>();
         puestos = new ArrayList<>();
         evaluadores = new ArrayList<>();
         postulantes = new ArrayList<>();
         entrevistas = new ArrayList<>();
     }
-}
     
     
     public void agregarHabilidad(Habilidad habilidad) {
@@ -183,9 +197,18 @@ public class Sistema implements Serializable {
     }
 
     public void eliminarPostulante(Postulante postulante) {
+        System.out.println("Postulantes antes de elimianr: ");
+        for (Postulante p : this.obtenerListaPostulantes()) {
+            System.out.println(p.toString());
+        }
         cargarSistema();
+        System.out.println("Postulante que voy a elimianr: " + postulante.getNombre());
         postulantes.remove(postulante);
         guardarSistema();
+        System.out.println("Postulantes luego de elimianr: ");
+        for (Postulante p : this.obtenerListaPostulantes()) {
+            System.out.println(p.toString());
+        }
     }
 
     public void eliminarEntrevista(Entrevista entrevista) {
@@ -194,4 +217,4 @@ public class Sistema implements Serializable {
         guardarSistema();
     }
 
-}
+} 

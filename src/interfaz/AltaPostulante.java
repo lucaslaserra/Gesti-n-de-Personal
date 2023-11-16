@@ -7,6 +7,7 @@ package interfaz;
 import dominio.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
@@ -59,7 +60,7 @@ public class AltaPostulante extends javax.swing.JFrame {
         ErrorViewer = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 500));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -298,7 +299,19 @@ public class AltaPostulante extends javax.swing.JFrame {
     if (cedula.isEmpty()) {
         JOptionPane.showMessageDialog(this, "El campo cédula es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
+    } else {
+        ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+        boolean existe = false;
+        for (int i = 0; i < postulantes.size() && !existe; i++) {
+            if (postulantes.get(i).getCedula().equals(cedula)) {
+                existe = true;
+            }
+        }
+    if (existe) {
+        JOptionPane.showMessageDialog(this, "Ya se ha ingresado ese postulante, verifica la cédula.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
+}
     if (direccion.isEmpty()) {
         JOptionPane.showMessageDialog(this, "El campo direccion es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
         return;

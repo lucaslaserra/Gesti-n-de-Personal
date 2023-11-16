@@ -16,7 +16,8 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jLabel4.setText(postulante.getNombre());
-        ArrayList<Habilidad> habilidades = Habilidad.obtenerListaHabilidades();
+        
+        ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades(); // Cambiado para obtener habilidades del sistema
 
         for (Habilidad habilidad : habilidades) {
             String habilidadString = habilidad.toString(); 
@@ -225,7 +226,8 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        miSistema.agregarPostulante(postulante);
+        miSistema.agregarPostulante(postulante); // Esto ya está correcto
+        JOptionPane.showMessageDialog(this, "Postulante registrado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         dispose();
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 

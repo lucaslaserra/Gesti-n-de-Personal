@@ -4,15 +4,13 @@
  */
 package interfaz;
 
-import dominio.Sistema;
+import dominio.*;
+import java.util.ArrayList;
 
-/**
- *
- * @author lucas
- */
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame{
 
     private Sistema miSistema;
+//    private transient ArrayList<SistemaObserver> observers = new ArrayList<>();
     
     public VentanaPrincipal(Sistema sistema) {
         miSistema = sistema;
@@ -20,6 +18,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+//     public void actualizar() {
+//        miSistema.cargarSistema();
+//    }
+
+    private void recargarComponentesUI() {
+        // Lógica para actualizar la interfaz gráfica con los datos más recientes de miSistema.
+    }
+    
+//    public interface SistemaObserver {
+//        void update();
+//    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -173,6 +183,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void MenuRegistroTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRegistroTematicaActionPerformed
         RegistroHabilidad paneltematica = new RegistroHabilidad(miSistema);
         paneltematica.setVisible(true);
+//        miSistema.
     }//GEN-LAST:event_MenuRegistroTematicaActionPerformed
 
     private void MenuAltaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAltaPostulanteActionPerformed
@@ -211,13 +222,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuHistoriaPostulanteActionPerformed
 
     private void MenuConsultaTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultaTematicaActionPerformed
-        ConsultaAtributo VconsultaAtributo = new ConsultaAtributo(miSistema);
+        ConsultaHabilidad VconsultaAtributo = new ConsultaHabilidad(miSistema);
         VconsultaAtributo.setVisible(true);
     }//GEN-LAST:event_MenuConsultaTematicaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
