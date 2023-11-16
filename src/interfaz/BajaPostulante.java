@@ -7,6 +7,7 @@ package interfaz;
 import dominio.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,14 +15,20 @@ import javax.swing.DefaultListModel;
  */
 public class BajaPostulante extends javax.swing.JFrame {
     
+    private Sistema miSistema;
+    private ArrayList<Postulante> postulantes;
     /**
      * Creates new form BajaPostulante
      */
     public BajaPostulante(Sistema sistema) {
-        Sistema miSistema = sistema;
-        initComponents();
+        miSistema = sistema;
+        initComponents(); 
         setLocationRelativeTo(null);
-        ArrayList<Postulante> postulantes = sistema.obtenerListaPostulantes();
+        postulantes = sistema.obtenerListaPostulantes();
+         System.out.println("Postulantes al entrar a la baja: ");
+        for (Postulante p : miSistema.obtenerListaPostulantes()) {
+            System.out.println(p.toString());
+        }
         
         cargarJListPostulantes(postulantes);
         
@@ -41,8 +48,8 @@ public class BajaPostulante extends javax.swing.JFrame {
         LabelPostulantes = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListPostulantes = new javax.swing.JList<>();
-        BotonDardeBaja = new javax.swing.JButton();
-        BotonCancelar = new javax.swing.JButton();
+        jButtonDarDeBaja = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,11 +66,19 @@ public class BajaPostulante extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jListPostulantes);
 
-        BotonDardeBaja.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        BotonDardeBaja.setText("Dar de Baja");
+        jButtonDarDeBaja.setText("Aceptar");
+        jButtonDarDeBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDarDeBajaActionPerformed(evt);
+            }
+        });
 
-        BotonCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        BotonCancelar.setText("Cancelar");
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,39 +89,36 @@ public class BajaPostulante extends javax.swing.JFrame {
                 .addComponent(LabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(173, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotonDardeBaja)
-                .addGap(44, 44, 44))
+                .addGap(34, 34, 34)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonDarDeBaja)
+                .addGap(48, 48, 48))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(32, 32, 32)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(BotonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(LabelPostulantes)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(43, Short.MAX_VALUE)))))
+                        .addComponent(LabelPostulantes)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(43, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(LabelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 367, Short.MAX_VALUE)
-                .addComponent(BotonDardeBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonDarDeBaja)
+                    .addComponent(jButton1))
+                .addGap(60, 60, 60))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(112, 112, 112)
                     .addComponent(LabelPostulantes)
                     .addGap(18, 18, 18)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(65, 65, 65)
-                    .addComponent(BotonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(173, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,16 +144,44 @@ public class BajaPostulante extends javax.swing.JFrame {
     private void jListPostulantesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jListPostulantesComponentAdded
     }//GEN-LAST:event_jListPostulantesComponentAdded
 
+    private void jButtonDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDarDeBajaActionPerformed
+        System.out.println("Postulantes al presionar eliminar.: ");
+        for (Postulante p : miSistema.obtenerListaPostulantes()) {
+            System.out.println(p.toString());
+        }
+        int selectedIndex = jListPostulantes.getSelectedIndex();
+        if (selectedIndex != -1) {
+            
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar al postulante: " + postulantes.get(selectedIndex).getNombre() + " ?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+               
+                Postulante postulanteAEliminar = postulantes.get(selectedIndex);
+                miSistema.eliminarPostulante(postulanteAEliminar);
+                postulantes.remove(selectedIndex);
+                cargarJListPostulantes(postulantes);
+
+                JOptionPane.showMessageDialog(this, "Postulante eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un postulante para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonDarDeBajaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonCancelar;
-    private javax.swing.JButton BotonDardeBaja;
     private javax.swing.JLabel LabelPostulantes;
     private javax.swing.JLabel LabelTitulo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonDarDeBaja;
     private javax.swing.JList<String> jListPostulantes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

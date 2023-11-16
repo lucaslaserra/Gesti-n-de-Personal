@@ -1,12 +1,10 @@
 package dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import lectura.ArchivoGrabacion;
-import lectura.ArchivoLectura;
 
-public class Puesto {
+
+public class Puesto implements Serializable{
 
     private String titulo;
     private String tipo;
@@ -56,36 +54,36 @@ public class Puesto {
         return sb.toString();
     }
 
-    public static Puesto fromFileString(String fileString) {
-        String[] parts = fileString.split(";");
-        String [] habilidades = parts[2].split("-");
-        Puesto puesto = new Puesto(parts[0], parts[1]);    
-        for (int i =0; i < habilidades.length;i++){        
-            puesto.setHabilidadesRequeridas(habilidades[i]);
-        
-        
-        }
-       
-        return puesto;
-    }
+//    public static Puesto fromFileString(String fileString) {
+//        String[] parts = fileString.split(";");
+//        String [] habilidades = parts[2].split("-");
+//        Puesto puesto = new Puesto(parts[0], parts[1]);    
+//        for (int i =0; i < habilidades.length;i++){        
+//            puesto.setHabilidadesRequeridas(habilidades[i]);
+//        
+//        
+//        }
+//       
+//        return puesto;
+//    }
 
     // Método para guardar el puesto actual en un archivo
-    public void guardar() {
-        ArchivoGrabacion archivo = new ArchivoGrabacion("puestos.txt", true); // true para extender
-        archivo.grabarLinea(this.toFileString());
-        archivo.cerrar();
-    }
+//    public void guardar() {
+//        ArchivoGrabacion archivo = new ArchivoGrabacion("puestos.txt", true); // true para extender
+//        archivo.grabarLinea(this.toFileString());
+//        archivo.cerrar();
+//    }
 
     // Método para leer todos los conocimientos de un archivo
-    public static ArrayList<Puesto> obtenerListaPuestos() {
-        ArrayList<Puesto> puestos = new ArrayList<>();
-        ArchivoLectura archivo = new ArchivoLectura("puestos.txt");
-        while (archivo.hayMasLineas()) {
-            Puesto puesto = Puesto.fromFileString(archivo.linea());
-            puestos.add(puesto);
-        }
-        archivo.cerrar();
-        return puestos;
-    }
+//    public static ArrayList<Puesto> obtenerListaPuestos() {
+//        ArrayList<Puesto> puestos = new ArrayList<>();
+//        ArchivoLectura archivo = new ArchivoLectura("puestos.txt");
+//        while (archivo.hayMasLineas()) {
+//            Puesto puesto = Puesto.fromFileString(archivo.linea());
+//            puestos.add(puesto);
+//        }
+//        archivo.cerrar();
+//        return puestos;
+//    }
 
 }
