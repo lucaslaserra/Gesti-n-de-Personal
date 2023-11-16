@@ -14,6 +14,7 @@ public class RegistroHabilidad extends javax.swing.JFrame {
     public RegistroHabilidad(Sistema sistema) {
         miSistema = sistema;  
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

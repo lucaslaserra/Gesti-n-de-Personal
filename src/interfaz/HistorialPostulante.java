@@ -27,6 +27,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
         modelo = new DefaultListModel<>();
         ListaPostulantes.setModel(modelo);
         actualizarLista();
+        setLocationRelativeTo(null);
     }
 
     /**

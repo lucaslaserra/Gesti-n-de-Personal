@@ -21,7 +21,7 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         miSistema = sistema;
         initComponents();
         actualizarLista();
-
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -148,7 +148,6 @@ public class ConsultaPuesto extends javax.swing.JFrame {
     private void BotonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConsultarActionPerformed
         limpiarListaPostulantes();
         Puesto puestoSelected = ListaPuestos.getSelectedValue();
-
         int nivel = (int) SpinnerNivel.getValue();
         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
         ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();

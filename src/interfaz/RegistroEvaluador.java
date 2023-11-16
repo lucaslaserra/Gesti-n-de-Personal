@@ -19,6 +19,7 @@ public class RegistroEvaluador extends javax.swing.JFrame {
     public RegistroEvaluador( Sistema sistema) {
        miSistema = sistema;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

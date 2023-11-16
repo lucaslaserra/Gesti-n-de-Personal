@@ -22,6 +22,7 @@ public class ConsultaHabilidad extends javax.swing.JFrame {
         modelo = new DefaultListModel<>();
         ListaTemas.setModel(modelo);
         actualizarLista();
+        setLocationRelativeTo(null);
     }
 
     /**

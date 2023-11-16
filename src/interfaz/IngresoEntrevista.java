@@ -28,6 +28,7 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         ListaEvaluadores.setModel(modelo2);
         ListaPostulantes.setModel(modelo1);
         actualizarLista();
+        setLocationRelativeTo(null);
     }
 
     
