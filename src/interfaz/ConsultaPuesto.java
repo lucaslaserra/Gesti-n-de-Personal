@@ -152,7 +152,11 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
         ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();
         ArrayList<Habilidad> habilidadesPuesto = puestoSelected.getHabilidadesRequeridas();
-
+        
+        for (Postulante p : postulantes) {
+             System.out.println("Postulantes totales" + p.getNombre());
+        }
+       
         ArrayList<Postulante> postulantesFiltrados = new ArrayList<>();
 
         for (Postulante p : postulantes) {
@@ -173,10 +177,14 @@ public class ConsultaPuesto extends javax.swing.JFrame {
 
         for (Postulante postulante : postulantesFiltrados) {
             int contador = 0;
-            System.out.println(postulante.getNombre());
+            System.out.println("Postulante filtrado:" +postulante.getNombre());
+            System.out.println("Habilidades del postulante:" +postulante.getHabilidades().toString());
             for (Habilidad habilidad : habilidadesPuesto) {
+                System.out.println("Habilidad" + habilidad.getTema());
                 if (postulante.getHabilidades().keySet().contains(habilidad)) {
+                    System.out.println("Postulantes que contienen habilidad" + postulante.getNombre());
                     if (postulante.getNivelHabilidad(habilidad) >= nivel) {
+                        System.out.println("Postulantes aceptados" + postulante.getNombre());
                         contador++;
                     }
 
@@ -189,7 +197,7 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         }
         DefaultListModel<Postulante> modeloLista = new DefaultListModel<>();
         for (Postulante pAceptado : postulantesAceptados) {
-            System.out.println(pAceptado.getNombre());
+            System.out.println("Postulante que agrego al modelo" + pAceptado.getNombre());
             modeloLista.addElement(pAceptado);
         }
         ListaPostulantes.setModel(modeloLista);

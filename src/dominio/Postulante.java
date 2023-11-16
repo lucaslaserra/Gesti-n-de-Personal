@@ -16,7 +16,7 @@ public class Postulante extends Persona implements Serializable {
     private String telefono;
     private String email;
     private String linkedin;
-    private TipoTrabajo tipoTrabajo;
+    private String tipoTrabajo;
     private Map<Habilidad, Integer> habilidades;
 
    
@@ -26,13 +26,7 @@ public class Postulante extends Persona implements Serializable {
         this.telefono = telefono;
         this.email = email;
         this.linkedin = linkedin;
-        if ("Remoto".equals(tipoTrabajo)) {
-            this.tipoTrabajo = TipoTrabajo.REMOTO;
-        } else if ("Presencial".equals(tipoTrabajo)) {
-            this.tipoTrabajo = TipoTrabajo.PRESENCIAL;
-        } else if ("Mixto".equals(tipoTrabajo)) {
-            this.tipoTrabajo = TipoTrabajo.MIXTO;
-        }
+        this.tipoTrabajo = tipoTrabajo;
         habilidades = new HashMap<>();
     }
 
@@ -44,15 +38,7 @@ public class Postulante extends Persona implements Serializable {
     }
 
    public String getTipoTrabajo() {
-       String tipoTrabajoStr = "";
-       if (this.tipoTrabajo == TipoTrabajo.REMOTO) {
-            tipoTrabajoStr = "Remoto";
-        } else if (this.tipoTrabajo == TipoTrabajo.PRESENCIAL) {
-            tipoTrabajoStr = "Presencial";
-        } else if (this.tipoTrabajo == TipoTrabajo.MIXTO) {
-            tipoTrabajoStr = "Mixto";
-        }
-       return tipoTrabajoStr;
+       return tipoTrabajo;
    }
 
     public String getTelefono() {
@@ -93,7 +79,7 @@ public class Postulante extends Persona implements Serializable {
         return habilidades.getOrDefault(habilidad, 0);
     }
     
-     public void setTipoTrabajo(TipoTrabajo tipoTrabajo) {
+     public void setTipoTrabajo(String tipoTrabajo) {
         this.tipoTrabajo = tipoTrabajo;
     }
     
