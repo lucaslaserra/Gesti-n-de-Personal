@@ -28,6 +28,10 @@ public class Evaluador extends Persona implements Serializable{
         public String toFileString() {
         return getNombre() + ";" + getCedula() +";"+getDireccion()+";"+ añoIngreso;
     }
+    @Override
+    public String toString(){
+       return this.getNombre();
+    }
     
     public static Evaluador fromFileString(String fileString) {
         String[] parts = fileString.split(";");

@@ -4,12 +4,12 @@
  */
 package interfaz;
 
-
 import dominio.*;
-import dominio.Sistema;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -18,18 +18,17 @@ import javax.swing.DefaultListModel;
 public class HistorialPostulante extends javax.swing.JFrame {
 
     private Sistema miSistema;
-    
+
     DefaultListModel<Postulante> modelo;
-    
+
     public HistorialPostulante(Sistema sistema) {
-       miSistema = sistema;
-       initComponents();
-       modelo = new DefaultListModel<>();
-       ListaPostulantes.setModel(modelo);
-       actualizarLista();
+        miSistema = sistema;
+        initComponents();
+        modelo = new DefaultListModel<>();
+        ListaPostulantes.setModel(modelo);
+        actualizarLista();
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +53,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
         ListaExperiencias = new javax.swing.JList<>();
         jSeparator1 = new javax.swing.JSeparator();
         LabelBuscar = new javax.swing.JLabel();
-        BotonBorrar = new javax.swing.JButton();
+        BotonBuscar = new javax.swing.JButton();
         BotonResetar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TablaValores = new javax.swing.JTable();
@@ -66,6 +65,8 @@ public class HistorialPostulante extends javax.swing.JFrame {
         Telefono = new javax.swing.JLabel();
         Mail = new javax.swing.JLabel();
         Linkedin = new javax.swing.JLabel();
+        LabelFormato = new javax.swing.JLabel();
+        Formato = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -94,24 +95,32 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
         LabelLinkedin.setText("Linkedin:");
 
+        LabelExperiencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelExperiencia.setText("Experiencia:");
 
         jScrollPane2.setViewportView(ListaExperiencias);
 
         LabelBuscar.setText("Buscar: ");
 
-        BotonBorrar.setText("Borrar");
+        BotonBuscar.setText("Buscar");
+        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarActionPerformed(evt);
+            }
+        });
 
         BotonResetar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         BotonResetar.setText("Resetear");
         BotonResetar.setCursor(new java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR));
+        BotonResetar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonResetarActionPerformed(evt);
+            }
+        });
 
         TablaValores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "", null, ""},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nro", "Evaluador", "Puntaje", "Comentarios"
@@ -127,8 +136,19 @@ public class HistorialPostulante extends javax.swing.JFrame {
         });
         TablaValores.setPreferredSize(new java.awt.Dimension(200, 80));
         jScrollPane3.setViewportView(TablaValores);
+        if (TablaValores.getColumnModel().getColumnCount() > 0) {
+            TablaValores.getColumnModel().getColumn(0).setPreferredWidth(3);
+            TablaValores.getColumnModel().getColumn(1).setPreferredWidth(50);
+            TablaValores.getColumnModel().getColumn(2).setPreferredWidth(5);
+            TablaValores.getColumnModel().getColumn(3).setPreferredWidth(390);
+        }
 
         BotonSalir.setText("Salir");
+        BotonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirActionPerformed(evt);
+            }
+        });
 
         Nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Nombre.setLabelFor(LabelNombre);
@@ -148,18 +168,34 @@ public class HistorialPostulante extends javax.swing.JFrame {
         Linkedin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Linkedin.setLabelFor(LabelTelefono);
 
+        LabelFormato.setText("Formato:");
+
+        Formato.setLabelFor(LabelFormato);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LabelBuscar)
+                                .addGap(61, 61, 61)
+                                .addComponent(TextBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BotonBuscar)
+                                .addGap(18, 18, 18)
+                                .addComponent(BotonResetar)))
+                        .addGap(63, 63, 63))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(133, 133, 133)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -170,35 +206,29 @@ public class HistorialPostulante extends javax.swing.JFrame {
                                             .addComponent(LabelTelefono)
                                             .addComponent(LabelMail)
                                             .addComponent(LabelLinkedin)
-                                            .addComponent(LabelExperiencia))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(29, 29, 29)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(Cedula)
-                                                    .addComponent(Nombre)
-                                                    .addComponent(Direccion)
-                                                    .addComponent(Telefono)
-                                                    .addComponent(Mail)
-                                                    .addComponent(Linkedin)))))
-                                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LabelBuscar)
-                                .addGap(61, 61, 61)
-                                .addComponent(TextBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(LabelFormato))
+                                        .addGap(53, 53, 53)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(Cedula)
+                                            .addComponent(Direccion)
+                                            .addComponent(Telefono)
+                                            .addComponent(Mail)
+                                            .addComponent(Linkedin))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(Formato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LabelExperiencia)
                                 .addGap(18, 18, 18)
-                                .addComponent(BotonBorrar)
-                                .addGap(18, 18, 18)
-                                .addComponent(BotonResetar))))
-                    .addComponent(BotonSalir)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+            .addComponent(BotonSalir)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,44 +240,46 @@ public class HistorialPostulante extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelNombre)
+                            .addComponent(Nombre))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelCedula)
+                            .addComponent(Cedula))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelDireccion)
+                            .addComponent(Direccion))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelTelefono)
+                            .addComponent(Telefono))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelMail)
+                            .addComponent(Mail))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelLinkedin)
+                            .addComponent(Linkedin))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelFormato)
+                            .addComponent(Formato))
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(LabelNombre)
-                                    .addComponent(Nombre))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(LabelCedula)
-                                    .addComponent(Cedula))
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(LabelDireccion)
-                                    .addComponent(Direccion))
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(LabelTelefono)
-                                    .addComponent(Telefono))
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(LabelMail)
-                                    .addComponent(Mail))
-                                .addGap(14, 14, 14)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(LabelLinkedin)
-                                    .addComponent(Linkedin))
-                                .addGap(10, 10, 10)
-                                .addComponent(LabelExperiencia)))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelExperiencia))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BotonBorrar)
+                        .addComponent(BotonBuscar)
                         .addComponent(TextBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BotonResetar)
                     .addGroup(layout.createSequentialGroup()
@@ -259,70 +291,142 @@ public class HistorialPostulante extends javax.swing.JFrame {
                 .addComponent(BotonSalir)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ListaPostulantesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaPostulantesValueChanged
         Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
         limpiarLabels();
+        limpiarTabla();
         actualizarListaExperiencias(postulanteSelected);
-        String nombre=postulanteSelected.getNombre();
-        String cedula=postulanteSelected.getCedula();
-        String direccion=postulanteSelected.getDireccion();
-        String telefono=postulanteSelected.getTelefono();
-        String mail=postulanteSelected.getEmail();
-        String linkedin=postulanteSelected.getLinkedin();
+        String nombre = postulanteSelected.getNombre();
+        String cedula = postulanteSelected.getCedula();
+        String direccion = postulanteSelected.getDireccion();
+        String telefono = postulanteSelected.getTelefono();
+        String mail = postulanteSelected.getEmail();
+        String linkedin = postulanteSelected.getLinkedin();
+        String formato = postulanteSelected.getTipoTrabajo();
+        Formato.setText(formato);
         Nombre.setText(nombre);
         Cedula.setText(cedula);
         Direccion.setText(direccion);
         Telefono.setText(telefono);
         Mail.setText(mail);
         Linkedin.setText(linkedin);
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_ListaPostulantesValueChanged
-     public void actualizarLista(){
-     DefaultListModel<Postulante> modeloL = new DefaultListModel<>();
-     ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
-     for (Postulante j: postulantes) {
-        modeloL.addElement(j);
-    }
-    ListaPostulantes.setModel(modeloL);
-    }
-     
-    public void actualizarListaExperiencias(Postulante postulante){
-     DefaultListModel<String> modeloLE = new DefaultListModel<>();
-     Map<Habilidad, Integer> habilidades = postulante.getHabilidades();
-       for (Map.Entry<Habilidad, Integer> entry : habilidades.entrySet()) {
-            modeloLE.addElement(entry.getKey() + " (" + entry.getValue()+")");
+        ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();
+        DefaultTableModel modeloT = (DefaultTableModel) TablaValores.getModel();
+        for (Entrevista en : entrevistas) {
+            if (en.getPostulante().getCedula().equals(postulanteSelected.getCedula())) {
+                int numero = en.getId();
+                int puntaje = en.getPuntuacion();
+                String comentario = en.getComentarios();
+                Evaluador evaluador = en.getEvaluador();
+                Object[] datos = {numero, evaluador + " (" + evaluador.getCedula() + ") ", puntaje, comentario};
+                modeloT.addRow(datos);
+
+            }
+
         }
-    ListaExperiencias.setModel(modeloLE);   
-    
+
+
+    }//GEN-LAST:event_ListaPostulantesValueChanged
+
+    private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_BotonSalirActionPerformed
+
+    private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
+        String palabra = TextBuscador.getText().toLowerCase();
+        limpiarTabla();
+        DefaultTableModel modeloT = (DefaultTableModel) TablaValores.getModel();
+        Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
+        ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();
+
+        for (Entrevista en : entrevistas) {
+            if (en.getPostulante().getCedula().equals(postulanteSelected.getCedula())) {
+                int numero = en.getId();
+                int puntaje = en.getPuntuacion();
+                Evaluador evaluador = en.getEvaluador();
+                String comentario = en.getComentarios().toLowerCase();
+                if (comentario.contains(palabra)) {
+                    comentario = "<html>" + comentario.replaceAll(palabra, "<font color='red'>" + palabra + "</font>") + "</html>";
+                    Object[] datosR = {numero, evaluador + " (" + evaluador.getCedula() + ") ", puntaje, comentario};
+                    modeloT.addRow(datosR);
+
+                } else {
+                    Object[] datos = {numero, evaluador + " (" + evaluador.getCedula() + ") ", puntaje, comentario};
+                    modeloT.addRow(datos);
+                }
+
+            }
+        }
+    }//GEN-LAST:event_BotonBuscarActionPerformed
+
+
+    private void BotonResetarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResetarActionPerformed
+        Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
+        limpiarTabla();
+        TextBuscador.setText("");
+        ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();
+        DefaultTableModel modeloT = (DefaultTableModel) TablaValores.getModel();
+        for (Entrevista en : entrevistas) {
+            if (en.getPostulante().getCedula().equals(postulanteSelected.getCedula())) {
+                int numero = en.getId();
+                int puntaje = en.getPuntuacion();
+                String comentario = en.getComentarios();
+                Evaluador evaluador = en.getEvaluador();
+                Object[] datos = {numero, evaluador + " (" + evaluador.getCedula() + ") ", puntaje, comentario};
+                modeloT.addRow(datos);
+
+            }
+
+        }
+    }//GEN-LAST:event_BotonResetarActionPerformed
+    public void actualizarLista() {
+        DefaultListModel<Postulante> modeloL = new DefaultListModel<>();
+        ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+        for (Postulante j : postulantes) {
+            modeloL.addElement(j);
+        }
+        ListaPostulantes.setModel(modeloL);
     }
-    public void limpiarLabels(){
-    Cedula.setText("");
-    Direccion.setText("");
-    LabelExperiencia.setText("");
-    Linkedin.setText("");
-    Mail.setText("");
-    Nombre.setText("");
-    Telefono.setText("");
+
+    public void actualizarListaExperiencias(Postulante postulante) {
+        DefaultListModel<String> modeloLE = new DefaultListModel<>();
+        Map<Habilidad, Integer> habilidades = postulante.getHabilidades();
+        for (Map.Entry<Habilidad, Integer> entry : habilidades.entrySet()) {
+            modeloLE.addElement(entry.getKey() + " (" + entry.getValue() + ")");
+        }
+        ListaExperiencias.setModel(modeloLE);
+
+    }
+
+    public void limpiarLabels() {
+        Cedula.setText("");
+        Direccion.setText("");
+        LabelExperiencia.setText("");
+        Linkedin.setText("");
+        Mail.setText("");
+        Nombre.setText("");
+        Telefono.setText("");
+    }
+
+    public void limpiarTabla() {
+        DefaultTableModel modeloT = (DefaultTableModel) TablaValores.getModel();
+        modeloT.setRowCount(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonBorrar;
+    private javax.swing.JButton BotonBuscar;
     private javax.swing.JButton BotonResetar;
     private javax.swing.JButton BotonSalir;
     private javax.swing.JLabel Cedula;
     private javax.swing.JLabel Direccion;
+    private javax.swing.JLabel Formato;
     private javax.swing.JLabel LabelBuscar;
     private javax.swing.JLabel LabelCedula;
     private javax.swing.JLabel LabelDireccion;
     private javax.swing.JLabel LabelExperiencia;
+    private javax.swing.JLabel LabelFormato;
     private javax.swing.JLabel LabelLinkedin;
     private javax.swing.JLabel LabelMail;
     private javax.swing.JLabel LabelNombre;
@@ -344,4 +448,3 @@ public class HistorialPostulante extends javax.swing.JFrame {
     private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }
-

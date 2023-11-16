@@ -192,7 +192,7 @@ public class RegistroPuesto extends javax.swing.JFrame {
         String nombrePuesto = jTextFieldNombre.getText();
         String tipoTrabajo = "";
       if(nombrePuesto.isEmpty()){
-       JOptionPane.showMessageDialog(this, "Debe ingresar un nombre!");
+       JOptionPane.showMessageDialog(this, "Debe ingresar un nombre!","Error",JOptionPane.ERROR_MESSAGE);
       }else{  
         if (JRemoto.isSelected()) {
             tipoTrabajo = "Remoto";
@@ -201,17 +201,17 @@ public class RegistroPuesto extends javax.swing.JFrame {
         } else if (JMixto.isSelected()) {
             tipoTrabajo = "Mixto";
         } else {
-             JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de trabajo!");  
+             JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de trabajo!","Error",JOptionPane.ERROR_MESSAGE);  
         }
         if(modelo.isEmpty()){
-             JOptionPane.showMessageDialog(this, "No agrego una habilidad requerida");
+             JOptionPane.showMessageDialog(this, "No agrego una habilidad requerida","Error",JOptionPane.ERROR_MESSAGE);
         }else if(!tipoTrabajo.isEmpty()){
            Puesto puesto = new Puesto(nombrePuesto,tipoTrabajo);
            for(int i = 0; i < modelo.getSize();i++){
                puesto.setHabilidadesRequeridas(modelo.elementAt(i));
            }
            miSistema.agregarPuesto(puesto);
-           JOptionPane.showMessageDialog(this, "Se ha agregado el puesto con exito!");
+           JOptionPane.showMessageDialog(this, "Se ha agregado el puesto con exito!","Exito",JOptionPane.INFORMATION_MESSAGE);
            limpiarFormulario();
         }
       }
@@ -226,7 +226,7 @@ public class RegistroPuesto extends javax.swing.JFrame {
     private void JbotonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbotonAgregarTemaActionPerformed
         String habilidadSelect =  CombodeTemas.getSelectedItem().toString();
           if( modelo.contains(habilidadSelect)) {
-              JOptionPane.showMessageDialog(this, "Ya agrego esa habilidad!");
+              JOptionPane.showMessageDialog(this, "Ya agrego esa habilidad!","Error",JOptionPane.ERROR_MESSAGE);
             }else{
             modelo.addElement(habilidadSelect);
           }

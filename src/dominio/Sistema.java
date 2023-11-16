@@ -14,7 +14,9 @@ public class Sistema implements Serializable {
     private  ArrayList<Evaluador> evaluadores = new ArrayList<>();
     private  ArrayList<Postulante> postulantes = new ArrayList<>();
     private  ArrayList<Entrevista> entrevistas = new ArrayList<>();
+    private int siguienteNumEntrevista = 1;
 //    private transient ArrayList<SistemaObserver> observers;
+    
     
     public Sistema(boolean nuevoSistema) {  
 //        this.observers = new ArrayList<>();
@@ -32,17 +34,21 @@ public class Sistema implements Serializable {
         evaluadores.clear();
         postulantes.clear();
         entrevistas.clear();
+        siguienteNumEntrevista=1;
         guardarSistema();
     }
 
-    
+    public int obtenerNumdeEntrevistas(){
+     cargarSistema();
+     return siguienteNumEntrevista;
+    }
    
 
     public  ArrayList<Habilidad> obtenerListaHabilidades() {
         cargarSistema();
         return habilidades;
     }
-
+   
  
     public  ArrayList<Puesto> obtenerListaPuestos() {
         cargarSistema();
@@ -76,6 +82,7 @@ public class Sistema implements Serializable {
             out.writeObject(evaluadores);
             out.writeObject(postulantes);
             out.writeObject(entrevistas);
+            out.writeObject(siguienteNumEntrevista);
 //            notificarObservers();
         } catch (IOException e) {
             e.printStackTrace();
@@ -97,6 +104,7 @@ public class Sistema implements Serializable {
             evaluadores = (ArrayList<Evaluador>) in.readObject();
             postulantes = (ArrayList<Postulante>) in.readObject();
             entrevistas = (ArrayList<Entrevista>) in.readObject();
+            siguienteNumEntrevista = (int) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             // Aquí podrías querer manejar el error inicializando listas vacías o notificando al usuario.
@@ -115,6 +123,7 @@ public class Sistema implements Serializable {
         evaluadores = new ArrayList<>();
         postulantes = new ArrayList<>();
         entrevistas = new ArrayList<>();
+        siguienteNumEntrevista=1;
     }
     
     
@@ -147,6 +156,9 @@ public class Sistema implements Serializable {
    
     public void agregarEntrevista(Entrevista entrevista) {
         cargarSistema(); 
+        entrevista.setId(siguienteNumEntrevista);
+        siguienteNumEntrevista++;
+        System.out.println(entrevista.getId());
         entrevistas.add(entrevista);
         guardarSistema();
     }

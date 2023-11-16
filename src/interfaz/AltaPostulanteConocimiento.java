@@ -231,7 +231,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         miSistema.agregarPostulante(postulante);
-        JOptionPane.showMessageDialog(this, "Se ha registrado el postulante con exito!");
+        JOptionPane.showMessageDialog(this, "Se ha registrado el postulante con exito!","Exito",JOptionPane.INFORMATION_MESSAGE);
         dispose();
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 

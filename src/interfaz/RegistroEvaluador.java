@@ -151,7 +151,7 @@ public class RegistroEvaluador extends javax.swing.JFrame {
         Evaluador evaluador = new Evaluador (fechadeIngreso,nombre,cedula,direccion);
         miSistema.agregarEvaluador(evaluador);
         limpiarFormulario();
-        JOptionPane.showMessageDialog(null, "Se ha registrado el evaluador con exito!");
+        JOptionPane.showMessageDialog(null, "Se ha registrado el evaluador con exito!","Exito",JOptionPane.INFORMATION_MESSAGE);
     }
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 

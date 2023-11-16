@@ -6,6 +6,7 @@ package interfaz;
 
 import dominio.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class VentanaPrincipal extends javax.swing.JFrame{
 
@@ -202,8 +203,23 @@ public class VentanaPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_MenuRegistroEvaluadorActionPerformed
 
     private void MenuIngresoEntrevistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIngresoEntrevistaActionPerformed
+         boolean opcionNoCumple = false;
+         ArrayList<Evaluador> evaluadores = miSistema.obtenerListaEvaluadores();
+         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+         if (evaluadores.isEmpty() && postulantes.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se registro ningun evaluador y postulante hasta el momento!.", "Error", JOptionPane.ERROR_MESSAGE);
+            opcionNoCumple=true;
+         }else if (evaluadores.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe registrar al menos un evaluador.", "Error", JOptionPane.ERROR_MESSAGE);
+            opcionNoCumple=true;
+        }else if (postulantes.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe registrar al menos un postulante.", "Error", JOptionPane.ERROR_MESSAGE);
+            opcionNoCumple=true;
+        }
+         if(!opcionNoCumple){
         IngresoEntrevista panelIngreso = new IngresoEntrevista(miSistema);
         panelIngreso.setVisible(true);
+         }
     }//GEN-LAST:event_MenuIngresoEntrevistaActionPerformed
 
     private void MenuRegistroPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRegistroPuestoActionPerformed
@@ -212,18 +228,29 @@ public class VentanaPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_MenuRegistroPuestoActionPerformed
 
     private void MenuConsultaPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultaPuestoActionPerformed
+        
         ConsultaPuesto VconsultaPuesto = new ConsultaPuesto(miSistema);
         VconsultaPuesto.setVisible(true);
     }//GEN-LAST:event_MenuConsultaPuestoActionPerformed
 
     private void MenuHistoriaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoriaPostulanteActionPerformed
+       ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+       if(postulantes.isEmpty()){
+       JOptionPane.showMessageDialog(this, "Debe registrar al menos un postulante.", "Error", JOptionPane.ERROR_MESSAGE);
+       }else{
         HistorialPostulante panelHistorial = new HistorialPostulante(miSistema);
         panelHistorial.setVisible(true);
+       }
     }//GEN-LAST:event_MenuHistoriaPostulanteActionPerformed
 
     private void MenuConsultaTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultaTematicaActionPerformed
+       ArrayList<Habilidad>habilidades = miSistema.obtenerListaHabilidades();
+        if(habilidades.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Debe registrar al menos una habilidad.", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
         ConsultaHabilidad VconsultaAtributo = new ConsultaHabilidad(miSistema);
         VconsultaAtributo.setVisible(true);
+        }
     }//GEN-LAST:event_MenuConsultaTematicaActionPerformed
 
  

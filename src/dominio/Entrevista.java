@@ -12,20 +12,20 @@ import lectura.ArchivoLectura;
 
 
 public class Entrevista implements Serializable{
+    private static final long serialVersionUID = 1L;
     private Postulante postulante;
     private Evaluador evaluador;
-    private Puesto puesto;
-    private LocalDate fecha;
     private String comentarios;
+    private int id;
     private int puntuacion; 
-
-    public Entrevista(Postulante postulante, Evaluador evaluador, Puesto puesto, LocalDate fecha, String comentarios, int puntuacion) {
+   
+    
+    public Entrevista(Postulante postulante, Evaluador evaluador,  String comentarios, int puntuacion) {
         this.postulante = postulante;
         this.evaluador = evaluador;
-        this.puesto = puesto;
-        this.fecha = fecha;
         this.comentarios = comentarios;
         this.puntuacion = puntuacion;
+        this.id = 0;
     }
 
     public Postulante getPostulante() {
@@ -43,22 +43,13 @@ public class Entrevista implements Serializable{
     public void setEvaluador(Evaluador evaluador) {
         this.evaluador = evaluador;
     }
-
-    public Puesto getPuesto() {
-        return puesto;
+    public int getId (){
+      return id;
+    }
+    public void setId(int id){
+       this.id=id;
     }
 
-    public void setPuesto(Puesto puesto) {
-        this.puesto = puesto;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
 
     public String getComentarios() {
         return comentarios;
@@ -78,13 +69,13 @@ public class Entrevista implements Serializable{
 
     @Override
     public String toString() {
-        return "Entrevista{" + " El postulante fue: " + postulante + ",El evaluador fue: " + evaluador + ", El puesto es: " + puesto + ", La fecha es: " + fecha + ", Los comentarios son:" + comentarios + ",La puntuacion es: " + puntuacion + '}';
+        return "Entrevista{" + " El postulante fue: " + postulante + ",El evaluador fue: " + evaluador + ", Los comentarios son:" + comentarios + ",La puntuacion es: " + puntuacion + '}';
     }
     
    
     
    public String toFileString() {
-       return getPostulante() + ";" + getEvaluador() +";"+getPuesto()+";"+ getFecha()+";"+getComentarios()+";"+getPuntuacion();
+       return getPostulante() + ";" + getEvaluador() +";"+getComentarios()+";"+getPuntuacion();
     }
     
    // public static Entrevista fromFileString(String fileString) {

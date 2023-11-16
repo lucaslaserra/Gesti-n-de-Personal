@@ -13,9 +13,7 @@ import javax.swing.DefaultListModel;
 
 
 public class ConsultaHabilidad extends javax.swing.JFrame {
-     private Habilidad habilidad;
-     private Puesto puesto;
-     private Postulante postulante;
+     
      DefaultListModel<Habilidad> modelo;
      private Sistema miSistema;
     public ConsultaHabilidad(Sistema sistema) {
