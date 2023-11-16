@@ -4,7 +4,9 @@
  */
 package interfaz;
 
-import dominio.Sistema;
+import dominio.*;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -13,10 +15,13 @@ import dominio.Sistema;
 public class ConsultaPuesto extends javax.swing.JFrame {
 
     private Sistema miSistema;
+
     public ConsultaPuesto(Sistema sistema) {
+
         miSistema = sistema;
         initComponents();
-        
+        actualizarLista();
+
     }
 
     /**
@@ -33,12 +38,12 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaPuestos = new javax.swing.JList<>();
         LabelNivel = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        SpinnerNivel = new javax.swing.JSpinner();
         BotonConsultar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         LabelPostulantes = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        ListaPostulantes = new javax.swing.JList<>();
         BotonCancelar = new javax.swing.JButton();
         BotonExportar = new javax.swing.JButton();
 
@@ -50,17 +55,12 @@ public class ConsultaPuesto extends javax.swing.JFrame {
 
         LabelPuestos.setText("Puestos:");
 
-        ListaPuestos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         ListaPuestos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(ListaPuestos);
 
         LabelNivel.setText("Nivel:");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        SpinnerNivel.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
 
         BotonConsultar.setText("Consultar");
         BotonConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -71,12 +71,7 @@ public class ConsultaPuesto extends javax.swing.JFrame {
 
         LabelPostulantes.setText("Postulanes:");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(ListaPostulantes);
 
         BotonCancelar.setText("Cancelar");
         BotonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +81,11 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         });
 
         BotonExportar.setText("Exportar");
+        BotonExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonExportarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,7 +107,7 @@ public class ConsultaPuesto extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(LabelNivel)
                         .addGap(63, 63, 63)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SpinnerNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(BotonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
@@ -127,7 +127,7 @@ public class ConsultaPuesto extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelNivel)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SpinnerNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonConsultar))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,24 +139,89 @@ public class ConsultaPuesto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonCancelar)
                     .addComponent(BotonExportar))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConsultarActionPerformed
-        // TODO add your handling code here:
+        limpiarListaPostulantes();
+        Puesto puestoSelected = ListaPuestos.getSelectedValue();
+
+        int nivel = (int) SpinnerNivel.getValue();
+        ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+        ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();
+        ArrayList<Habilidad> habilidadesPuesto = puestoSelected.getHabilidadesRequeridas();
+
+        ArrayList<Postulante> postulantesFiltrados = new ArrayList<>();
+
+        for (Postulante p : postulantes) {
+            for (Entrevista e : entrevistas) {
+                if (e.getPostulante().equals(p)) {
+                    if (p.getTipoTrabajo().equals(puestoSelected.getTipo())) {
+                        if (!postulantesFiltrados.contains(p)) {
+                            postulantesFiltrados.add(p);
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+        ArrayList<Postulante> postulantesAceptados = new ArrayList<>();
+
+        for (Postulante postulante : postulantesFiltrados) {
+            int contador = 0;
+            System.out.println(postulante.getNombre());
+            for (Habilidad habilidad : habilidadesPuesto) {
+                if (postulante.getHabilidades().keySet().contains(habilidad)) {
+                    if (postulante.getNivelHabilidad(habilidad) >= nivel) {
+                        contador++;
+                    }
+
+                }
+            }
+
+            if (contador == habilidadesPuesto.size()) {
+                postulantesAceptados.add(postulante);
+            }
+        }
+        DefaultListModel<Postulante> modeloLista = new DefaultListModel<>();
+        for (Postulante pAceptado : postulantesAceptados) {
+            System.out.println(pAceptado.getNombre());
+            modeloLista.addElement(pAceptado);
+        }
+        ListaPostulantes.setModel(modeloLista);
+
+
     }//GEN-LAST:event_BotonConsultarActionPerformed
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-  
+    private void BotonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonExportarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonExportarActionPerformed
+
+    public void actualizarLista() {
+        DefaultListModel<Puesto> modeloActualizar = new DefaultListModel<>();
+        ArrayList<Puesto> puestos = miSistema.obtenerListaPuestos();
+        for (Puesto p : puestos) {
+
+            modeloActualizar.addElement(p);
+        }
+        ListaPuestos.setModel(modeloActualizar);
+    }
+
+    public void limpiarListaPostulantes() {
+        DefaultListModel<Postulante> modeloLimpiar = new DefaultListModel<>();
+        modeloLimpiar.clear();
+        ListaPostulantes.setModel(modeloLimpiar);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;
@@ -166,11 +231,11 @@ public class ConsultaPuesto extends javax.swing.JFrame {
     private javax.swing.JLabel LabelPostulantes;
     private javax.swing.JLabel LabelPuestos;
     private javax.swing.JLabel LabelTitulo;
-    private javax.swing.JList<String> ListaPuestos;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<Postulante> ListaPostulantes;
+    private javax.swing.JList<Puesto> ListaPuestos;
+    private javax.swing.JSpinner SpinnerNivel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner jSpinner1;
     // End of variables declaration//GEN-END:variables
 }

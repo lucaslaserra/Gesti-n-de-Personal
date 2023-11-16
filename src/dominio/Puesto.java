@@ -8,7 +8,7 @@ public class Puesto implements Serializable{
 
     private String titulo;
     private String tipo;
-    private ArrayList<String> habilidades;
+    private ArrayList<Habilidad> habilidades;
 
     public Puesto(String titulo, String tipo) {
         this.titulo = titulo;
@@ -24,7 +24,7 @@ public class Puesto implements Serializable{
         this.tipo = tipo;
     }
 
-    public  void setHabilidadesRequeridas(String habilidad) {
+    public  void setHabilidadesRequeridas(Habilidad habilidad) {
         this.habilidades.add(habilidad);
     }
 
@@ -36,23 +36,14 @@ public class Puesto implements Serializable{
         return tipo;
     }
 
-    public ArrayList<String> getHabilidadesRequeridas() {
+    public ArrayList<Habilidad> getHabilidadesRequeridas() {
         return habilidades;
     }
     public String toString(){
        return getTitulo();
      }
     // Este método convierte el objeto Puesto en una cadena para guardar en un archivo
-    public String toFileString() {
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.getTitulo() + ";" + this.getTipo() + ";");
-        for (String j : habilidades) {
-            sb.append(j)
-              .append("-");
-        }
-        return sb.toString();
-    }
+  
 
 //    public static Puesto fromFileString(String fileString) {
 //        String[] parts = fileString.split(";");

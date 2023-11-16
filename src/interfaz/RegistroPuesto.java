@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class RegistroPuesto extends javax.swing.JFrame {
 
-    DefaultListModel<String> modelo;
+    DefaultListModel<Habilidad> modelo;
     private Sistema miSistema;
     public RegistroPuesto(Sistema sistema) {
         miSistema = sistema;
@@ -224,8 +224,8 @@ public class RegistroPuesto extends javax.swing.JFrame {
     }//GEN-LAST:event_CombodeTemasComponentAdded
 
     private void JbotonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbotonAgregarTemaActionPerformed
-        String habilidadSelect =  CombodeTemas.getSelectedItem().toString();
-          if( modelo.contains(habilidadSelect)) {
+        Habilidad habilidadSelect = (Habilidad) CombodeTemas.getSelectedItem();
+          if(modelo.contains(habilidadSelect)) {
               JOptionPane.showMessageDialog(this, "Ya agrego esa habilidad!","Error",JOptionPane.ERROR_MESSAGE);
             }else{
             modelo.addElement(habilidadSelect);
@@ -243,10 +243,8 @@ public class RegistroPuesto extends javax.swing.JFrame {
     public void agregarHabilidadesCombo(){
     ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
     for(Habilidad j: habilidades){
-        CombodeTemas.addItem(j.getTema());
+        CombodeTemas.addItem(j);
     }
-    
-
  }
         private void limpiarFormulario() {
         // Limpia todos los campos de texto
@@ -261,13 +259,13 @@ public class RegistroPuesto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;
-    private javax.swing.JComboBox<String> CombodeTemas;
+    private javax.swing.JComboBox<Habilidad> CombodeTemas;
     private javax.swing.JRadioButton JMixto;
     private javax.swing.JRadioButton JPresencial;
     private javax.swing.JRadioButton JRemoto;
     private javax.swing.JButton JbotonAgregarTema;
     private javax.swing.JLabel LabelTitulo;
-    private javax.swing.JList<String> ListaTemasSeleccionados;
+    private javax.swing.JList<Habilidad> ListaTemasSeleccionados;
     private javax.swing.JScrollPane PanelLista;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonRegistrar;

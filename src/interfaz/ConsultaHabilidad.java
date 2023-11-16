@@ -159,9 +159,9 @@ public class ConsultaHabilidad extends javax.swing.JFrame {
         PanelPostulantes.setText(postulantesText.toString());
         }
         for(Puesto Pu: puestos){
-          ArrayList <String> habilidades = Pu.getHabilidadesRequeridas();
-          for(String h: habilidades){
-             if(h.equals(habilidadSelect.toString())){
+          ArrayList <Habilidad> habilidades = Pu.getHabilidadesRequeridas();
+          for(Habilidad h: habilidades){
+             if(h.toString().equals(habilidadSelect.toString())){
                 puestosTexto.append(Pu.toString()).append("\n");
              }
           }

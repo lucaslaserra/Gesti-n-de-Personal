@@ -223,14 +223,23 @@ public class VentanaPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_MenuIngresoEntrevistaActionPerformed
 
     private void MenuRegistroPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRegistroPuestoActionPerformed
+        ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
+        if(habilidades.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Debe registrar al menos una habilidad.", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
         RegistroPuesto RegPuesto = new RegistroPuesto(miSistema);
         RegPuesto.setVisible(true);
+        }
     }//GEN-LAST:event_MenuRegistroPuestoActionPerformed
 
     private void MenuConsultaPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultaPuestoActionPerformed
-        
+        ArrayList<Puesto> puestos = miSistema.obtenerListaPuestos();
+        if(puestos.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Debe registrar al menos un puesto.", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{  
         ConsultaPuesto VconsultaPuesto = new ConsultaPuesto(miSistema);
         VconsultaPuesto.setVisible(true);
+        }
     }//GEN-LAST:event_MenuConsultaPuestoActionPerformed
 
     private void MenuHistoriaPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoriaPostulanteActionPerformed
