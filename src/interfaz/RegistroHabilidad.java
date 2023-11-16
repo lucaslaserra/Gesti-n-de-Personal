@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class RegistroHabilidad extends javax.swing.JFrame {
+   
     private Sistema miSistema;
     
     public RegistroHabilidad(Sistema sistema) {
@@ -129,10 +130,10 @@ public class RegistroHabilidad extends javax.swing.JFrame {
    
    
 
-        if(habilidad.existeHabilidad(habilidad)){
+        if(habilidad.existeHabilidad(habilidad,miSistema)){
         JOptionPane.showMessageDialog(this, "Ya se ha registrado esta habilidad");
        }else{
-        habilidad.guardar();
+        miSistema.agregarHabilidad(habilidad);
         JOptionPane.showMessageDialog(this, "Ha sido registrado la habilidad con éxito!");
         }
    

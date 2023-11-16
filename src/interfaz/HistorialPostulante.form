@@ -2,7 +2,7 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -43,15 +43,22 @@
                                           <Component id="LabelLinkedin" min="-2" max="-2" attributes="0"/>
                                           <Component id="LabelExperiencia" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane2" min="-2" pref="212" max="-2" attributes="0"/>
-                                          <Component id="label6" min="-2" max="-2" attributes="0"/>
-                                          <Component id="label7" min="-2" max="-2" attributes="0"/>
-                                          <Component id="label5" min="-2" max="-2" attributes="0"/>
-                                          <Component id="label4" min="-2" max="-2" attributes="0"/>
-                                          <Component id="label3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="label2" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                              <Component id="jScrollPane2" min="-2" pref="212" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="Cedula" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="Nombre" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="Direccion" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="Telefono" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="Mail" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="Linkedin" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <Component id="label1" min="-2" max="-2" attributes="0"/>
@@ -92,47 +99,37 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="309" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="LabelNombre" min="-2" max="-2" attributes="0"/>
-                                  <Component id="label2" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LabelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nombre" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="LabelCedula" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="LabelDireccion" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="LabelTelefono" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="LabelMail" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Component id="label7" min="-2" max="-2" attributes="0"/>
-                                                                  <Group type="102" attributes="0">
-                                                                      <Component id="LabelLinkedin" min="-2" max="-2" attributes="0"/>
-                                                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                                                      <Component id="LabelExperiencia" min="-2" max="-2" attributes="0"/>
-                                                                  </Group>
-                                                              </Group>
-                                                          </Group>
-                                                          <Component id="label6" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Component id="label5" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Component id="label4" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="label3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LabelCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Cedula" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LabelDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Direccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LabelTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Telefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LabelMail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Mail" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LabelLinkedin" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Linkedin" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="LabelExperiencia" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
@@ -183,8 +180,6 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JList" name="ListaPostulantes">
-          <Properties>
-          </Properties>
           <Events>
             <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="ListaPostulantesValueChanged"/>
           </Events>
@@ -253,66 +248,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="java.awt.Label" name="label2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="label2"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="LabelNombre"/>
-        </Property>
-      </AccessibilityProperties>
-    </Component>
-    <Component class="java.awt.Label" name="label3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="label3"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="LabelCedula"/>
-        </Property>
-      </AccessibilityProperties>
-    </Component>
-    <Component class="java.awt.Label" name="label4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="label4"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="LabelDireccion"/>
-        </Property>
-      </AccessibilityProperties>
-    </Component>
-    <Component class="java.awt.Label" name="label5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="label5"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="LabelTelefono"/>
-        </Property>
-      </AccessibilityProperties>
-    </Component>
-    <Component class="java.awt.Label" name="label6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="label6"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="LabelMail"/>
-        </Property>
-      </AccessibilityProperties>
-    </Component>
-    <Component class="java.awt.Label" name="label7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="label7"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="LabelLinkedin"/>
-        </Property>
-      </AccessibilityProperties>
-    </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
     <Component class="javax.swing.JLabel" name="LabelBuscar">
@@ -403,6 +338,54 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TextBuscador">
+    </Component>
+    <Component class="javax.swing.JLabel" name="Nombre">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="LabelNombre"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Cedula">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="LabelCedula"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Direccion">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="LabelDireccion"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Telefono">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="LabelTelefono"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Mail">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="LabelMail"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Linkedin">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="LabelTelefono"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

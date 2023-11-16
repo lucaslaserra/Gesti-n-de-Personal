@@ -47,7 +47,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("jMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -64,7 +64,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Opciones");
 
-        MenuRegistroTematica.setText("Registro de Tematica");
+        MenuRegistroTematica.setText("Registro de Habilidad");
         MenuRegistroTematica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuRegistroTematicaActionPerformed(evt);

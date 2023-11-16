@@ -8,7 +8,7 @@ import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
 
 public class Habilidad implements Serializable {
-
+    private Sistema miSistema;
     private String tema;
     private static final long serialVersionUID = 1L;
     private String descripcion;
@@ -57,20 +57,10 @@ public class Habilidad implements Serializable {
         archivo.cerrar();
     }
 
-    // Método static para leer todos los conocimientos de un archivo
-    public static ArrayList<Habilidad> obtenerListaHabilidades() {
-        ArrayList<Habilidad> conocimientos = new ArrayList<>();
-        ArchivoLectura archivo = new ArchivoLectura("habilidades.txt");
-        while (archivo.hayMasLineas()) {
-            Habilidad conocimiento = Habilidad.fromFileString(archivo.linea());
-            conocimientos.add(conocimiento);
-        }
-        archivo.cerrar();
-        return conocimientos;
-    }
+   
 
-    public boolean existeHabilidad(Habilidad habilidad) {
-        ArrayList<Habilidad> aux = obtenerListaHabilidades();
+    public boolean existeHabilidad(Habilidad habilidad, Sistema sistema) {
+        ArrayList<Habilidad> aux = sistema.obtenerListaHabilidades();
         boolean existe = false;
        if(!aux.isEmpty()) {  
         for (Habilidad j : aux) {

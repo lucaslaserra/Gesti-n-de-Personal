@@ -11,13 +11,11 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.DefaultListModel;
 
-
 public class ConsultaAtributo extends javax.swing.JFrame {
-     private Habilidad habilidad;
-     private Puesto puesto;
-     private Postulante postulante;
-     DefaultListModel<Habilidad> modelo;
-     private Sistema miSistema;
+
+    DefaultListModel<Habilidad> modelo;
+    private Sistema miSistema;
+
     public ConsultaAtributo(Sistema sistema) {
         miSistema = sistema;
         initComponents();
@@ -140,50 +138,66 @@ public class ConsultaAtributo extends javax.swing.JFrame {
     private void ListaTemasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaTemasValueChanged
         Habilidad habilidadSelect = ListaTemas.getSelectedValue();
         limpiarPanel();
-        ArrayList<Postulante> postulantes = postulante.getPostulantesArchivo();
-        ArrayList<Puesto> puestos = puesto.obtenerListaPuestos();
-        
-       StringBuilder postulantesText = new StringBuilder();
-       StringBuilder puestosTexto = new StringBuilder();
-       
+        ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+        ArrayList<Puesto> puestos = miSistema.obtenerListaPuestos();
 
-        for(Postulante p: postulantes){ 
+        StringBuilder postulantesText = new StringBuilder();
+        StringBuilder puestosTexto = new StringBuilder();
+        if(postulantes.isEmpty()){
+          PanelPostulantes.setText("No hay postulantes registrados");
+        }else{
+          for (Postulante p : postulantes) {
             Set<Habilidad> conjuntoDeHabilidad = p.getHabilidades().keySet();
-            for (Habilidad Ph: conjuntoDeHabilidad){
-                System.out.println(Ph.toString().equals(habilidadSelect.toString()));
-               if (Ph.toString().equals(habilidadSelect.toString())){
-                  if(p.getNivelHabilidad(Ph)>5) {
-                    postulantesText.append(p.toString()).append("\n");
+            for (Habilidad Ph : conjuntoDeHabilidad) {
+                if (Ph.toString().equals(habilidadSelect.toString())) {
+                    if (p.getNivelHabilidad(Ph) > 5) {
+                        postulantesText.append(p.toString()).append("\n");
+                    }
                 }
-               }
+            }
+            
         }
-        PanelPostulantes.setText(postulantesText.toString());
-        }
-        for(Puesto Pu: puestos){
-          ArrayList <String> habilidades = Pu.getHabilidadesRequeridas();
-          for(String h: habilidades){
-             if(h.equals(habilidadSelect.toString())){
-                puestosTexto.append(Pu.toString()).append("\n");
-             }
-          }
           
+          if(postulantesText.length() == 0){
+          PanelPostulantes.setText("No hay postulantes con esta habilidad");
+          }else{
+        PanelPostulantes.setText(postulantesText.toString());      
         }
-        PanelPuestos.setText(puestosTexto.toString());
-        
+        if (puestos.isEmpty()) {
+            PanelPuestos.setText("No hay puestos registrados");
+        }else{
+            for (Puesto Pu : puestos) {
+                ArrayList<String> habilidades = Pu.getHabilidadesRequeridas();
+                for (String h : habilidades) {
+                    if (h.equals(habilidadSelect.toString())) {
+                        puestosTexto.append(Pu.toString()).append("\n");
+                    }
+                }
 
+            }
+            if (puestosTexto.length() == 0) {
+                PanelPuestos.setText("Hasta el momento ningun puesto requiere esta habilidad");
+            } else {
+                PanelPuestos.setText(puestosTexto.toString());
+
+            }
+
+        }
+        }
     }//GEN-LAST:event_ListaTemasValueChanged
-    public void actualizarLista(){
-     DefaultListModel<Habilidad> modelo = new DefaultListModel<>();
-     ArrayList<Habilidad> habilidades = habilidad.obtenerListaHabilidades();
-     for (Habilidad j: habilidades) {
-       
-        modelo.addElement(j);
+    public void actualizarLista() {
+        DefaultListModel<Habilidad> modelo = new DefaultListModel<>();
+        ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
+        for (Habilidad j : habilidades) {
+
+            modelo.addElement(j);
+        }
+        ListaTemas.setModel(modelo);
     }
-    ListaTemas.setModel(modelo);
-    }
-    public void limpiarPanel(){
-    PanelPostulantes.setText("");
-    PanelPuestos.setText("");
+
+    public void limpiarPanel() {
+        PanelPostulantes.setText("");
+        PanelPuestos.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

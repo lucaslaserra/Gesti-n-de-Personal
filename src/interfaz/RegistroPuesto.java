@@ -210,7 +210,7 @@ public class RegistroPuesto extends javax.swing.JFrame {
            for(int i = 0; i < modelo.getSize();i++){
                puesto.setHabilidadesRequeridas(modelo.elementAt(i));
            }
-           puesto.guardar();
+           miSistema.agregarPuesto(puesto);
            JOptionPane.showMessageDialog(this, "Se ha agregado el puesto con exito!");
            limpiarFormulario();
         }
@@ -241,7 +241,7 @@ public class RegistroPuesto extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     public void agregarHabilidadesCombo(){
-    ArrayList<Habilidad> habilidades = Habilidad.obtenerListaHabilidades();
+    ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
     for(Habilidad j: habilidades){
         CombodeTemas.addItem(j.getTema());
     }

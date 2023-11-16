@@ -117,12 +117,14 @@ public class Inicio extends javax.swing.JFrame {
         Sistema miSistema = new Sistema (false);
         VentanaPrincipal panel = new VentanaPrincipal(miSistema);
         panel.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCargarSistemaActionPerformed
 
     private void jButtonNuevoSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoSistemaActionPerformed
         Sistema miSistema = new Sistema (true);
         VentanaPrincipal panel = new VentanaPrincipal(miSistema);
         panel.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonNuevoSistemaActionPerformed
 
     /**
