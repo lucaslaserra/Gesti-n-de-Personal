@@ -6,8 +6,8 @@ package interfaz;
 
 import dominio.*;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -16,10 +16,13 @@ import javax.swing.JOptionPane;
 public class RegistroEvaluador extends javax.swing.JFrame {
 
     private Sistema miSistema;
-    public RegistroEvaluador( Sistema sistema) {
-       miSistema = sistema;
+
+    public RegistroEvaluador(Sistema sistema) {
+        miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
+        
+        
     }
 
     /**
@@ -39,10 +42,10 @@ public class RegistroEvaluador extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         TextoNombre = new javax.swing.JTextField();
         TextoCedula = new javax.swing.JTextField();
-        TextoFechadeIngreso = new javax.swing.JTextField();
         TextoDireccion = new javax.swing.JTextField();
         BotonRegistrar = new javax.swing.JButton();
         BotonCancelar = new javax.swing.JButton();
+        TextoFechadeIngreso = new javax.swing.JSpinner();
 
         jTextField5.setText("jTextField5");
 
@@ -77,6 +80,8 @@ public class RegistroEvaluador extends javax.swing.JFrame {
             }
         });
 
+        TextoFechadeIngreso.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,14 +97,14 @@ public class RegistroEvaluador extends javax.swing.JFrame {
                         .addComponent(TextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(LabelNombre)
-                            .addComponent(jLabel4)
-                            .addComponent(TextoCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(TextoNombre)
-                            .addComponent(TextoFechadeIngreso))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(TextoFechadeIngreso, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LabelNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextoCedula, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextoNombre, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(BotonRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
@@ -126,9 +131,9 @@ public class RegistroEvaluador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4))
                     .addComponent(BotonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(TextoFechadeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,17 +148,30 @@ public class RegistroEvaluador extends javax.swing.JFrame {
     private void BotonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarActionPerformed
         String nombre = TextoNombre.getText();
         String cedula = TextoCedula.getText();
-        String fechadeIngreso = TextoFechadeIngreso.getText();
+        Date fechadeIngreso = (Date) TextoFechadeIngreso.getValue();
         String direccion = TextoDireccion.getText();
-           if (nombre.isEmpty() || cedula.isEmpty() || fechadeIngreso.isEmpty() || direccion.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Los campos no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
-        
-    }else{
-        Evaluador evaluador = new Evaluador (fechadeIngreso,nombre,cedula,direccion);
-        miSistema.agregarEvaluador(evaluador);
-        limpiarFormulario();
-        JOptionPane.showMessageDialog(null, "Se ha registrado el evaluador con exito!","Exito",JOptionPane.INFORMATION_MESSAGE);
-    }
+        if (nombre.isEmpty() || cedula.isEmpty() || direccion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Los campos no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            ArrayList<Evaluador> evaluadores = miSistema.obtenerListaEvaluadores();
+            boolean existe = false;
+            for (int i = 0; i < evaluadores.size() && !existe; i++) {
+                if (evaluadores.get(i).getCedula().equals(cedula)) {
+                    existe = true;
+                }
+            }
+            
+            if (existe) {
+                JOptionPane.showMessageDialog(this, "Ya se ingreso ese evaluador, verifique la cedula.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else{
+                Evaluador evaluador = new Evaluador(fechadeIngreso, nombre, cedula, direccion);
+                miSistema.agregarEvaluador(evaluador);
+                limpiarFormulario();
+                JOptionPane.showMessageDialog(null, "Se ha registrado el evaluador con exito!", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            } 
+        }
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
@@ -163,7 +181,6 @@ public class RegistroEvaluador extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;
@@ -172,7 +189,7 @@ public class RegistroEvaluador extends javax.swing.JFrame {
     private javax.swing.JLabel LabelTitulo;
     private javax.swing.JTextField TextoCedula;
     private javax.swing.JTextField TextoDireccion;
-    private javax.swing.JTextField TextoFechadeIngreso;
+    private javax.swing.JSpinner TextoFechadeIngreso;
     private javax.swing.JTextField TextoNombre;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -180,17 +197,15 @@ public class RegistroEvaluador extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
-
-  private void limpiarFormulario() {
+    private void limpiarFormulario() {
         // Limpia todos los campos de texto
+        
+        
         TextoNombre.setText("");
         TextoDireccion.setText("");
-        TextoFechadeIngreso.setText("");
         TextoCedula.setText("");
-       
-        // ... otros campos
 
+        // ... otros campos
         // Desmarca cualquier botón de radio seleccionado
-       
     }
 }

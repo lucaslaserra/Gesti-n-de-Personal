@@ -1,4 +1,3 @@
-
 package interfaz;
 
 import dominio.*;
@@ -8,11 +7,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class RegistroHabilidad extends javax.swing.JFrame {
-   
+
     private Sistema miSistema;
-    
+
     public RegistroHabilidad(Sistema sistema) {
-        miSistema = sistema;  
+        miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -118,26 +117,29 @@ public class RegistroHabilidad extends javax.swing.JFrame {
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         String nombre = TextFieldNombre.getText().trim();
         String descripcion = TextDescripción.getText().trim();
+        if (descripcion.isEmpty()) {
+           JOptionPane.showMessageDialog(this, "Debe registrar una descripción.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Habilidad habilidad = new Habilidad(nombre, descripcion);
 
-        Habilidad habilidad = new Habilidad(nombre, descripcion);
+            ArrayList<Habilidad> habilidadesExistentes = miSistema.obtenerListaHabilidades();
+            if (habilidadesExistentes.contains(habilidad)) {
+                JOptionPane.showMessageDialog(this, "Esta habilidad ya ha sido registrada en el sistema.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        ArrayList<Habilidad> habilidadesExistentes = miSistema.obtenerListaHabilidades();
-        if (habilidadesExistentes.contains(habilidad)) {
-            JOptionPane.showMessageDialog(this, "Esta habilidad ya ha sido registrada en el sistema.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            miSistema.agregarHabilidad(habilidad);
+            JOptionPane.showMessageDialog(this, "Ha sido registrado la habilidad con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            TextFieldNombre.setText("");
+            TextDescripción.setText("");
         }
-
-        miSistema.agregarHabilidad(habilidad);
-        JOptionPane.showMessageDialog(this, "Ha sido registrado la habilidad con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-        TextFieldNombre.setText("");
-        TextDescripción.setText("");
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelDescripción;
     private javax.swing.JLabel LabelNombre;
@@ -149,5 +151,4 @@ public class RegistroHabilidad extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-   
 }
