@@ -7,6 +7,7 @@ package interfaz;
 import dominio.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,9 +18,11 @@ public class ConsultaPuesto extends javax.swing.JFrame {
     private Sistema miSistema;
 
     public ConsultaPuesto(Sistema sistema) {
-
+     
         miSistema = sistema;
         initComponents();
+         DefaultListModel<Postulante> modeloInicio = new DefaultListModel<>();
+         ListaPostulantes.setModel(modeloInicio);
         actualizarLista();
         setLocationRelativeTo(null);
     }
@@ -72,6 +75,7 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         LabelPostulantes.setText("Postulanes:");
 
         jScrollPane2.setViewportView(ListaPostulantes);
+        ListaPostulantes.getAccessibleContext().setAccessibleParent(ListaPostulantes);
 
         BotonCancelar.setText("Cancelar");
         BotonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -152,18 +156,26 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
         ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();
         ArrayList<Habilidad> habilidadesPuesto = puestoSelected.getHabilidadesRequeridas();
-        
+        System.out.println(habilidadesPuesto.toString());
         for (Postulante p : postulantes) {
              System.out.println("Postulantes totales" + p.getNombre());
         }
        
         ArrayList<Postulante> postulantesFiltrados = new ArrayList<>();
-
+       if(entrevistas.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Hasta el momento no hubo ninguna entrevista.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+        }else{ 
         for (Postulante p : postulantes) {
-            for (Entrevista e : entrevistas) {
-                if (e.getPostulante().equals(p)) {
-                    if (p.getTipoTrabajo().equals(puestoSelected.getTipo())) {
+            System.out.println("entra primer for");
+            for (Entrevista e : entrevistas){
+                System.out.println("entra segundo for");
+                if (e.getPostulante().getCedula().equals(p.getCedula())) {
+                     System.out.println("Paso if de entrevista con postulante");
+                    if (p.getTipoTrabajo().toLowerCase().equals(puestoSelected.getTipo().toLowerCase())) {
+                         System.out.println(p+"Tiene mismo tipo de Trabajo");
                         if (!postulantesFiltrados.contains(p)) {
+                            System.out.println("Postulante filtrado: "+ p);
                             postulantesFiltrados.add(p);
                         }
 
@@ -176,32 +188,38 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         ArrayList<Postulante> postulantesAceptados = new ArrayList<>();
 
         for (Postulante postulante : postulantesFiltrados) {
+            System.out.println("Entra en el for final");
             int contador = 0;
-            System.out.println("Postulante filtrado:" +postulante.getNombre());
-            System.out.println("Habilidades del postulante:" +postulante.getHabilidades());
+            System.out.println("Postulante filtrado en el for:" +postulante.getNombre());
+            System.out.println("Habilidades del postulante en el for:" +postulante.getHabilidades().toString());
             for (Habilidad habilidad : habilidadesPuesto) {
-                System.out.println("Habilidad" + habilidad.getTema());
-                if (postulante.getHabilidades().keySet().contains(habilidad)) {
+                System.out.println("Habilidad " + habilidad);
+                if (postulante.getHabilidades().keySet().toString().contains(habilidad.getTema())) {
                     System.out.println("Postulantes que contienen habilidad" + postulante.getNombre());
-                    if (postulante.getNivelHabilidad(habilidad) >= nivel) {
+                    int nivelPostulante = postulante.getNivelHabilidad(habilidad);
+                    System.out.println(nivelPostulante);
+                    if (nivel <= nivelPostulante) {
                         System.out.println("Postulantes aceptados" + postulante.getNombre());
                         contador++;
                     }
 
                 }
             }
-
             if (contador == habilidadesPuesto.size()) {
                 postulantesAceptados.add(postulante);
             }
         }
+        if(postulantesAceptados.isEmpty()){
+         JOptionPane.showMessageDialog(this, "Los postulantes que se registraron no cumplen el nivel de requisito para el puesto", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
         DefaultListModel<Postulante> modeloLista = new DefaultListModel<>();
         for (Postulante pAceptado : postulantesAceptados) {
             System.out.println("Postulante que agrego al modelo" + pAceptado.getNombre());
             modeloLista.addElement(pAceptado);
         }
         ListaPostulantes.setModel(modeloLista);
-
+       }
+       }
 
     }//GEN-LAST:event_BotonConsultarActionPerformed
 

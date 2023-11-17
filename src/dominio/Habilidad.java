@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
 
@@ -48,6 +49,10 @@ public class Habilidad implements Serializable {
     @Override
     public String toString() {
         return tema;
+    }
+    public boolean equals(Object obj) {
+         Habilidad habilidad = (Habilidad) obj;
+        return Objects.equals(this.getTema(), habilidad.getTema());
     }
 //    public boolean existeHabilidad(Habilidad habilidad) {
 //        ArrayList<Habilidad> aux = obtenerListaHabilidades();
