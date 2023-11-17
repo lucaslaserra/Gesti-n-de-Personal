@@ -223,6 +223,11 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
+//        System.out.println("Registrando postulante: " + postulante.getNombre() + " con las siguientes habilidades:");
+//    postulante.getHabilidades().forEach((habilidad, nivel) -> 
+//        System.out.println("Habilidad: " + habilidad + ", Nivel: " + nivel)
+//    );
+//        
         miSistema.agregarPostulante(postulante);
         JOptionPane.showMessageDialog(this, "Se ha registrado el postulante con exito!","Exito",JOptionPane.INFORMATION_MESSAGE);
         dispose();
