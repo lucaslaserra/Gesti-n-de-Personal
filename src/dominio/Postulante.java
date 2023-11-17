@@ -76,7 +76,15 @@ public class Postulante extends Persona implements Serializable {
     }
 
     public int getNivelHabilidad(Habilidad habilidad) {
-        return habilidades.getOrDefault(habilidad, 0);
+        int nivel=0;
+        boolean encontro=false;
+        for(Map.Entry<Habilidad, Integer> entrada : habilidades.entrySet()){
+             if(entrada.getKey().equals(habilidad)&& !encontro){
+                nivel = entrada.getValue();
+                encontro=true;
+             }
+       }
+        return nivel;
     }
     
      public void setTipoTrabajo(String tipoTrabajo) {
