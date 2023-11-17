@@ -5,9 +5,16 @@
 package interfaz;
 
 import dominio.*;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -38,8 +45,8 @@ public class HistorialPostulante extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        label1 = new java.awt.Label();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaPostulantes = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
@@ -50,9 +57,6 @@ public class HistorialPostulante extends javax.swing.JFrame {
         LabelMail = new javax.swing.JLabel();
         LabelLinkedin = new javax.swing.JLabel();
         LabelExperiencia = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ListaExperiencias = new javax.swing.JList<>();
-        jSeparator1 = new javax.swing.JSeparator();
         LabelBuscar = new javax.swing.JLabel();
         BotonBuscar = new javax.swing.JButton();
         BotonResetar = new javax.swing.JButton();
@@ -60,21 +64,25 @@ public class HistorialPostulante extends javax.swing.JFrame {
         TablaValores = new javax.swing.JTable();
         BotonSalir = new javax.swing.JButton();
         TextBuscador = new javax.swing.JTextField();
+        LabelFormato = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ListaExperiencias = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
         Nombre = new javax.swing.JLabel();
         Cedula = new javax.swing.JLabel();
         Direccion = new javax.swing.JLabel();
         Telefono = new javax.swing.JLabel();
         Mail = new javax.swing.JLabel();
         Linkedin = new javax.swing.JLabel();
-        LabelFormato = new javax.swing.JLabel();
         Formato = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
+        setResizable(false);
+        setSize(new java.awt.Dimension(710, 741));
+        setType(java.awt.Window.Type.UTILITY);
 
-        label1.setAlignment(java.awt.Label.CENTER);
-        label1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        label1.setText("Historial postulante");
-
+        ListaPostulantes.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
         ListaPostulantes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 ListaPostulantesValueChanged(evt);
@@ -96,10 +104,8 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
         LabelLinkedin.setText("Linkedin:");
 
-        LabelExperiencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelExperiencia.setText("Experiencia:");
-
-        jScrollPane2.setViewportView(ListaExperiencias);
+        LabelExperiencia.setVerifyInputWhenFocusTarget(false);
 
         LabelBuscar.setText("Buscar: ");
 
@@ -151,99 +157,92 @@ public class HistorialPostulante extends javax.swing.JFrame {
             }
         });
 
-        Nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Nombre.setLabelFor(LabelNombre);
-
-        Cedula.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Cedula.setLabelFor(LabelCedula);
-
-        Direccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Direccion.setLabelFor(LabelDireccion);
-
-        Telefono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Telefono.setLabelFor(LabelTelefono);
-
-        Mail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Mail.setLabelFor(LabelMail);
-
-        Linkedin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Linkedin.setLabelFor(LabelTelefono);
+        TextBuscador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextBuscadorActionPerformed(evt);
+            }
+        });
 
         LabelFormato.setText("Formato:");
 
-        Formato.setLabelFor(LabelFormato);
+        jScrollPane2.setViewportView(ListaExperiencias);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Historial de Postulante");
+
+        Linkedin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LinkedinMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LinkedinMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LinkedinMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LabelBuscar)
-                                .addGap(61, 61, 61)
-                                .addComponent(TextBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BotonBuscar)
-                                .addGap(18, 18, 18)
-                                .addComponent(BotonResetar)))
-                        .addGap(63, 63, 63))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(LabelNombre)
-                                            .addComponent(LabelCedula)
-                                            .addComponent(LabelDireccion)
-                                            .addComponent(LabelTelefono)
-                                            .addComponent(LabelMail)
-                                            .addComponent(LabelLinkedin)
-                                            .addComponent(LabelFormato))
-                                        .addGap(53, 53, 53)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(Cedula)
-                                            .addComponent(Direccion)
-                                            .addComponent(Telefono)
-                                            .addComponent(Mail)
-                                            .addComponent(Linkedin))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(Formato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(BotonSalir))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(14, 14, 14)
+                            .addComponent(LabelBuscar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(TextBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(BotonBuscar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(BotonResetar))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jLabel1)))
+                            .addGap(84, 84, 84)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(LabelFormato)
                                 .addComponent(LabelExperiencia)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-            .addComponent(BotonSalir)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(LabelNombre)
+                                .addComponent(LabelCedula)
+                                .addComponent(LabelDireccion)
+                                .addComponent(LabelTelefono)
+                                .addComponent(LabelMail)
+                                .addComponent(LabelLinkedin))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Linkedin)
+                                .addComponent(Mail)
+                                .addComponent(Telefono)
+                                .addComponent(Direccion)
+                                .addComponent(Cedula)
+                                .addComponent(Nombre)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Formato)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(286, 286, 286))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel1)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelNombre)
                             .addComponent(Nombre))
@@ -263,7 +262,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelMail)
                             .addComponent(Mail))
-                        .addGap(14, 14, 14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelLinkedin)
                             .addComponent(Linkedin))
@@ -271,26 +270,27 @@ public class HistorialPostulante extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelFormato)
                             .addComponent(Formato))
-                        .addGap(32, 32, 32)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LabelExperiencia))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BotonBuscar)
-                        .addComponent(TextBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BotonResetar)
+                            .addComponent(LabelExperiencia)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(LabelBuscar)))
-                .addGap(9, 9, 9)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelBuscar)
+                            .addComponent(TextBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonBuscar)
+                            .addComponent(BotonResetar))))
+                .addGap(23, 23, 23)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotonSalir)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -313,6 +313,8 @@ public class HistorialPostulante extends javax.swing.JFrame {
         Telefono.setText(telefono);
         Mail.setText(mail);
         Linkedin.setText(linkedin);
+        Linkedin.setForeground(Color.BLUE); 
+        
         ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();
         DefaultTableModel modeloT = (DefaultTableModel) TablaValores.getModel();
         for (Entrevista en : entrevistas) {
@@ -326,6 +328,9 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
             }
 
+        }
+         if(modeloT.getRowCount()== 0){
+            JOptionPane.showMessageDialog(this, "No tuvo ninguna entrevista hasta el momento", "Alert", JOptionPane.ERROR_MESSAGE);
         }
 
 
@@ -360,6 +365,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
             }
         }
+ 
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
 
@@ -382,6 +388,28 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_BotonResetarActionPerformed
+
+    private void TextBuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextBuscadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextBuscadorActionPerformed
+
+    private void LinkedinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LinkedinMouseClicked
+         Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
+         abrirLinkedin(postulanteSelected.getLinkedin());
+         
+    }//GEN-LAST:event_LinkedinMouseClicked
+   
+          public void windowClosing(WindowEvent e) {
+                // No hacer nada al intentar cerrar la ventana
+            }
+        
+    private void LinkedinMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LinkedinMouseEntered
+        Linkedin.setForeground(Color.RED);
+    }//GEN-LAST:event_LinkedinMouseEntered
+
+    private void LinkedinMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LinkedinMouseExited
+        Linkedin.setForeground(Color.BLUE);
+    }//GEN-LAST:event_LinkedinMouseExited
     public void actualizarLista() {
         DefaultListModel<Postulante> modeloL = new DefaultListModel<>();
         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
@@ -404,7 +432,6 @@ public class HistorialPostulante extends javax.swing.JFrame {
     public void limpiarLabels() {
         Cedula.setText("");
         Direccion.setText("");
-        LabelExperiencia.setText("");
         Linkedin.setText("");
         Mail.setText("");
         Nombre.setText("");
@@ -414,6 +441,13 @@ public class HistorialPostulante extends javax.swing.JFrame {
     public void limpiarTabla() {
         DefaultTableModel modeloT = (DefaultTableModel) TablaValores.getModel();
         modeloT.setRowCount(0);
+    }
+    public void abrirLinkedin(String linkedin) {
+        try {
+            Desktop.getDesktop().browse(new URI(linkedin));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -442,10 +476,9 @@ public class HistorialPostulante extends javax.swing.JFrame {
     private javax.swing.JLabel Telefono;
     private javax.swing.JTextField TextBuscador;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
-    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

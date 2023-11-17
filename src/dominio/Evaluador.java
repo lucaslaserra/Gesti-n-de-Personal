@@ -2,26 +2,27 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
+
 import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
 
 
 
 public class Evaluador extends Persona implements Serializable{
-    private String añoIngreso;
+    private Date añoIngreso;
       private static final long serialVersionUID = 1L;
-    public Evaluador(String añoIngreso, String nombre, String cedula, String direccion) {
+    public Evaluador(Date añoIngreso, String nombre, String cedula, String direccion) {
         super(nombre, cedula, direccion);
         this.añoIngreso = añoIngreso;
     }
     
     
-    public void setAñoIngreso(String añoIngreso) {
+    public void setAñoIngreso(Date añoIngreso) {
         this.añoIngreso = añoIngreso;
     }
 
-    public String getAñoIngreso() {
+    public Date getAñoIngreso() {
         return añoIngreso;
     }
     
@@ -33,10 +34,7 @@ public class Evaluador extends Persona implements Serializable{
        return this.getNombre();
     }
     
-    public static Evaluador fromFileString(String fileString) {
-        String[] parts = fileString.split(";");
-        return new Evaluador(parts[0], parts[1],parts[2],parts[3]);
-    }
+  
      // Método para guardar el evaluador actual en un archivo
     public void guardar() {
         ArchivoGrabacion archivo = new ArchivoGrabacion("evaluadores.txt", true); // true para extender
@@ -44,17 +42,7 @@ public class Evaluador extends Persona implements Serializable{
         archivo.cerrar();
     }
 
-    // Método static para leer todos los conocimientos de un archivo
-    public static ArrayList<Evaluador> obtenerListaEvaluadores() {
-        ArrayList<Evaluador> evaluadores = new ArrayList<>();
-        ArchivoLectura archivo = new ArchivoLectura("evaluadores.txt");
-        while (archivo.hayMasLineas()) {
-            Evaluador evaluador = Evaluador.fromFileString(archivo.linea());
-            evaluadores.add(evaluador);
-        }
-        archivo.cerrar();
-        return evaluadores;
-    }
+
     
     
     

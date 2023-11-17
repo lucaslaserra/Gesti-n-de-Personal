@@ -176,31 +176,20 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         ArrayList<Postulante> postulantesAceptados = new ArrayList<>();
 
         for (Postulante postulante : postulantesFiltrados) {
-    int contador = 0;
-    System.out.println("Postulante filtrado: " + postulante.getNombre());
-    System.out.println("Habilidades del postulante: " + postulante.getHabilidades());
+            int contador = 0;
+            System.out.println("Postulante filtrado:" +postulante.getNombre());
+            System.out.println("Habilidades del postulante:" +postulante.getHabilidades());
+            for (Habilidad habilidad : habilidadesPuesto) {
+                System.out.println("Habilidad" + habilidad.getTema());
+                if (postulante.getHabilidades().keySet().contains(habilidad)) {
+                    System.out.println("Postulantes que contienen habilidad" + postulante.getNombre());
+                    if (postulante.getNivelHabilidad(habilidad) >= nivel) {
+                        System.out.println("Postulantes aceptados" + postulante.getNombre());
+                        contador++;
+                    }
 
-    for (Habilidad habilidad : habilidadesPuesto) {
-        System.out.println("Verificando habilidad del puesto: " + habilidad.getTema());
-
-        if (postulante.getHabilidades().keySet().contains(habilidad)) {
-            System.out.println("El postulante " + postulante.getNombre() + " tiene la habilidad requerida: " + habilidad.getTema());
-            int nivelPostulante = postulante.getNivelHabilidad(habilidad);
-            System.out.println("Nivel de habilidad del postulante: " + nivelPostulante + ", Nivel requerido: " + nivel);
-
-            if (nivelPostulante >= nivel) {
-                System.out.println("El postulante " + postulante.getNombre() + " cumple con el nivel requerido para la habilidad: " + habilidad.getTema());
-                contador++;
-            } else {
-                System.out.println("El postulante " + postulante.getNombre() + " NO cumple con el nivel requerido para la habilidad: " + habilidad.getTema());
+                }
             }
-        } else {
-            System.out.println("El postulante " + postulante.getNombre() + " NO tiene la habilidad requerida: " + habilidad.getTema());
-        }
-    }
-
-    System.out.println("Total de habilidades del puesto que el postulante " + postulante.getNombre() + " cumple: " + contador);
-
 
             if (contador == habilidadesPuesto.size()) {
                 postulantesAceptados.add(postulante);
