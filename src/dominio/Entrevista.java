@@ -4,10 +4,7 @@
 package dominio;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import lectura.ArchivoGrabacion;
-import lectura.ArchivoLectura;
 
 public class Entrevista implements Serializable {
 

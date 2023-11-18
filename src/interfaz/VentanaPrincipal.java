@@ -15,6 +15,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
+        
+//        miSistema.
     }
 
     @SuppressWarnings("unchecked")
@@ -100,7 +102,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(MenuBajaPostulante);
 
-        MenuHistoriaPostulante.setText("Historia de Postulante");
+        MenuHistoriaPostulante.setText("Historial de Postulante");
         MenuHistoriaPostulante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuHistoriaPostulanteActionPerformed(evt);

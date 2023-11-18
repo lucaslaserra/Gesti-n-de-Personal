@@ -6,11 +6,12 @@ package interfaz;
 import dominio.Habilidad;
 import dominio.Puesto;
 import dominio.Sistema;
+import dominio.SistemaObserver;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-public class RegistroPuesto extends javax.swing.JFrame {
+public class RegistroPuesto extends javax.swing.JFrame implements SistemaObserver{
 
     DefaultListModel<Habilidad> modelo;
     private Sistema miSistema;
@@ -24,6 +25,7 @@ public class RegistroPuesto extends javax.swing.JFrame {
         agregarHabilidadesCombo();
         modelo = new DefaultListModel<>();
         ListaTemasSeleccionados.setModel(modelo);
+        miSistema.adjuntar(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -266,6 +268,16 @@ public class RegistroPuesto extends javax.swing.JFrame {
         for (Habilidad j : habilidades) {
             CombodeTemas.addItem(j);
         }
+    }
+    
+    public void actualizar() {
+        while (CombodeTemas.getItemCount() > 0) {
+            Object item = CombodeTemas.getItemAt(0);
+            if (item != null) {
+                CombodeTemas.removeItemAt(0);
+            }
+        }
+        agregarHabilidadesCombo();
     }
 
     private void limpiarFormulario() {

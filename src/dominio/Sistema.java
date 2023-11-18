@@ -5,6 +5,9 @@ package dominio;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class Sistema implements Serializable {
 
@@ -17,6 +20,7 @@ public class Sistema implements Serializable {
     private ArrayList<Postulante> postulantes = new ArrayList<>();
     private ArrayList<Entrevista> entrevistas = new ArrayList<>();
     private int siguienteNumEntrevista = 1;
+    private List<SistemaObserver> observadores = new ArrayList<>();
 
     public Sistema(boolean nuevoSistema) {
         if (nuevoSistema) {
@@ -25,7 +29,22 @@ public class Sistema implements Serializable {
             cargarSistema();
         }
     }
+   
 
+    public void adjuntar(SistemaObserver observer) {
+        observadores.add(observer);
+    }
+
+    public void desadjuntar(SistemaObserver observer) {
+        observadores.remove(observer);
+    }
+
+    public void notificarObservadores() {
+        for (SistemaObserver observer : observadores) {
+            observer.actualizar();
+        }
+    }
+    
     public void limpiarSistema() {
         habilidades.clear();
         puestos.clear();
@@ -103,9 +122,6 @@ public class Sistema implements Serializable {
         } else {
             inicializarListas();
         }
-//    if (this.observers == null) {
-//        this.observers = new ArrayList<>();
-//    }
     }
 
     private void inicializarListas() {
@@ -121,24 +137,28 @@ public class Sistema implements Serializable {
         cargarSistema();
         habilidades.add(habilidad);
         guardarSistema();
+        notificarObservadores();
     }
 
     public void agregarPuesto(Puesto puesto) {
         cargarSistema();
         puestos.add(puesto);
         guardarSistema();
+        notificarObservadores();
     }
 
     public void agregarEvaluador(Evaluador evaluador) {
         cargarSistema();
         evaluadores.add(evaluador);
         guardarSistema();
+        notificarObservadores();
     }
 
     public void agregarPostulante(Postulante postulante) {
         cargarSistema();
         postulantes.add(postulante);
         guardarSistema();
+        notificarObservadores();
     }
 
     public void agregarEntrevista(Entrevista entrevista) {
@@ -148,24 +168,28 @@ public class Sistema implements Serializable {
         System.out.println(entrevista.getId());
         entrevistas.add(entrevista);
         guardarSistema();
+        notificarObservadores();
     }
 
     public void eliminarHabilidad(Habilidad habilidad) {
         cargarSistema();
         habilidades.remove(habilidad);
         guardarSistema();
+        notificarObservadores();
     }
 
     public void eliminarPuesto(Puesto puesto) {
         cargarSistema();
         puestos.remove(puesto);
         guardarSistema();
+        notificarObservadores();
     }
 
     public void eliminarEvaluador(Evaluador evaluador) {
         cargarSistema();
         evaluadores.remove(evaluador);
         guardarSistema();
+        notificarObservadores();
     }
 
     public void eliminarPostulante(Postulante postulante) {
@@ -178,12 +202,14 @@ public class Sistema implements Serializable {
         for (Postulante p : this.obtenerListaPostulantes()) {
             System.out.println(p.toString());
         }
+        notificarObservadores();
     }
 
     public void eliminarEntrevista(Entrevista entrevista) {
         cargarSistema();
         entrevistas.remove(entrevista);
         guardarSistema();
+        notificarObservadores();
     }
 
 }

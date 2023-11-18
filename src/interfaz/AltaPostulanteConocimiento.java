@@ -7,7 +7,7 @@ import dominio.*;
 import java.util.*;
 import javax.swing.*;
 
-public class AltaPostulanteConocimiento extends javax.swing.JFrame {
+public class AltaPostulanteConocimiento extends javax.swing.JFrame implements SistemaObserver{
 
     private Sistema miSistema;
     private Postulante postulante;
@@ -18,13 +18,8 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
         miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
-        ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
-
-        for (Habilidad habilidad : habilidades) {
-            String habilidadString = habilidad.toString(); 
-            jComboBoxHablidades.addItem(habilidadString);
-            habilidadesMap.put(habilidadString, habilidad);
-        }
+        cargarComboHabilidades();
+        miSistema.adjuntar(this);
     }
 
  
@@ -48,9 +43,9 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Conocimiento:");
+        jLabel1.setText("Habilidad:");
 
-        jLabel2.setText("Nivel");
+        jLabel2.setText("Nivel:");
 
         jSpinnerNivel.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
 
@@ -190,6 +185,25 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
     actualizarListaHabilidades();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cargarComboHabilidades(){
+        ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
+        for (Habilidad habilidad : habilidades) {
+            String habilidadString = habilidad.toString(); 
+            jComboBoxHablidades.addItem(habilidadString);
+            habilidadesMap.put(habilidadString, habilidad);
+        }
+    }
+    
+    public void actualizar() {
+         while (jComboBoxHablidades.getItemCount() > 0) {
+            Object item = jComboBoxHablidades.getItemAt(0);
+            if (item != null) {
+                jComboBoxHablidades.removeItemAt(0);
+            }
+        }
+        cargarComboHabilidades();
+    }
+    
     private void actualizarListaHabilidades() {
     DefaultListModel<String> modelo = new DefaultListModel<>();
     for (Map.Entry<Habilidad, Integer> entrada : postulante.getHabilidades().entrySet()) {
@@ -231,6 +245,11 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame {
 //        System.out.println("Habilidad: " + habilidad + ", Nivel: " + nivel)
 //    );
 //        
+        if(jListHabilidades.getModel().getSize() == 0){
+            JOptionPane.showMessageDialog(this, "Debes asignarle una habilidad al postulante","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         miSistema.agregarPostulante(postulante);
         JOptionPane.showMessageDialog(this, "Se ha registrado el postulante con exito!","Exito",JOptionPane.INFORMATION_MESSAGE);
         dispose();

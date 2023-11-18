@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-public class IngresoEntrevista extends javax.swing.JFrame {
+public class IngresoEntrevista extends javax.swing.JFrame implements SistemaObserver {
 
     private Sistema miSistema;
     DefaultListModel<Postulante> modelo1;
@@ -24,6 +24,7 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         ListaPostulantes.setModel(modelo1);
         actualizarLista();
         setLocationRelativeTo(null);
+        sistema.adjuntar(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -52,7 +53,7 @@ public class IngresoEntrevista extends javax.swing.JFrame {
 
         LabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelTitulo.setText("Ingreso de entrevista");
+        LabelTitulo.setText("Alta de entrevista");
 
         jLabel2.setText("Postulantes:");
 
@@ -204,6 +205,9 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         SpinnerPuntaje.setValue(0);
     }
 
+    public void actualizar() {
+        actualizarLista();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;

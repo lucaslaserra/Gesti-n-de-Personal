@@ -8,23 +8,18 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-public class BajaPostulante extends javax.swing.JFrame {
+public class BajaPostulante extends javax.swing.JFrame implements SistemaObserver{
 
     private Sistema miSistema;
-    private ArrayList<Postulante> postulantes;
 
     public BajaPostulante(Sistema sistema) {
         miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
-        postulantes = sistema.obtenerListaPostulantes();
-        System.out.println("Postulantes al entrar a la baja: ");
-        for (Postulante p : miSistema.obtenerListaPostulantes()) {
-            System.out.println(p.toString());
-        }
 
-        cargarJListPostulantes(postulantes);
 
+        cargarJListPostulantes();
+        miSistema.adjuntar(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -132,7 +127,12 @@ public class BajaPostulante extends javax.swing.JFrame {
     private void jListPostulantesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jListPostulantesComponentAdded
     }//GEN-LAST:event_jListPostulantesComponentAdded
 
+    public void actualizar(){
+        cargarJListPostulantes();
+    }
+    
     private void jButtonDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDarDeBajaActionPerformed
+        ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
         int selectedIndex = jListPostulantes.getSelectedIndex();
         if (selectedIndex != -1) {
             Postulante postulanteAEliminar = jListPostulantes.getModel().getElementAt(selectedIndex);
@@ -142,8 +142,11 @@ public class BajaPostulante extends javax.swing.JFrame {
             if (confirmacion == JOptionPane.YES_OPTION) {
                 miSistema.eliminarPostulante(postulanteAEliminar);
                 postulantes.remove(selectedIndex);
-                cargarJListPostulantes(postulantes);
+                cargarJListPostulantes();
                 JOptionPane.showMessageDialog(this, "Postulante eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                
+                // actualizar observers
+                
             }
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione un postulante para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -168,7 +171,8 @@ public class BajaPostulante extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarJListPostulantes(ArrayList<Postulante> postulantes) {
+    private void cargarJListPostulantes() {
+        ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
         DefaultListModel<Postulante> modeloJListPostulantes = new DefaultListModel<>();
         for (Postulante postulante : postulantes) {
             modeloJListPostulantes.addElement(postulante);

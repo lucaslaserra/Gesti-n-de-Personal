@@ -55,9 +55,20 @@ public class Habilidad implements Serializable {
         return tema;
     }
 
+    @Override
     public boolean equals(Object obj) {
-        Habilidad habilidad = (Habilidad) obj;
-        return Objects.equals(this.getTema(), habilidad.getTema());
+        boolean flag;
+        if (this == obj) {
+            flag = true;
+        } else {
+            if (obj == null || getClass() != obj.getClass()) {
+                flag = false;
+            } else {
+                Habilidad habilidad = (Habilidad) obj;
+                return Objects.equals(getTema(), habilidad.getTema());
+            }
+        }
+        return flag;
     }
 //    public boolean existeHabilidad(Habilidad habilidad) {
 //        ArrayList<Habilidad> aux = obtenerListaHabilidades();
