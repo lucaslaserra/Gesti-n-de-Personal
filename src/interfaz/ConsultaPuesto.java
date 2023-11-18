@@ -5,9 +5,12 @@
 package interfaz;
 
 import dominio.*;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
+import lectura.ArchivoGrabacion;
 
 /**
  *
@@ -16,13 +19,14 @@ import javax.swing.JOptionPane;
 public class ConsultaPuesto extends javax.swing.JFrame {
 
     private Sistema miSistema;
+    private Puesto ultimoPuesto = null;
 
     public ConsultaPuesto(Sistema sistema) {
-     
+
         miSistema = sistema;
         initComponents();
-         DefaultListModel<Postulante> modeloInicio = new DefaultListModel<>();
-         ListaPostulantes.setModel(modeloInicio);
+        DefaultListModel<Postulante> modeloInicio = new DefaultListModel<>();
+        ListaPostulantes.setModel(modeloInicio);
         actualizarLista();
         setLocationRelativeTo(null);
     }
@@ -72,7 +76,7 @@ public class ConsultaPuesto extends javax.swing.JFrame {
             }
         });
 
-        LabelPostulantes.setText("Postulanes:");
+        LabelPostulantes.setText("Postulantes:");
 
         jScrollPane2.setViewportView(ListaPostulantes);
         ListaPostulantes.getAccessibleContext().setAccessibleParent(ListaPostulantes);
@@ -155,72 +159,75 @@ public class ConsultaPuesto extends javax.swing.JFrame {
         int nivel = (int) SpinnerNivel.getValue();
         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
         ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();
-        ArrayList<Habilidad> habilidadesPuesto = puestoSelected.getHabilidadesRequeridas();
-        System.out.println(habilidadesPuesto.toString());
-        for (Postulante p : postulantes) {
-             System.out.println("Postulantes totales" + p.getNombre());
+            
+        if (puestoSelected == null) {
+            JOptionPane.showMessageDialog(this, "Seleccione un puesto.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-       
-        ArrayList<Postulante> postulantesFiltrados = new ArrayList<>();
-       if(entrevistas.isEmpty()){
-        JOptionPane.showMessageDialog(this, "Hasta el momento no hubo ninguna entrevista.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-        }else{ 
+        ArrayList<Habilidad> habilidadesPuesto = puestoSelected.getHabilidadesRequeridas();
+//        System.out.println(habilidadesPuesto.toString());
         for (Postulante p : postulantes) {
-            System.out.println("entra primer for");
-            for (Entrevista e : entrevistas){
-                System.out.println("entra segundo for");
-                if (e.getPostulante().getCedula().equals(p.getCedula())) {
-                     System.out.println("Paso if de entrevista con postulante");
-                    if (p.getTipoTrabajo().toLowerCase().equals(puestoSelected.getTipo().toLowerCase())) {
-                         System.out.println(p+"Tiene mismo tipo de Trabajo");
-                        if (!postulantesFiltrados.contains(p)) {
-                            System.out.println("Postulante filtrado: "+ p);
-                            postulantesFiltrados.add(p);
+//             System.out.println("Postulantes totales" + p.getNombre());
+        }
+
+        ArrayList<Postulante> postulantesFiltrados = new ArrayList<>();
+        if (entrevistas.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Hasta el momento no hubo ninguna entrevista.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            for (Postulante p : postulantes) {
+                for (Entrevista e : entrevistas) {
+                    if (e.getPostulante().getCedula().equals(p.getCedula())) {
+                        if (p.getTipoTrabajo().toLowerCase().equals(puestoSelected.getTipo().toLowerCase())) {
+                            if (!postulantesFiltrados.contains(p)) {
+                                postulantesFiltrados.add(p);
+                            }
+
+                        }
+                    }
+
+                }
+            }
+            postulantesFiltrados = OrdenarLista(postulantesFiltrados, entrevistas);
+
+            ArrayList<Postulante> postulantesAceptados = new ArrayList<>();
+
+            for (Postulante postulante : postulantesFiltrados) {
+//            System.out.println("Entra en el for final");
+                int contador = 0;
+//            System.out.println("Postulante filtrado en el for:" +postulante.getNombre());
+//            System.out.println("Habilidades del postulante en el for:" +postulante.getHabilidades().toString());
+                for (Habilidad habilidad : habilidadesPuesto) {
+//                System.out.println("Habilidad " + habilidad);
+                    if (postulante.getHabilidades().keySet().toString().contains(habilidad.getTema())) {
+//                    System.out.println("Postulantes que contienen habilidad" + postulante.getNombre());
+                        int nivelPostulante = postulante.getNivelHabilidad(habilidad);
+//                    System.out.println(nivelPostulante);
+                        if (nivel <= nivelPostulante) {
+//                        System.out.println("Postulantes aceptados" + postulante.getNombre());
+                            contador++;
                         }
 
                     }
                 }
-
-            }
-        }
-
-        ArrayList<Postulante> postulantesAceptados = new ArrayList<>();
-
-        for (Postulante postulante : postulantesFiltrados) {
-            System.out.println("Entra en el for final");
-            int contador = 0;
-            System.out.println("Postulante filtrado en el for:" +postulante.getNombre());
-            System.out.println("Habilidades del postulante en el for:" +postulante.getHabilidades().toString());
-            for (Habilidad habilidad : habilidadesPuesto) {
-                System.out.println("Habilidad " + habilidad);
-                if (postulante.getHabilidades().keySet().toString().contains(habilidad.getTema())) {
-                    System.out.println("Postulantes que contienen habilidad" + postulante.getNombre());
-                    int nivelPostulante = postulante.getNivelHabilidad(habilidad);
-                    System.out.println(nivelPostulante);
-                    if (nivel <= nivelPostulante) {
-                        System.out.println("Postulantes aceptados" + postulante.getNombre());
-                        contador++;
-                    }
-
+                if (contador == habilidadesPuesto.size()) {
+                    postulantesAceptados.add(postulante);
                 }
             }
-            if (contador == habilidadesPuesto.size()) {
-                postulantesAceptados.add(postulante);
-            }
-        }
-        if(postulantesAceptados.isEmpty()){
-         JOptionPane.showMessageDialog(this, "Los postulantes que se registraron no cumplen el nivel de requisito para el puesto", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-        DefaultListModel<Postulante> modeloLista = new DefaultListModel<>();
-        for (Postulante pAceptado : postulantesAceptados) {
-            System.out.println("Postulante que agrego al modelo" + pAceptado.getNombre());
-            modeloLista.addElement(pAceptado);
-        }
-        ListaPostulantes.setModel(modeloLista);
-       }
-       }
 
+            if (postulantesAceptados.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Los postulantes que se registraron no cumplen el nivel de requisito para el puesto", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                DefaultListModel<Postulante> modeloLista = new DefaultListModel<>();
+                for (Postulante pAceptado : postulantesAceptados) {
+//            System.out.println("Postulante que agrego al modelo" + pAceptado.getNombre());
+
+                    modeloLista.addElement(pAceptado);
+                }
+                ListaPostulantes.setModel(modeloLista);
+            }
+            ultimoPuesto = puestoSelected;
+        }
     }//GEN-LAST:event_BotonConsultarActionPerformed
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
@@ -228,8 +235,42 @@ public class ConsultaPuesto extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
     private void BotonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonExportarActionPerformed
-        // TODO add your handling code here:
+
+        File archivo = new File("Consulta.txt");
+
+        if (archivo.exists()) {
+            archivo.delete();
+        }
+        
+        if (ultimoPuesto == null) {
+            JOptionPane.showMessageDialog(this, "Debes hacer una consulta antes de poder exportarla.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String puestoToString = "Puesto: " + ultimoPuesto.getNombre() + "\n";
+        ListModel<Postulante> modeloLista = ListaPostulantes.getModel();
+        for (int i = 0; i < modeloLista.getSize(); i++) {
+            puestoToString += "Postulante número " + i + 1 + ") ";
+            puestoToString = obtengoDatosPostulante(modeloLista.getElementAt(i), puestoToString);
+        }
+        guardar(puestoToString);
+
+        JOptionPane.showMessageDialog(this, "Se ha exportado el archivo exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_BotonExportarActionPerformed
+
+    private String obtengoDatosPostulante(Postulante postulante, String puestoToString) {
+        String Nombre = postulante.getNombre();
+        String Cedula = postulante.getCedula();
+        String Email = postulante.getEmail();
+        puestoToString += Nombre + " - " + Cedula + " - " + Email + "\n";
+        return puestoToString;
+    }
+
+    public void guardar(String puestoToString) {
+        ArchivoGrabacion archivo = new ArchivoGrabacion("Consulta.txt", true); // true para extender
+        archivo.grabarLinea(puestoToString);
+        archivo.cerrar();
+    }
 
     public void actualizarLista() {
         DefaultListModel<Puesto> modeloActualizar = new DefaultListModel<>();
@@ -239,6 +280,33 @@ public class ConsultaPuesto extends javax.swing.JFrame {
             modeloActualizar.addElement(p);
         }
         ListaPuestos.setModel(modeloActualizar);
+    }
+
+    private ArrayList<Postulante> OrdenarLista(ArrayList<Postulante> listaPostulantes, ArrayList<Entrevista> entrevistas) {
+        int n = listaPostulantes.size();
+        Postulante temp;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                System.out.println("Comparo " + obtenerUltimaPuntuacion(listaPostulantes.get(j - 1), entrevistas) + " con " + obtenerUltimaPuntuacion(listaPostulantes.get(j), entrevistas));
+                if (obtenerUltimaPuntuacion(listaPostulantes.get(j - 1), entrevistas) < obtenerUltimaPuntuacion(listaPostulantes.get(j), entrevistas)) {
+                    temp = listaPostulantes.get(j - 1);
+                    listaPostulantes.set(j - 1, listaPostulantes.get(j));
+                    listaPostulantes.set(j, temp);
+                }
+            }
+        }
+        return listaPostulantes;
+    }
+
+    private int obtenerUltimaPuntuacion(Postulante postulante, ArrayList<Entrevista> entrevistas) {
+        int puntuacion = 0;
+        for (Entrevista e : entrevistas) {
+            if (postulante.equals(e.getPostulante())) {
+                puntuacion = e.getPuntuacion();
+            }
+        }
+        return puntuacion;
     }
 
     public void limpiarListaPostulantes() {
@@ -263,4 +331,8 @@ public class ConsultaPuesto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    private String toFileString() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -160,6 +160,12 @@ public class AltaPostulante extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 48, 0, 62);
         jPanel1.add(jTextFieldNombre, gridBagConstraints);
+
+        jTextFieldCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCedulaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 4;
@@ -194,6 +200,12 @@ public class AltaPostulante extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 48, 0, 62);
         jPanel1.add(jTextFieldMail, gridBagConstraints);
+
+        jTextFieldLinkedin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldLinkedinActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 10;
@@ -307,13 +319,19 @@ public class AltaPostulante extends javax.swing.JFrame {
                 existe = true;
             }
         }
+    
+    if (!cedula.matches("^\\d+$")) {
+        JOptionPane.showMessageDialog(this, "El campo cédula debe contener solo números.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }   
+        
     if (existe) {
         JOptionPane.showMessageDialog(this, "Ya se ha ingresado ese postulante, verifica la cédula.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 }
     if (direccion.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "El campo direccion es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "El campo dirección es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
     if (telefono.isEmpty()) {
@@ -353,6 +371,14 @@ public class AltaPostulante extends javax.swing.JFrame {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
        dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jTextFieldLinkedinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLinkedinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkedinActionPerformed
+
+    private void jTextFieldCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCedulaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

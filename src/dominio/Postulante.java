@@ -18,7 +18,6 @@ public class Postulante extends Persona implements Serializable {
     private String linkedin;
     private String tipoTrabajo;
     private Map<Habilidad, Integer> habilidades;
-
    
     // Constructor, getters y setters
     public Postulante(String nombre, String cedula, String direccion, String telefono, String email, String linkedin, String tipoTrabajo) {
@@ -93,8 +92,10 @@ public class Postulante extends Persona implements Serializable {
     
     @Override
     public String toString() {
-        return getNombre();
+        return getNombre() + " (" + getCedula() + ")";
     }
+
+   
     
     @Override
      public boolean equals(Object obj) {

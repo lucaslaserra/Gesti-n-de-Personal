@@ -7,6 +7,8 @@ package interfaz;
 import dominio.*;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.URI;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -47,27 +50,16 @@ public class HistorialPostulante extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ListaPostulantes = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
-        LabelNombre = new javax.swing.JLabel();
-        LabelCedula = new javax.swing.JLabel();
-        LabelDireccion = new javax.swing.JLabel();
-        LabelTelefono = new javax.swing.JLabel();
-        LabelMail = new javax.swing.JLabel();
-        LabelLinkedin = new javax.swing.JLabel();
-        LabelExperiencia = new javax.swing.JLabel();
-        LabelBuscar = new javax.swing.JLabel();
-        BotonBuscar = new javax.swing.JButton();
-        BotonResetar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TablaValores = new javax.swing.JTable();
         BotonSalir = new javax.swing.JButton();
-        TextBuscador = new javax.swing.JTextField();
-        LabelFormato = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ListaExperiencias = new javax.swing.JList<>();
-        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListaPostulantes = new javax.swing.JList<>();
+        jPanel7 = new javax.swing.JPanel();
         Nombre = new javax.swing.JLabel();
         Cedula = new javax.swing.JLabel();
         Direccion = new javax.swing.JLabel();
@@ -75,55 +67,34 @@ public class HistorialPostulante extends javax.swing.JFrame {
         Mail = new javax.swing.JLabel();
         Linkedin = new javax.swing.JLabel();
         Formato = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        LabelNombre = new javax.swing.JLabel();
+        LabelCedula = new javax.swing.JLabel();
+        LabelDireccion = new javax.swing.JLabel();
+        LabelTelefono = new javax.swing.JLabel();
+        LabelMail = new javax.swing.JLabel();
+        LabelLinkedin = new javax.swing.JLabel();
+        LabelFormato = new javax.swing.JLabel();
+        LabelExperiencia = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ListaExperiencias = new javax.swing.JList<>();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        LabelBuscar = new javax.swing.JLabel();
+        TextBuscador = new javax.swing.JTextField();
+        BotonBuscar = new javax.swing.JButton();
+        BotonResetar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
-        setResizable(false);
+        setMinimumSize(new java.awt.Dimension(1300, 1000));
         setSize(new java.awt.Dimension(710, 741));
         setType(java.awt.Window.Type.UTILITY);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        ListaPostulantes.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
-        ListaPostulantes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                ListaPostulantesValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(ListaPostulantes);
-
-        jLabel1.setText("Postulantes:");
-
-        LabelNombre.setText("Nombre:");
-
-        LabelCedula.setText("Cédula:");
-
-        LabelDireccion.setText("Dirección:");
-
-        LabelTelefono.setText("Telefono:");
-
-        LabelMail.setText("Mail:");
-
-        LabelLinkedin.setText("Linkedin:");
-
-        LabelExperiencia.setText("Experiencia:");
-        LabelExperiencia.setVerifyInputWhenFocusTarget(false);
-
-        LabelBuscar.setText("Buscar: ");
-
-        BotonBuscar.setText("Buscar");
-        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonBuscarActionPerformed(evt);
-            }
-        });
-
-        BotonResetar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        BotonResetar.setText("Resetear");
-        BotonResetar.setCursor(new java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR));
-        BotonResetar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonResetarActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TablaValores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,9 +107,16 @@ public class HistorialPostulante extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         TablaValores.setPreferredSize(new java.awt.Dimension(200, 80));
@@ -150,25 +128,43 @@ public class HistorialPostulante extends javax.swing.JFrame {
             TablaValores.getColumnModel().getColumn(3).setPreferredWidth(390);
         }
 
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 1106, 259));
+
         BotonSalir.setText("Salir");
+        BotonSalir.setPreferredSize(new java.awt.Dimension(100, 30));
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonSalirActionPerformed(evt);
             }
         });
+        jPanel1.add(BotonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 890, -1, -1));
 
-        TextBuscador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextBuscadorActionPerformed(evt);
+        jSeparator1.setPreferredSize(new java.awt.Dimension(1000, 3));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, -1, 20));
+
+        jPanel2.setLayout(new java.awt.BorderLayout(10, 10));
+
+        jLabel1.setText("Postulantes:");
+        jPanel2.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+
+        ListaPostulantes.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        ListaPostulantes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListaPostulantesValueChanged(evt);
             }
         });
+        jScrollPane1.setViewportView(ListaPostulantes);
 
-        LabelFormato.setText("Formato:");
+        jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jScrollPane2.setViewportView(ListaExperiencias);
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 353, 269));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Historial de Postulante");
+        jPanel7.setLayout(new java.awt.GridLayout(8, 1));
+        jPanel7.add(Nombre);
+        jPanel7.add(Cedula);
+        jPanel7.add(Direccion);
+        jPanel7.add(Telefono);
+        jPanel7.add(Mail);
 
         Linkedin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -181,117 +177,121 @@ public class HistorialPostulante extends javax.swing.JFrame {
                 LinkedinMouseExited(evt);
             }
         });
+        jPanel7.add(Linkedin);
+        jPanel7.add(Formato);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(BotonSalir))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(14, 14, 14)
-                            .addComponent(LabelBuscar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(TextBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(BotonBuscar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(BotonResetar))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jLabel1)))
-                            .addGap(84, 84, 84)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(LabelFormato)
-                                .addComponent(LabelExperiencia)
-                                .addComponent(LabelNombre)
-                                .addComponent(LabelCedula)
-                                .addComponent(LabelDireccion)
-                                .addComponent(LabelTelefono)
-                                .addComponent(LabelMail)
-                                .addComponent(LabelLinkedin))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Linkedin)
-                                .addComponent(Mail)
-                                .addComponent(Telefono)
-                                .addComponent(Direccion)
-                                .addComponent(Cedula)
-                                .addComponent(Nombre)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Formato)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(286, 286, 286))))
-                .addContainerGap(21, Short.MAX_VALUE))
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 70, 270));
+
+        jPanel8.setLayout(new java.awt.GridLayout(9, 1));
+
+        LabelNombre.setText("Nombre:");
+        jPanel8.add(LabelNombre);
+
+        LabelCedula.setText("Cédula:");
+        jPanel8.add(LabelCedula);
+
+        LabelDireccion.setText("Dirección:");
+        jPanel8.add(LabelDireccion);
+
+        LabelTelefono.setText("Telefono:");
+        jPanel8.add(LabelTelefono);
+
+        LabelMail.setText("Mail:");
+        jPanel8.add(LabelMail);
+
+        LabelLinkedin.setText("Linkedin:");
+        jPanel8.add(LabelLinkedin);
+
+        LabelFormato.setText("Formato:");
+        jPanel8.add(LabelFormato);
+
+        LabelExperiencia.setText("Experiencia:");
+        LabelExperiencia.setVerifyInputWhenFocusTarget(false);
+        jPanel8.add(LabelExperiencia);
+
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 94, -1, 310));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Historial de Postulante");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 200, -1));
+
+        jScrollPane2.setViewportView(ListaExperiencias);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 370, 320, 110));
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelNombre)
-                            .addComponent(Nombre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelCedula)
-                            .addComponent(Cedula))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelDireccion)
-                            .addComponent(Direccion))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelTelefono)
-                            .addComponent(Telefono))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelMail)
-                            .addComponent(Mail))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelLinkedin)
-                            .addComponent(Linkedin))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelFormato)
-                            .addComponent(Formato))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelExperiencia)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelBuscar)
-                            .addComponent(TextBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonBuscar)
-                            .addComponent(BotonResetar))))
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BotonSalir)
-                .addGap(14, 14, 14))
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+
+        LabelBuscar.setText("Buscar: ");
+        jPanel10.add(LabelBuscar);
+
+        TextBuscador.setMinimumSize(new java.awt.Dimension(3333, 22));
+        TextBuscador.setName(""); // NOI18N
+        TextBuscador.setPreferredSize(new java.awt.Dimension(300, 22));
+        TextBuscador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextBuscadorActionPerformed(evt);
+            }
+        });
+        jPanel10.add(TextBuscador);
+
+        BotonBuscar.setText("Buscar");
+        BotonBuscar.setPreferredSize(new java.awt.Dimension(100, 30));
+        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarActionPerformed(evt);
+            }
+        });
+        jPanel10.add(BotonBuscar);
+
+        BotonResetar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BotonResetar.setText("Resetear");
+        BotonResetar.setCursor(new java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR));
+        BotonResetar.setPreferredSize(new java.awt.Dimension(100, 30));
+        BotonResetar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonResetarActionPerformed(evt);
+            }
+        });
+        jPanel10.add(BotonResetar);
+
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 590, -1));
+
+        getContentPane().add(jPanel1, new java.awt.GridBagConstraints());
+
+        jPanel3.setMinimumSize(new java.awt.Dimension(15, 0));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        getContentPane().add(jPanel3, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ListaPostulantesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaPostulantesValueChanged
@@ -313,8 +313,8 @@ public class HistorialPostulante extends javax.swing.JFrame {
         Telefono.setText(telefono);
         Mail.setText(mail);
         Linkedin.setText(linkedin);
-        Linkedin.setForeground(Color.BLUE); 
-        
+        Linkedin.setForeground(Color.BLUE);
+
         ArrayList<Entrevista> entrevistas = miSistema.obtenerListaEntrevistas();
         DefaultTableModel modeloT = (DefaultTableModel) TablaValores.getModel();
         for (Entrevista en : entrevistas) {
@@ -329,7 +329,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
             }
 
         }
-         if(modeloT.getRowCount()== 0){
+        if (modeloT.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "No tuvo ninguna entrevista hasta el momento", "Alert", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -365,7 +365,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
             }
         }
- 
+
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
 
@@ -394,15 +394,18 @@ public class HistorialPostulante extends javax.swing.JFrame {
     }//GEN-LAST:event_TextBuscadorActionPerformed
 
     private void LinkedinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LinkedinMouseClicked
-         Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
-         abrirLinkedin(postulanteSelected.getLinkedin());
-         
+        int confirmacion = JOptionPane.showConfirmDialog(this, "Se cerrará la ventana al abrir el link, ¿Está seguro de continuar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
+            abrirLinkedin(postulanteSelected.getLinkedin());
+        }
+
     }//GEN-LAST:event_LinkedinMouseClicked
-   
-          public void windowClosing(WindowEvent e) {
-                // No hacer nada al intentar cerrar la ventana
-            }
-        
+
+    public void windowClosing(WindowEvent e) {
+        // No hacer nada al intentar cerrar la ventana
+    }
+
     private void LinkedinMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LinkedinMouseEntered
         Linkedin.setForeground(Color.RED);
     }//GEN-LAST:event_LinkedinMouseEntered
@@ -442,11 +445,17 @@ public class HistorialPostulante extends javax.swing.JFrame {
         DefaultTableModel modeloT = (DefaultTableModel) TablaValores.getModel();
         modeloT.setRowCount(0);
     }
+
     public void abrirLinkedin(String linkedin) {
-        try {
-            Desktop.getDesktop().browse(new URI(linkedin));
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                try {
+                    desktop.browse(new URI(linkedin));
+                } catch (IOException | URISyntaxException e) {
+                    JOptionPane.showMessageDialog(this, "No se ha podido abrir el link.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
     }
 
@@ -477,8 +486,17 @@ public class HistorialPostulante extends javax.swing.JFrame {
     private javax.swing.JTextField TextBuscador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

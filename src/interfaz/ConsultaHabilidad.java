@@ -66,8 +66,12 @@ public class ConsultaHabilidad extends javax.swing.JFrame {
 
         jLabel3.setText("Puestos con este requisito:");
 
+        PanelPostulantes.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        PanelPostulantes.setEnabled(false);
         jScrollPane2.setViewportView(PanelPostulantes);
 
+        PanelPuestos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        PanelPuestos.setEnabled(false);
         jScrollPane3.setViewportView(PanelPuestos);
 
         BotonSalir.setText("Salir");

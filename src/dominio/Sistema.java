@@ -75,11 +75,13 @@ public class Sistema implements Serializable {
         return entrevistas;
     }
 
-    private void guardarSistema() {
+    public void guardarSistema() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO_SISTEMA))) {
             out.writeObject(habilidades);
             out.writeObject(puestos);
             out.writeObject(evaluadores);
+            System.out.print("Postulantes guardados: ");
+            System.out.println(postulantes);
             out.writeObject(postulantes);
             out.writeObject(entrevistas);
             out.writeObject(siguienteNumEntrevista);

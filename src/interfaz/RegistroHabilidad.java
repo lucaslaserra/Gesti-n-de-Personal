@@ -38,7 +38,7 @@ public class RegistroHabilidad extends javax.swing.JFrame {
 
         LabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelTitulo.setText("Registro de temática");
+        LabelTitulo.setText("Alta de Habilidad");
 
         LabelNombre.setText("Nombre:");
 
@@ -117,22 +117,26 @@ public class RegistroHabilidad extends javax.swing.JFrame {
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         String nombre = TextFieldNombre.getText().trim();
         String descripcion = TextDescripción.getText().trim();
-        if (descripcion.isEmpty()) {
-           JOptionPane.showMessageDialog(this, "Debe registrar una descripción.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El nombre es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            Habilidad habilidad = new Habilidad(nombre, descripcion);
+            if (descripcion.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "la descripción es obligatoria.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Habilidad habilidad = new Habilidad(nombre, descripcion);
 
-            ArrayList<Habilidad> habilidadesExistentes = miSistema.obtenerListaHabilidades();
-            if (habilidadesExistentes.contains(habilidad)) {
-                JOptionPane.showMessageDialog(this, "Esta habilidad ya ha sido registrada en el sistema.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+                ArrayList<Habilidad> habilidadesExistentes = miSistema.obtenerListaHabilidades();
+                if (habilidadesExistentes.contains(habilidad)) {
+                    JOptionPane.showMessageDialog(this, "Esta habilidad ya ha sido registrada en el sistema.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                miSistema.agregarHabilidad(habilidad);
+                JOptionPane.showMessageDialog(this, "Ha sido registrado la habilidad con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+                TextFieldNombre.setText("");
+                TextDescripción.setText("");
             }
-
-            miSistema.agregarHabilidad(habilidad);
-            JOptionPane.showMessageDialog(this, "Ha sido registrado la habilidad con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-            TextFieldNombre.setText("");
-            TextDescripción.setText("");
         }
     }//GEN-LAST:event_botonRegistrarActionPerformed
 

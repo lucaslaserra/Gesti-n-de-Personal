@@ -173,9 +173,12 @@ public class IngresoEntrevista extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this, "Debe seleccionar un postulante y a su vez a un evaluador", "Error", JOptionPane.ERROR_MESSAGE);
              return;
         }else{
+        
+        System.out.println("Agrego entrevista del postulante : " + postulanteSelected.getNombre() + " con puntaje: " + puntaje);
         Entrevista entrevista = new Entrevista (postulanteSelected,evaluadorSelected,comentarios,puntaje);
         miSistema.agregarEntrevista(entrevista);
         JOptionPane.showMessageDialog(this, "Se ha ingresado la entrevista con exito, el numero de su entrevista es: "+(miSistema.obtenerNumdeEntrevistas()-1), "Exito", JOptionPane.INFORMATION_MESSAGE);
+        
         limpiar();
         }
     }//GEN-LAST:event_BotonRegistrarActionPerformed
@@ -205,6 +208,7 @@ public class IngresoEntrevista extends javax.swing.JFrame {
     SpinnerPuntaje.setValue(0);
     
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;
