@@ -6,14 +6,11 @@ package dominio;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import lectura.ArchivoGrabacion;
-import lectura.ArchivoLectura;
 
 public class Habilidad implements Serializable {
 
-    private Sistema miSistema;
     private String tema;
     private static final long serialVersionUID = 1L;
     private String descripcion;

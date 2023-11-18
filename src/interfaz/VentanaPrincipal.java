@@ -169,7 +169,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuRegistroTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRegistroTematicaActionPerformed
-        RegistroHabilidad paneltematica = new RegistroHabilidad(miSistema);
+        AltaHabilidad paneltematica = new AltaHabilidad(miSistema);
         paneltematica.setVisible(true);
 //        miSistema.
     }//GEN-LAST:event_MenuRegistroTematicaActionPerformed
@@ -185,7 +185,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuBajaPostulanteActionPerformed
 
     private void MenuRegistroEvaluadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRegistroEvaluadorActionPerformed
-        RegistroEvaluador RegEvaluador = new RegistroEvaluador(miSistema);
+        AltaEvaluador RegEvaluador = new AltaEvaluador(miSistema);
         RegEvaluador.setVisible(true);
     }//GEN-LAST:event_MenuRegistroEvaluadorActionPerformed
 
@@ -204,7 +204,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             opcionNoCumple = true;
         }
         if (!opcionNoCumple) {
-            IngresoEntrevista panelIngreso = new IngresoEntrevista(miSistema);
+            AltaEntrevista panelIngreso = new AltaEntrevista(miSistema);
             panelIngreso.setVisible(true);
         }
     }//GEN-LAST:event_MenuIngresoEntrevistaActionPerformed
@@ -214,7 +214,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (habilidades.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe registrar al menos una habilidad.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            RegistroPuesto RegPuesto = new RegistroPuesto(miSistema);
+            AltaPuesto RegPuesto = new AltaPuesto(miSistema);
             RegPuesto.setVisible(true);
         }
     }//GEN-LAST:event_MenuRegistroPuestoActionPerformed

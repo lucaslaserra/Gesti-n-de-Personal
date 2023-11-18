@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class RegistroEvaluador extends javax.swing.JFrame {
+public class AltaEvaluador extends javax.swing.JFrame {
 
     private Sistema miSistema;
 
-    public RegistroEvaluador(Sistema sistema) {
+    public AltaEvaluador(Sistema sistema) {
         miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
@@ -50,7 +50,6 @@ public class RegistroEvaluador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 350));
-        setPreferredSize(new java.awt.Dimension(355, 350));
 
         jPanel1.setMinimumSize(new java.awt.Dimension(600, 400));
         jPanel1.setPreferredSize(new java.awt.Dimension(390, 400));
@@ -60,7 +59,7 @@ public class RegistroEvaluador extends javax.swing.JFrame {
 
         LabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelTitulo.setText("Registro de Evaluador");
+        LabelTitulo.setText("Alta de Evaluador");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -69,9 +68,9 @@ public class RegistroEvaluador extends javax.swing.JFrame {
             .addGap(0, 935, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 393, Short.MAX_VALUE)
+                    .addGap(0, 408, Short.MAX_VALUE)
                     .addComponent(LabelTitulo)
-                    .addGap(0, 394, Short.MAX_VALUE)))
+                    .addGap(0, 408, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,8 +84,8 @@ public class RegistroEvaluador extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3);
 
-        jPanel2.setMinimumSize(new java.awt.Dimension(935, 140));
-        jPanel2.setPreferredSize(new java.awt.Dimension(935, 140));
+        jPanel2.setMinimumSize(new java.awt.Dimension(935, 50));
+        jPanel2.setPreferredSize(new java.awt.Dimension(935, 50));
         java.awt.GridBagLayout jPanel2Layout = new java.awt.GridBagLayout();
         jPanel2Layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0};
         jPanel2Layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0};
