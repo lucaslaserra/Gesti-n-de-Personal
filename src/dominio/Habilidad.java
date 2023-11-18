@@ -1,3 +1,6 @@
+// Lucas Laserra - 307103
+// Gonzalo Álvarez - 315491
+
 package dominio;
 
 import java.io.Serializable;
@@ -9,6 +12,7 @@ import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
 
 public class Habilidad implements Serializable {
+
     private Sistema miSistema;
     private String tema;
     private static final long serialVersionUID = 1L;
@@ -50,8 +54,9 @@ public class Habilidad implements Serializable {
     public String toString() {
         return tema;
     }
+
     public boolean equals(Object obj) {
-         Habilidad habilidad = (Habilidad) obj;
+        Habilidad habilidad = (Habilidad) obj;
         return Objects.equals(this.getTema(), habilidad.getTema());
     }
 //    public boolean existeHabilidad(Habilidad habilidad) {
@@ -66,27 +71,25 @@ public class Habilidad implements Serializable {
 //       }
 //        return existe;
 //    }
-    
+
     // Método para guardar el conocimiento actual en un archivo
     public void guardar() {
         ArchivoGrabacion archivo = new ArchivoGrabacion("habilidades.txt", true); // true para extender
         archivo.grabarLinea(this.toFileString());
         archivo.cerrar();
-}
-
-   
+    }
 
     public boolean existeHabilidad(Habilidad habilidad, Sistema sistema) {
         ArrayList<Habilidad> aux = sistema.obtenerListaHabilidades();
         boolean existe = false;
-       if(!aux.isEmpty()) {  
-        for (Habilidad j : aux) {
-            if ((j.getTema().toLowerCase()).equals(habilidad.getTema().toLowerCase())) {
-                existe = true;
+        if (!aux.isEmpty()) {
+            for (Habilidad j : aux) {
+                if ((j.getTema().toLowerCase()).equals(habilidad.getTema().toLowerCase())) {
+                    existe = true;
+                }
             }
         }
-       }
         return existe;
-    } 
-    
+    }
+
 }

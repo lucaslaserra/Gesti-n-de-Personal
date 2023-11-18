@@ -1,7 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// Lucas Laserra - 307103
+// Gonzalo Álvarez - 315491
+
 package interfaz;
 
 import dominio.*;
@@ -9,10 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author lucas
- */
 public class RegistroEvaluador extends javax.swing.JFrame {
 
     private Sistema miSistema;
@@ -21,8 +16,7 @@ public class RegistroEvaluador extends javax.swing.JFrame {
         miSistema = sistema;
         initComponents();
         setLocationRelativeTo(null);
-        
-        
+
     }
 
     /**
@@ -207,16 +201,16 @@ public class RegistroEvaluador extends javax.swing.JFrame {
                     existe = true;
                 }
             }
-            
+
             if (existe) {
                 JOptionPane.showMessageDialog(this, "Ya se ingreso ese evaluador, verifique la cedula.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
-            } else{
+            } else {
                 Evaluador evaluador = new Evaluador(fechadeIngreso, nombre, cedula, direccion);
                 miSistema.agregarEvaluador(evaluador);
                 limpiarFormulario();
                 JOptionPane.showMessageDialog(null, "Se ha registrado el evaluador con exito!", "Exito", JOptionPane.INFORMATION_MESSAGE);
-            } 
+            }
         }
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
@@ -249,8 +243,7 @@ public class RegistroEvaluador extends javax.swing.JFrame {
 
     private void limpiarFormulario() {
         // Limpia todos los campos de texto
-        
-        
+
         TextoNombre.setText("");
         TextoDireccion.setText("");
         TextoCedula.setText("");

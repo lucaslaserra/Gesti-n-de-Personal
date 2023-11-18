@@ -1,3 +1,6 @@
+// Lucas Laserra - 307103
+// Gonzalo Álvarez - 315491
+
 package dominio;
 
 import java.io.Serializable;

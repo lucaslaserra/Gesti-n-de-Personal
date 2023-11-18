@@ -1,7 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// Lucas Laserra - 307103
+// Gonzalo Álvarez - 315491
+
 package interfaz;
 
 import dominio.*;
@@ -10,10 +9,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author lucas
- */
 public class IngresoEntrevista extends javax.swing.JFrame {
 
     private Sistema miSistema;
@@ -31,7 +26,6 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -166,21 +160,22 @@ public class IngresoEntrevista extends javax.swing.JFrame {
     private void BotonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarActionPerformed
         Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
         Evaluador evaluadorSelected = ListaEvaluadores.getSelectedValue();
-        int puntaje = (int)SpinnerPuntaje.getValue();
+        int puntaje = (int) SpinnerPuntaje.getValue();
         String comentarios = TextComentarios.getText();
-        
-        if(postulanteSelected == null || evaluadorSelected == null){
-             JOptionPane.showMessageDialog(this, "Debe seleccionar un postulante y a su vez a un evaluador", "Error", JOptionPane.ERROR_MESSAGE);
-             return;
-        }else{
-        
-        System.out.println("Agrego entrevista del postulante : " + postulanteSelected.getNombre() + " con puntaje: " + puntaje);
-        Entrevista entrevista = new Entrevista (postulanteSelected,evaluadorSelected,comentarios,puntaje);
-        miSistema.agregarEntrevista(entrevista);
-        JOptionPane.showMessageDialog(this, "Se ha ingresado la entrevista con exito, el numero de su entrevista es: "+(miSistema.obtenerNumdeEntrevistas()-1), "Exito", JOptionPane.INFORMATION_MESSAGE);
-        
-        limpiar();
+
+        if (postulanteSelected == null || evaluadorSelected == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un postulante y a su vez a un evaluador", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        if (comentarios.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo comentario es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Entrevista entrevista = new Entrevista(postulanteSelected, evaluadorSelected, comentarios, puntaje);
+        miSistema.agregarEntrevista(entrevista);
+        JOptionPane.showMessageDialog(this, "Se ha ingresado la entrevista con exito, el numero de su entrevista es: " + (miSistema.obtenerNumdeEntrevistas() - 1), "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+        limpiar();
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
@@ -201,14 +196,14 @@ public class IngresoEntrevista extends javax.swing.JFrame {
         }
         ListaPostulantes.setModel(modeloP);
     }
-    public void limpiar(){
-    TextComentarios.setText("");
-    ListaEvaluadores.clearSelection();
-    ListaPostulantes.clearSelection();
-    SpinnerPuntaje.setValue(0);
-    
+
+    public void limpiar() {
+        TextComentarios.setText("");
+        ListaEvaluadores.clearSelection();
+        ListaPostulantes.clearSelection();
+        SpinnerPuntaje.setValue(0);
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;

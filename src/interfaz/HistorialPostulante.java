@@ -1,7 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// Lucas Laserra - 307103
+// Gonzalo Álvarez - 315491
+
 package interfaz;
 
 import dominio.*;
@@ -17,9 +16,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -54,6 +51,8 @@ public class HistorialPostulante extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         TablaValores = new javax.swing.JTable();
         BotonSalir = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ListaExperiencias = new javax.swing.JList<>();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -77,8 +76,6 @@ public class HistorialPostulante extends javax.swing.JFrame {
         LabelFormato = new javax.swing.JLabel();
         LabelExperiencia = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ListaExperiencias = new javax.swing.JList<>();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         LabelBuscar = new javax.swing.JLabel();
@@ -139,6 +136,10 @@ public class HistorialPostulante extends javax.swing.JFrame {
         });
         jPanel1.add(BotonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 890, -1, -1));
 
+        jScrollPane2.setViewportView(ListaExperiencias);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 340, 320, 110));
+
         jSeparator1.setPreferredSize(new java.awt.Dimension(1000, 3));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, -1, 20));
 
@@ -159,7 +160,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 353, 269));
 
-        jPanel7.setLayout(new java.awt.GridLayout(8, 1));
+        jPanel7.setLayout(new java.awt.GridLayout(8, 1, 0, 5));
         jPanel7.add(Nombre);
         jPanel7.add(Cedula);
         jPanel7.add(Direccion);
@@ -180,7 +181,7 @@ public class HistorialPostulante extends javax.swing.JFrame {
         jPanel7.add(Linkedin);
         jPanel7.add(Formato);
 
-        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 70, 270));
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 96, 70, 270));
 
         jPanel8.setLayout(new java.awt.GridLayout(9, 1));
 
@@ -214,10 +215,6 @@ public class HistorialPostulante extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Historial de Postulante");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 200, -1));
-
-        jScrollPane2.setViewportView(ListaExperiencias);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 370, 320, 110));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);

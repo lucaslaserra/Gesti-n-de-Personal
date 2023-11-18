@@ -1,7 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// Lucas Laserra - 307103
+// Gonzalo Álvarez - 315491
+
 package interfaz;
 
 import dominio.*;
@@ -11,11 +10,11 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.DefaultListModel;
 
-
 public class ConsultaHabilidad extends javax.swing.JFrame {
-     
-     DefaultListModel<Habilidad> modelo;
-     private Sistema miSistema;
+
+    DefaultListModel<Habilidad> modelo;
+    private Sistema miSistema;
+
     public ConsultaHabilidad(Sistema sistema) {
         miSistema = sistema;
         initComponents();
@@ -146,48 +145,48 @@ public class ConsultaHabilidad extends javax.swing.JFrame {
         limpiarPanel();
         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
         ArrayList<Puesto> puestos = miSistema.obtenerListaPuestos();
-        
-       StringBuilder postulantesText = new StringBuilder();
-       StringBuilder puestosTexto = new StringBuilder();
-       
 
-        for(Postulante p: postulantes){ 
+        StringBuilder postulantesText = new StringBuilder();
+        StringBuilder puestosTexto = new StringBuilder();
+
+        for (Postulante p : postulantes) {
             Set<Habilidad> conjuntoDeHabilidad = p.getHabilidades().keySet();
-            for (Habilidad Ph: conjuntoDeHabilidad){
+            for (Habilidad Ph : conjuntoDeHabilidad) {
                 System.out.println(Ph.toString().equals(habilidadSelect.toString()));
-               if (Ph.toString().equals(habilidadSelect.toString())){
-                  if(p.getNivelHabilidad(Ph)>5) {
-                    postulantesText.append(p.toString()).append("\n");
+                if (Ph.toString().equals(habilidadSelect.toString())) {
+                    if (p.getNivelHabilidad(Ph) > 5) {
+                        postulantesText.append(p.toString()).append("\n");
+                    }
                 }
-               }
+            }
+            PanelPostulantes.setText(postulantesText.toString());
         }
-        PanelPostulantes.setText(postulantesText.toString());
-        }
-        for(Puesto Pu: puestos){
-          ArrayList <Habilidad> habilidades = Pu.getHabilidadesRequeridas();
-          for(Habilidad h: habilidades){
-             if(h.toString().equals(habilidadSelect.toString())){
-                puestosTexto.append(Pu.toString()).append("\n");
-             }
-          }
-          
+        for (Puesto Pu : puestos) {
+            ArrayList<Habilidad> habilidades = Pu.getHabilidadesRequeridas();
+            for (Habilidad h : habilidades) {
+                if (h.toString().equals(habilidadSelect.toString())) {
+                    puestosTexto.append(Pu.toString()).append("\n");
+                }
+            }
+
         }
         PanelPuestos.setText(puestosTexto.toString());
-        
+
 
     }//GEN-LAST:event_ListaTemasValueChanged
-    public void actualizarLista(){
-     DefaultListModel<Habilidad> modelo = new DefaultListModel<>();
-      ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
-     for (Habilidad j: habilidades) {
-       
-        modelo.addElement(j);
+    public void actualizarLista() {
+        DefaultListModel<Habilidad> modelo = new DefaultListModel<>();
+        ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
+        for (Habilidad j : habilidades) {
+
+            modelo.addElement(j);
+        }
+        ListaTemas.setModel(modelo);
     }
-    ListaTemas.setModel(modelo);
-    }
-    public void limpiarPanel(){
-    PanelPostulantes.setText("");
-    PanelPuestos.setText("");
+
+    public void limpiarPanel() {
+        PanelPostulantes.setText("");
+        PanelPuestos.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

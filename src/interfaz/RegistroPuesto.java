@@ -1,7 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// Lucas Laserra - 307103
+// Gonzalo Álvarez - 315491
+
 package interfaz;
 
 import dominio.Habilidad;
@@ -11,14 +10,11 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author lucas
- */
 public class RegistroPuesto extends javax.swing.JFrame {
 
     DefaultListModel<Habilidad> modelo;
     private Sistema miSistema;
+
     public RegistroPuesto(Sistema sistema) {
         miSistema = sistema;
         initComponents();
@@ -30,7 +26,6 @@ public class RegistroPuesto extends javax.swing.JFrame {
         ListaTemasSeleccionados.setModel(modelo);
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -238,23 +233,22 @@ public class RegistroPuesto extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Se ha agregado el puesto con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         limpiarFormulario();
 
-        
-       
+
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void CombodeTemasComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_CombodeTemasComponentAdded
-     
+
     }//GEN-LAST:event_CombodeTemasComponentAdded
 
     private void JbotonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbotonAgregarTemaActionPerformed
         Habilidad habilidadSelect = (Habilidad) CombodeTemas.getSelectedItem();
-          if(modelo.contains(habilidadSelect)) {
-              JOptionPane.showMessageDialog(this, "Ya agrego esa habilidad!","Error",JOptionPane.ERROR_MESSAGE);
-            }else{
+        if (modelo.contains(habilidadSelect)) {
+            JOptionPane.showMessageDialog(this, "Ya agrego esa habilidad!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
             modelo.addElement(habilidadSelect);
-          }
+        }
     }//GEN-LAST:event_JbotonAgregarTemaActionPerformed
-   
+
     private void CombodeTemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombodeTemasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CombodeTemasActionPerformed
@@ -267,21 +261,20 @@ public class RegistroPuesto extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
-    public void agregarHabilidadesCombo(){
-    ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
-    for(Habilidad j: habilidades){
-        CombodeTemas.addItem(j);
+    public void agregarHabilidadesCombo() {
+        ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
+        for (Habilidad j : habilidades) {
+            CombodeTemas.addItem(j);
+        }
     }
- }
-        private void limpiarFormulario() {
+
+    private void limpiarFormulario() {
         // Limpia todos los campos de texto
         jTextFieldNombre.setText("");
         modelo.removeAllElements();
         // Desmarca cualquier botón de radio seleccionado
         buttonGroup1.clearSelection();
     }
-
-     
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -302,4 +295,3 @@ public class RegistroPuesto extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }
-

@@ -1,3 +1,5 @@
+// Lucas Laserra - 307103
+// Gonzalo Álvarez - 315491
 
 package dominio;
 
@@ -6,19 +8,19 @@ import java.util.*;
 import lectura.ArchivoGrabacion;
 import lectura.ArchivoLectura;
 
-
-
 enum TipoTrabajo {
     REMOTO, PRESENCIAL, MIXTO
 }
+
 public class Postulante extends Persona implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private String telefono;
     private String email;
     private String linkedin;
     private String tipoTrabajo;
     private Map<Habilidad, Integer> habilidades;
-   
+
     // Constructor, getters y setters
     public Postulante(String nombre, String cedula, String direccion, String telefono, String email, String linkedin, String tipoTrabajo) {
         super(nombre, cedula, direccion);
@@ -29,16 +31,16 @@ public class Postulante extends Persona implements Serializable {
         habilidades = new HashMap<>();
     }
 
-   public Map<Habilidad, Integer> getHabilidades() {
+    public Map<Habilidad, Integer> getHabilidades() {
         if (this.habilidades == null) {
             this.habilidades = new HashMap<>();
         }
         return this.habilidades;
     }
 
-   public String getTipoTrabajo() {
-       return tipoTrabajo;
-   }
+    public String getTipoTrabajo() {
+        return tipoTrabajo;
+    }
 
     public String getTelefono() {
         return telefono;
@@ -63,9 +65,7 @@ public class Postulante extends Persona implements Serializable {
     public void setLinkedin(String linkedin) {
         this.linkedin = linkedin;
     }
-    
-   
-   
+
     public void addHabilidad(Habilidad habilidad, Integer nivel) {
         habilidades.put(habilidad, nivel);
     }
@@ -75,35 +75,32 @@ public class Postulante extends Persona implements Serializable {
     }
 
     public int getNivelHabilidad(Habilidad habilidad) {
-        int nivel=0;
-        boolean encontro=false;
-        for(Map.Entry<Habilidad, Integer> entrada : habilidades.entrySet()){
-             if(entrada.getKey().equals(habilidad)&& !encontro){
+        int nivel = 0;
+        boolean encontro = false;
+        for (Map.Entry<Habilidad, Integer> entrada : habilidades.entrySet()) {
+            if (entrada.getKey().equals(habilidad) && !encontro) {
                 nivel = entrada.getValue();
-                encontro=true;
-             }
-       }
+                encontro = true;
+            }
+        }
         return nivel;
     }
-    
-     public void setTipoTrabajo(String tipoTrabajo) {
+
+    public void setTipoTrabajo(String tipoTrabajo) {
         this.tipoTrabajo = tipoTrabajo;
     }
-    
+
     @Override
     public String toString() {
         return getNombre() + " (" + getCedula() + ")";
     }
 
-   
-    
     @Override
-     public boolean equals(Object obj) {
-         Postulante postulante = (Postulante) obj;
+    public boolean equals(Object obj) {
+        Postulante postulante = (Postulante) obj;
         return Objects.equals(this.getCedula(), postulante.getCedula());
     }
-    
-    
+
 //    public String toFileString() {
 //        StringBuilder sb = new StringBuilder();
 //        sb.append(super.getNombre()) 
@@ -132,7 +129,6 @@ public class Postulante extends Persona implements Serializable {
 //
 //        return sb.toString();
 //    }
-    
 //    public static Postulante fromFileString(String fileString) {
 //        String[] parts = fileString.split(";");
 //        String nombre = parts[0];
@@ -156,15 +152,11 @@ public class Postulante extends Persona implements Serializable {
 //
 //        return postulante;
 //    }
-
-    
-    
 //    public void guardar() {
 //        ArchivoGrabacion archivo = new ArchivoGrabacion("Sistema.txt", true); // true para extender
 //        archivo.grabarLinea("POSTULANTE;" + this.toFileString());
 //        archivo.cerrar();
 //    }
-    
 //    public static ArrayList<Postulante> getPostulantesArchivo(){
 //        ArrayList<Postulante> postulantes = new ArrayList<>();
 //        ArchivoLectura archivo = new ArchivoLectura("Sistema.txt");
@@ -179,5 +171,4 @@ public class Postulante extends Persona implements Serializable {
 //        archivo.cerrar();
 //        return postulantes;
 //    }
-    
 }
