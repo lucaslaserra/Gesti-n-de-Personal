@@ -140,7 +140,7 @@ public class AltaHabilidad extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El nombre es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             if (descripcion.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "la descripción es obligatoria.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "La descripción es obligatoria.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 Habilidad habilidad = new Habilidad(nombre, descripcion);
 

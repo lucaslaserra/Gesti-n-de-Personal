@@ -325,7 +325,7 @@ public class ConsultaPuesto extends javax.swing.JFrame implements SistemaObserve
 
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < (n - i); j++) {
-                System.out.println("Comparo " + obtenerUltimaPuntuacion(listaPostulantes.get(j - 1), entrevistas) + " con " + obtenerUltimaPuntuacion(listaPostulantes.get(j), entrevistas));
+             
                 if (obtenerUltimaPuntuacion(listaPostulantes.get(j - 1), entrevistas) < obtenerUltimaPuntuacion(listaPostulantes.get(j), entrevistas)) {
                     temp = listaPostulantes.get(j - 1);
                     listaPostulantes.set(j - 1, listaPostulantes.get(j));

@@ -144,7 +144,7 @@ public class Sistema implements Serializable {
             out.writeObject(habilidades);
             out.writeObject(puestos);
             out.writeObject(evaluadores);
-            System.out.println(postulantes);
+           
             out.writeObject(postulantes);
             out.writeObject(entrevistas);
             out.writeObject(siguienteNumEntrevista);
