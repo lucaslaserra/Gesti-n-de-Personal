@@ -87,20 +87,6 @@ public class AltaEntrevista extends javax.swing.JFrame implements SistemaObserve
         jScrollPane1.setViewportView(ListaPostulantes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 100;
-        gridBagConstraints.ipady = 70;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 30);
-        jPanel1.add(jScrollPane1, gridBagConstraints);
-
-        jScrollPane2.setViewportView(ListaEvaluadores);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
@@ -111,6 +97,20 @@ public class AltaEntrevista extends javax.swing.JFrame implements SistemaObserve
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(18, 30, 0, 40);
+        jPanel1.add(jScrollPane1, gridBagConstraints);
+
+        jScrollPane2.setViewportView(ListaEvaluadores);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.ipady = 70;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 30);
         jPanel1.add(jScrollPane2, gridBagConstraints);
 
         jLabel4.setText("Puntaje:");
@@ -189,6 +189,7 @@ public class AltaEntrevista extends javax.swing.JFrame implements SistemaObserve
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Agrego entrevista
     private void BotonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarActionPerformed
         Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
         Evaluador evaluadorSelected = ListaEvaluadores.getSelectedValue();
@@ -210,10 +211,12 @@ public class AltaEntrevista extends javax.swing.JFrame implements SistemaObserve
         limpiar();
     }//GEN-LAST:event_BotonRegistrarActionPerformed
 
+    // Cierro pestaña
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
+    // Actualizo listas de evaluadores y postulantes.
     public void actualizarLista() {
         DefaultListModel<Evaluador> modeloE = new DefaultListModel<>();
         ArrayList<Evaluador> evaluadores = miSistema.obtenerListaEvaluadores();
@@ -229,6 +232,7 @@ public class AltaEntrevista extends javax.swing.JFrame implements SistemaObserve
         ListaPostulantes.setModel(modeloP);
     }
 
+    // Limpiar campos y listas
     public void limpiar() {
         TextComentarios.setText("");
         ListaEvaluadores.clearSelection();
@@ -236,6 +240,7 @@ public class AltaEntrevista extends javax.swing.JFrame implements SistemaObserve
         SpinnerPuntaje.setValue(0);
     }
 
+    // Actualizar (observer)
     public void actualizar() {
         actualizarLista();
     }

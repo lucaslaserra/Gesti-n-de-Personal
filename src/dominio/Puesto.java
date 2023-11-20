@@ -20,6 +20,7 @@ public class Puesto implements Serializable{
         this.habilidades = new ArrayList<>();
     }
 
+    // Get, Set, y Delete de Puesto.
     public void setTitulo(String titulo) {
         this.nombre = titulo;
     }

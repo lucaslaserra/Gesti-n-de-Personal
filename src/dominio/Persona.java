@@ -12,7 +12,7 @@ public class Persona implements Serializable {
     private String cedula;
     private String direccion;
     private static final long serialVersionUID = 1L;
-
+    // Constructor, Get, Set, y Delete de Persona.
     public Persona(String nombre, String cedula, String direccion) {
         this.nombre = nombre;
         this.cedula = cedula;

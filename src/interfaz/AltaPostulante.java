@@ -284,6 +284,7 @@ public class AltaPostulante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
+    // Avanzo a siguiente pantalla (AltaPostulanteConocimiento) si todo es correcto.
     private void jButtonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguienteActionPerformed
         String nombre = jTextFieldNombre.getText();
         String cedula = jTextFieldCedula.getText();
@@ -357,6 +358,7 @@ public class AltaPostulante extends javax.swing.JFrame {
      }
     }//GEN-LAST:event_jButtonSiguienteActionPerformed
 
+    // Salir
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
        dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -395,17 +397,15 @@ public class AltaPostulante extends javax.swing.JFrame {
     private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 
+    // Limpio campos de texto.
     private void limpiarFormulario() {
-        // Limpia todos los campos de texto
+
         jTextFieldNombre.setText("");
         jTextFieldCedula.setText("");
         jTextFieldDireccion.setText("");
         jTextFieldTelefono.setText("");
         jTextFieldMail.setText("");
         jTextFieldLinkedin.setText("");
-        // ... otros campos
-
-        // Desmarca cualquier botón de radio seleccionado
         buttonGroup.clearSelection();
     }
 

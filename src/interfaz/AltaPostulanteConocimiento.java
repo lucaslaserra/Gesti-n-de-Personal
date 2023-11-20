@@ -32,13 +32,13 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
         jComboBoxHablidades = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jSpinnerNivel = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        jButtonAgregar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListHabilidades = new javax.swing.JList<>();
         jButtonEliminar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        JButtonSalir = new javax.swing.JButton();
         jButtonRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,10 +49,10 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
 
         jSpinnerNivel.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAgregar.setText("Agregar");
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAgregarActionPerformed(evt);
             }
         });
 
@@ -76,10 +76,10 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
             }
         });
 
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        JButtonSalir.setText("Cancelar");
+        JButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                JButtonSalirActionPerformed(evt);
             }
         });
 
@@ -98,7 +98,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(JButtonSalir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonRegistrar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -120,7 +120,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jSpinnerNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,7 +134,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jSpinnerNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonAgregar))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,7 +146,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(JButtonSalir)
                     .addComponent(jButtonRegistrar))
                 .addContainerGap())
         );
@@ -171,7 +171,8 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    // Agrego habilidad al postulante
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
     String habilidadString = (String) jComboBoxHablidades.getSelectedItem();
     Habilidad habilidadSeleccionada = habilidadesMap.get(habilidadString);
     int nivel = (Integer) jSpinnerNivel.getValue();
@@ -183,7 +184,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
     }
     
     actualizarListaHabilidades();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     private void cargarComboHabilidades(){
         ArrayList<Habilidad> habilidades = miSistema.obtenerListaHabilidades();
@@ -194,6 +195,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
         }
     }
     
+    // Actualizo panel (observer)
     public void actualizar() {
          while (jComboBoxHablidades.getItemCount() > 0) {
             Object item = jComboBoxHablidades.getItemAt(0);
@@ -204,6 +206,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
         cargarComboHabilidades();
     }
     
+    // Actualizo la lista de habilidades
     private void actualizarListaHabilidades() {
     DefaultListModel<String> modelo = new DefaultListModel<>();
     for (Map.Entry<Habilidad, Integer> entrada : postulante.getHabilidades().entrySet()) {
@@ -217,6 +220,7 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
         // TODO add your handling code here:
     }//GEN-LAST:event_jListHabilidadesAncestorAdded
 
+    // Elimino elemento habilidad de la lista
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
       int selectedIndex = jListHabilidades.getSelectedIndex();
         if (selectedIndex != -1) {
@@ -239,12 +243,9 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
+    // Hago el alta de el postulante finalmente.
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-//        System.out.println("Registrando postulante: " + postulante.getNombre() + " con las siguientes habilidades:");
-//    postulante.getHabilidades().forEach((habilidad, nivel) -> 
-//        System.out.println("Habilidad: " + habilidad + ", Nivel: " + nivel)
-//    );
-//        
+
         if(jListHabilidades.getModel().getSize() == 0){
             JOptionPane.showMessageDialog(this, "Debes asignarle una habilidad al postulante","Error",JOptionPane.ERROR_MESSAGE);
             return;
@@ -255,16 +256,17 @@ public class AltaPostulanteConocimiento extends javax.swing.JFrame implements Si
         dispose();
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    // Salir
+    private void JButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonSalirActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_JButtonSalirActionPerformed
 
  
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton JButtonSalir;
+    private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JComboBox<String> jComboBoxHablidades;

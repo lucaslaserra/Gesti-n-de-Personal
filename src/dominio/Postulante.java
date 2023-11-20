@@ -21,7 +21,7 @@ public class Postulante extends Persona implements Serializable {
     private String tipoTrabajo;
     private Map<Habilidad, Integer> habilidades;
 
-    // Constructor, getters y setters
+    // Constructor, Get, Set, y Delete de Postulante.
     public Postulante(String nombre, String cedula, String direccion, String telefono, String email, String linkedin, String tipoTrabajo) {
         super(nombre, cedula, direccion);
         this.telefono = telefono;
@@ -101,74 +101,4 @@ public class Postulante extends Persona implements Serializable {
         return Objects.equals(this.getCedula(), postulante.getCedula());
     }
 
-//    public String toFileString() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(super.getNombre()) 
-//          .append(";")
-//          .append(super.getCedula()) 
-//          .append(";")
-//          .append(super.getDireccion()) 
-//          .append(";")
-//          .append(this.getTelefono())
-//          .append(";")
-//          .append(this.getEmail())
-//          .append(";")
-//          .append(this.getLinkedin())
-//          .append(";")
-//          .append(this.getTipoTrabajo());
-//
-//        
-//        for (Map.Entry<Habilidad, Integer> entry : this.habilidades.entrySet()) {
-//            Habilidad habilidad = entry.getKey();
-//            Integer nivel = entry.getValue();
-//            sb.append(";")
-//              .append(habilidad.getTema())
-//              .append(":")
-//              .append(nivel);
-//        }
-//
-//        return sb.toString();
-//    }
-//    public static Postulante fromFileString(String fileString) {
-//        String[] parts = fileString.split(";");
-//        String nombre = parts[0];
-//        String cedula = parts[1];
-//        String direccion = parts[2];
-//        String telefono = parts[3];
-//        String email = parts[4];
-//        String linkedin = parts[5];
-//        String tipoTrabajo = parts[6];
-//
-//        Postulante postulante = new Postulante(nombre, cedula, direccion, telefono, email, linkedin, tipoTrabajo);
-//
-//        // Añadir habilidades y niveles
-//        for (int i = 7; i < parts.length; i++) {
-//            String[] habilidadParts = parts[i].split(":");
-//            String tema = habilidadParts[0];
-//            Integer nivel = Integer.parseInt(habilidadParts[1]);
-//            Habilidad habilidad = new Habilidad(tema, "");
-//            postulante.addHabilidad(habilidad, nivel);
-//        }
-//
-//        return postulante;
-//    }
-//    public void guardar() {
-//        ArchivoGrabacion archivo = new ArchivoGrabacion("Sistema.txt", true); // true para extender
-//        archivo.grabarLinea("POSTULANTE;" + this.toFileString());
-//        archivo.cerrar();
-//    }
-//    public static ArrayList<Postulante> getPostulantesArchivo(){
-//        ArrayList<Postulante> postulantes = new ArrayList<>();
-//        ArchivoLectura archivo = new ArchivoLectura("Sistema.txt");
-//
-//        while (archivo.hayMasLineas()) {
-//            String linea = archivo.linea();
-//            if (linea.startsWith("POSTULANTE;")) {
-//                Postulante postulante = Postulante.fromFileString(linea.substring(11)); // Elimina el prefijo
-//                postulantes.add(postulante);
-//            }
-//        }
-//        archivo.cerrar();
-//        return postulantes;
-//    }
 }

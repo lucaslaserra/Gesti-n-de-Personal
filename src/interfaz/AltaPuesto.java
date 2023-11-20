@@ -222,12 +222,13 @@ public class AltaPuesto extends javax.swing.JFrame implements SistemaObserver{
         // TODO add your handling code here:
     }//GEN-LAST:event_JRemotoActionPerformed
 
+    // Hago alta del Puesto.
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         String nombrePuesto = jTextFieldNombre.getText();
         String tipoTrabajo = "";
 
         if (nombrePuesto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar un nombre!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe ingresar un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -246,12 +247,12 @@ public class AltaPuesto extends javax.swing.JFrame implements SistemaObserver{
         } else if (JMixto.isSelected()) {
             tipoTrabajo = "Mixto";
         } else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de trabajo!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de trabajo.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (modelo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No agregó una habilidad requerida", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe agregar una habilidad requerida del puesto.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -271,6 +272,7 @@ public class AltaPuesto extends javax.swing.JFrame implements SistemaObserver{
 
     }//GEN-LAST:event_CombodeTemasComponentAdded
 
+    // Agrego tema requerido en la lista
     private void JbotonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbotonAgregarTemaActionPerformed
         Habilidad habilidadSelect = (Habilidad) CombodeTemas.getSelectedItem();
         if (modelo.contains(habilidadSelect)) {
@@ -299,6 +301,7 @@ public class AltaPuesto extends javax.swing.JFrame implements SistemaObserver{
         }
     }
     
+    // Actualizo panel (observer)
     public void actualizar() {
         while (CombodeTemas.getItemCount() > 0) {
             Object item = CombodeTemas.getItemAt(0);

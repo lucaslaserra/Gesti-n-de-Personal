@@ -31,30 +31,7 @@ public class Sistema implements Serializable {
     }
    
 
-    public void adjuntar(SistemaObserver observer) {
-        observadores.add(observer);
-    }
-
-    public void desadjuntar(SistemaObserver observer) {
-        observadores.remove(observer);
-    }
-
-    public void notificarObservadores() {
-        for (SistemaObserver observer : observadores) {
-            observer.actualizar();
-        }
-    }
-    
-    public void limpiarSistema() {
-        habilidades.clear();
-        puestos.clear();
-        evaluadores.clear();
-        postulantes.clear();
-        entrevistas.clear();
-        siguienteNumEntrevista = 1;
-        guardarSistema();
-    }
-
+    // Get, Set, y Delete de las listas del sistema.
     public int obtenerNumdeEntrevistas() {
         cargarSistema();
         return siguienteNumEntrevista;
@@ -83,54 +60,6 @@ public class Sistema implements Serializable {
     public ArrayList<Entrevista> obtenerListaEntrevistas() {
         cargarSistema();
         return entrevistas;
-    }
-
-    public void guardarSistema() {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO_SISTEMA))) {
-            out.writeObject(habilidades);
-            out.writeObject(puestos);
-            out.writeObject(evaluadores);
-            System.out.println(postulantes);
-            out.writeObject(postulantes);
-            out.writeObject(entrevistas);
-            out.writeObject(siguienteNumEntrevista);
-//            notificarObservers();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-//    private void notificarObservers() { 
-//        for (SistemaObserver observer : observers) {
-//            observer.actualizar();
-//        }
-//    }
-    public void cargarSistema() {
-        File archivo = new File(ARCHIVO_SISTEMA);
-        if (archivo.exists()) {
-            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
-                habilidades = (ArrayList<Habilidad>) in.readObject();
-                puestos = (ArrayList<Puesto>) in.readObject();
-                evaluadores = (ArrayList<Evaluador>) in.readObject();
-                postulantes = (ArrayList<Postulante>) in.readObject();
-                entrevistas = (ArrayList<Entrevista>) in.readObject();
-                siguienteNumEntrevista = (int) in.readObject();
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-                // Aquí podrías querer manejar el error inicializando listas vacías o notificando al usuario.
-            }
-        } else {
-            inicializarListas();
-        }
-    }
-
-    private void inicializarListas() {
-        habilidades = new ArrayList<>();
-        puestos = new ArrayList<>();
-        evaluadores = new ArrayList<>();
-        postulantes = new ArrayList<>();
-        entrevistas = new ArrayList<>();
-        siguienteNumEntrevista = 1;
     }
 
     public void agregarHabilidad(Habilidad habilidad) {
@@ -165,7 +94,6 @@ public class Sistema implements Serializable {
         cargarSistema();
         entrevista.setId(siguienteNumEntrevista);
         siguienteNumEntrevista++;
-        System.out.println(entrevista.getId());
         entrevistas.add(entrevista);
         guardarSistema();
         notificarObservadores();
@@ -194,13 +122,11 @@ public class Sistema implements Serializable {
 
     public void eliminarPostulante(Postulante postulante) {
         for (Postulante p : this.obtenerListaPostulantes()) {
-            System.out.println(p.toString());
         }
         cargarSistema();
         postulantes.remove(postulante);
         guardarSistema();
         for (Postulante p : this.obtenerListaPostulantes()) {
-            System.out.println(p.toString());
         }
         notificarObservadores();
     }
@@ -212,4 +138,76 @@ public class Sistema implements Serializable {
         notificarObservadores();
     }
 
+    // Persistir Sistema
+    public void guardarSistema() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO_SISTEMA))) {
+            out.writeObject(habilidades);
+            out.writeObject(puestos);
+            out.writeObject(evaluadores);
+            System.out.println(postulantes);
+            out.writeObject(postulantes);
+            out.writeObject(entrevistas);
+            out.writeObject(siguienteNumEntrevista);
+        } catch (IOException e) {
+            System.out.println("Error al guardar sistema.");
+        }
+    }
+
+    // Cargar sistema persistido
+    public void cargarSistema() {
+        File archivo = new File(ARCHIVO_SISTEMA);
+        if (archivo.exists()) {
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
+                habilidades = (ArrayList<Habilidad>) in.readObject();
+                puestos = (ArrayList<Puesto>) in.readObject();
+                evaluadores = (ArrayList<Evaluador>) in.readObject();
+                postulantes = (ArrayList<Postulante>) in.readObject();
+                entrevistas = (ArrayList<Entrevista>) in.readObject();
+                siguienteNumEntrevista = (int) in.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Error al cargar sistema.");
+                // Aquí podrías querer manejar el error inicializando listas vacías o notificando al usuario.
+            }
+        } else {
+            inicializarListas();
+        }
+    }
+
+    // Inicializar variables
+    private void inicializarListas() {
+        habilidades = new ArrayList<>();
+        puestos = new ArrayList<>();
+        evaluadores = new ArrayList<>();
+        postulantes = new ArrayList<>();
+        entrevistas = new ArrayList<>();
+        siguienteNumEntrevista = 1;
+    }
+    
+    // Adjuntar panel para observar
+    public void adjuntar(SistemaObserver observer) {
+        observadores.add(observer);
+    }
+    // Desadjuntar panel para observar
+    public void desadjuntar(SistemaObserver observer) {
+        observadores.remove(observer);
+    }
+
+    // Notificar observadores, y actualizar pantallas.
+    public void notificarObservadores() {
+        for (SistemaObserver observer : observadores) {
+            observer.actualizar();
+        }
+    }
+    
+    // Limpiar variables
+    public void limpiarSistema() {
+        habilidades.clear();
+        puestos.clear();
+        evaluadores.clear();
+        postulantes.clear();
+        entrevistas.clear();
+        siguienteNumEntrevista = 1;
+        guardarSistema();
+    }
+    
 }

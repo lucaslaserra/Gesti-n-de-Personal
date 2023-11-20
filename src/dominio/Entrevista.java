@@ -14,7 +14,8 @@ public class Entrevista implements Serializable {
     private String comentarios;
     private int id;
     private int puntuacion;
-
+    
+     // Constructor, Get, Set, y Delete de Entrevista.
     public Entrevista(Postulante postulante, Evaluador evaluador, String comentarios, int puntuacion) {
         this.postulante = postulante;
         this.evaluador = evaluador;
@@ -62,36 +63,15 @@ public class Entrevista implements Serializable {
     public void setPuntuacion(int puntuacion) {
         this.puntuacion = puntuacion;
     }
-
-    @Override
-    public String toString() {
-        return "Entrevista{" + " El postulante fue: " + postulante + ",El evaluador fue: " + evaluador + ", Los comentarios son:" + comentarios + ",La puntuacion es: " + puntuacion + '}';
-    }
-
+    
     public String toFileString() {
         return getPostulante() + ";" + getEvaluador() + ";" + getComentarios() + ";" + getPuntuacion();
     }
 
-    // public static Entrevista fromFileString(String fileString) {
-    //   String[] parts = fileString.split(";");   
-    // return new Entrevista(parts[0], parts[1],parts[2],parts[3],parts[4],parts[5]);
-    //}
-    // Método para guardar el evaluador actual en un archivo
     public void guardar() {
         ArchivoGrabacion archivo = new ArchivoGrabacion("entrevistas.txt", true); // true para extender
         archivo.grabarLinea(this.toFileString());
         archivo.cerrar();
     }
 
-    // Método static para leer todos los conocimientos de un archivo
-    // public static ArrayList<Entrevista> obtenerListaEntrevistas() {
-    //   ArrayList<Entrevista> entrevistas = new ArrayList<>();
-    // ArchivoLectura archivo = new ArchivoLectura("entrevistas.txt");
-    //while (archivo.hayMasLineas()) {
-    //  Entrevista entrevista = Entrevista.fromFileString(archivo.linea());
-    //entrevistas.add(entrevista);
-    //}
-    // archivo.cerrar();
-    //return evaluadores;
-    //}
 }

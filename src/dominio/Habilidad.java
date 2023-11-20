@@ -14,7 +14,8 @@ public class Habilidad implements Serializable {
     private String tema;
     private static final long serialVersionUID = 1L;
     private String descripcion;
-
+    
+    // Constructor, Get, Set, y Delete de Habilidad.
     public Habilidad(String tema, String descripcion) {
         this.tema = tema;
         this.descripcion = descripcion;
@@ -67,18 +68,6 @@ public class Habilidad implements Serializable {
         }
         return flag;
     }
-//    public boolean existeHabilidad(Habilidad habilidad) {
-//        ArrayList<Habilidad> aux = obtenerListaHabilidades();
-//        boolean existe = false;
-//       if(!aux.isEmpty()) {  
-//        for (Habilidad j : aux) {
-//            if ((j.getTema().toLowerCase()).equals(habilidad.getTema().toLowerCase())) {
-//                existe = true;
-//            }
-//        }
-//       }
-//        return existe;
-//    }
 
     // Método para guardar el conocimiento actual en un archivo
     public void guardar() {
@@ -87,6 +76,7 @@ public class Habilidad implements Serializable {
         archivo.cerrar();
     }
 
+    // Metodo para saber si existe habilidad
     public boolean existeHabilidad(Habilidad habilidad, Sistema sistema) {
         ArrayList<Habilidad> aux = sistema.obtenerListaHabilidades();
         boolean existe = false;
