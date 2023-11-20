@@ -354,7 +354,7 @@ public class AltaPostulante extends javax.swing.JFrame {
        altaPostulanteConocimiento.setVisible(true);
        limpiarFormulario();
      }else{
-        JOptionPane.showMessageDialog(this, "No hay ninguna habilidad agregada, debe ir a Registro Habilidad e ingresar almenos una habilidad", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "No hay ninguna habilidad agregada, debe ir a Registro Habilidad e ingresar al menos una habilidad", "Error", JOptionPane.ERROR_MESSAGE);
      }
     }//GEN-LAST:event_jButtonSiguienteActionPerformed
 

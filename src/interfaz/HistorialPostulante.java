@@ -1,6 +1,5 @@
 // Lucas Laserra - 307103
 // Gonzalo Álvarez - 315491
-
 package interfaz;
 
 import dominio.*;
@@ -36,7 +35,6 @@ public class HistorialPostulante extends javax.swing.JFrame implements SistemaOb
         miSistema.adjuntar(this);
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -292,7 +290,7 @@ public class HistorialPostulante extends javax.swing.JFrame implements SistemaOb
         Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
         limpiarLabels();
         limpiarTabla();
-        if(postulanteSelected == null) {
+        if (postulanteSelected == null) {
             return;
         }
         actualizarListaExperiencias(postulanteSelected);
@@ -365,15 +363,15 @@ public class HistorialPostulante extends javax.swing.JFrame implements SistemaOb
 
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
-    public void actualizar(){
+    public void actualizar() {
         actualizarLista();
         limpiarLabels();
         DefaultListModel<String> modeloLimpio = new DefaultListModel<>();
         modeloLimpio.clear();
         ListaExperiencias.setModel(modeloLimpio);
     }
-    
-    
+
+
     private void BotonResetarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResetarActionPerformed
         Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
         limpiarTabla();
@@ -419,16 +417,20 @@ public class HistorialPostulante extends javax.swing.JFrame implements SistemaOb
         Linkedin.setForeground(Color.BLUE);
     }//GEN-LAST:event_LinkedinMouseExited
     public void actualizarLista() {
-        DefaultListModel<Postulante> modeloL = new DefaultListModel<>();
         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+        postulantes.sort((Postulante p1, Postulante p2) -> {
+            int cedula1 = Integer.parseInt(p1.getCedula());
+            int cedula2 = Integer.parseInt(p2.getCedula());
+            return Integer.compare(cedula1, cedula2);
+        });
+
+        DefaultListModel<Postulante> modeloL = new DefaultListModel<>();
         for (Postulante j : postulantes) {
             modeloL.addElement(j);
         }
         ListaPostulantes.setModel(modeloL);
     }
 
-    
-    
     public void actualizarListaExperiencias(Postulante postulante) {
         DefaultListModel<String> modeloLE = new DefaultListModel<>();
         Map<Habilidad, Integer> habilidades = postulante.getHabilidades();

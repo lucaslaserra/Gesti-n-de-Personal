@@ -157,6 +157,13 @@ public class BajaPostulante extends javax.swing.JFrame implements SistemaObserve
 
     private void cargarJListPostulantes() {
         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+        
+        postulantes.sort((Postulante p1, Postulante p2) -> {
+            int cedula1 = Integer.parseInt(p1.getCedula());
+            int cedula2 = Integer.parseInt(p2.getCedula());
+            return Integer.compare(cedula1, cedula2);
+        });
+        
         DefaultListModel<Postulante> modeloJListPostulantes = new DefaultListModel<>();
         for (Postulante postulante : postulantes) {
             modeloJListPostulantes.addElement(postulante);

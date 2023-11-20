@@ -237,7 +237,11 @@ public class ConsultaPuesto extends javax.swing.JFrame implements SistemaObserve
                     postulantesAceptados.add(postulante);
                 }
             }
-
+            postulantesAceptados.sort((Postulante p1, Postulante p2) -> {
+                int cedula1 = Integer.parseInt(p1.getCedula());
+                int cedula2 = Integer.parseInt(p2.getCedula());
+                return Integer.compare(cedula1, cedula2);
+            });
              // Mostrar resultados o mensaje de error si no hay postulantes adecuados
             if (postulantesAceptados.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No hay postulantes que cumplan con el nivel requerido para este puesto.", "Ningún postulante cumple los requisitos", JOptionPane.ERROR_MESSAGE);

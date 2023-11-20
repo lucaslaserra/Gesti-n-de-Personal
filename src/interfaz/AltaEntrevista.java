@@ -192,6 +192,8 @@ public class AltaEntrevista extends javax.swing.JFrame implements SistemaObserve
     // Agrego entrevista
     private void BotonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarActionPerformed
         Postulante postulanteSelected = ListaPostulantes.getSelectedValue();
+        
+        
         Evaluador evaluadorSelected = ListaEvaluadores.getSelectedValue();
         int puntaje = (int) SpinnerPuntaje.getValue();
         String comentarios = TextComentarios.getText();
@@ -221,7 +223,15 @@ public class AltaEntrevista extends javax.swing.JFrame implements SistemaObserve
         DefaultListModel<Evaluador> modeloE = new DefaultListModel<>();
         ArrayList<Evaluador> evaluadores = miSistema.obtenerListaEvaluadores();
         DefaultListModel<Postulante> modeloP = new DefaultListModel<>();
+        
         ArrayList<Postulante> postulantes = miSistema.obtenerListaPostulantes();
+        postulantes.sort((Postulante p1, Postulante p2) -> {
+            int cedula1 = Integer.parseInt(p1.getCedula());
+            int cedula2 = Integer.parseInt(p2.getCedula());
+            return Integer.compare(cedula1, cedula2);
+        });
+        
+        
         for (Evaluador e : evaluadores) {
             modeloE.addElement(e);
         }
